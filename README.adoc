@@ -24,6 +24,79 @@ This plugin on the other hand supports:
 
 == Setup
 === Vim
+.asciidoctor
+[source,vim]
+--------
+
+" What to use for HTML, default `asciidoctor`
+let g:asciidoctor_executable = 'asciidoctor'
+
+" What extensions to use for HTML, default `[]`
+let g:asciidoctor_extensions = ['asciidoctor-diagram', 'asciidoctor-rouge']
+
+--------
+
+.asciidoctor-pdf
+[source,vim]
+--------
+
+" What to use for PDF, default `asciidoctor-pdf`
+let g:asciidoctor_pdf_executable = "asciidoctor-pdf"
+
+" What extensions to use for PDF, default `[]`
+let g:asciidoctor_pdf_extensions = ['asciidoctor-diagram']
+
+" Path to PDF themes, default `''`
+let g:asciidoctor_pdf_themes_path = '~/docs/AsciiDocThemes'
+
+" Path to PDF fonts, default `''`
+let g:asciidoctor_pdf_fonts_path = '~/docs/AsciiDocThemes/fonts'
+
+--------
+
+.folding
+[source,vim]
+--------
+
+" fold sections, default `0`
+let g:asciidoctor_folding = 1
+
+" fold options, default `0`
+let g:asciidoctor_fold_options = 1
+
+--------
+
+.Syntax highlighting for other languages in [source] blocks
+[source,vim]
+--------
+
+" List of filetypes to highlight, default `[]`
+let g:asciidoctor_fenced_languages = ['python', 'c', 'javascript']
+
+--------
+
+.default mappings... there are no default mappings
+[source,vim]
+--------
+
+" Function to create buffer local mappings
+fun! AsciidoctorMappings()
+	nnoremap <buffer> <leader>oo :AsciidoctorOpenRAW<CR>
+	nnoremap <buffer> <leader>op :AsciidoctorOpenPDF<CR>
+	nnoremap <buffer> <leader>oh :AsciidoctorOpenHTML<CR>
+	nnoremap <buffer> <leader>ox :AsciidoctorOpenDOCX<CR>
+	nnoremap <buffer> <leader>ch :Asciidoctor2HTML<CR>
+	nnoremap <buffer> <leader>cp :Asciidoctor2PDF<CR>
+	nnoremap <buffer> <leader>cx :Asciidoctor2DOCX<CR>
+endfun
+
+" Call AsciidoctorMappings for all `*.adoc` and `*.asciidoc` files
+augroup asciidoctor
+	au!
+	au BufEnter *.adoc,*.asciidoc call AsciidoctorMappings()
+augroup END
+
+--------
 === Asciidoctor
 
 == Commands
