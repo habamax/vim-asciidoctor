@@ -35,10 +35,10 @@ syn match asciidoctorOption "^:[[:alnum:]-]\{-}:.*$"
 syn cluster asciidoctorBlock contains=asciidoctorTitle,asciidoctorH1,asciidoctorH2,asciidoctorH3,asciidoctorH4,asciidoctorH5,asciidoctorH6,asciidoctorBlockquote,asciidoctorListMarker,asciidoctorOrderedListMarker,asciidoctorCodeBlock
 syn cluster asciidoctorInline contains=asciidoctorLineBreak,asciidoctorLinkText,asciidoctorItalic,asciidoctorBold,asciidoctorCode,asciidoctorError,asciidoctorBoldItalic
 
-syn match asciidoctorH1 "^[^[].\+\n=\+$" contains=@asciidoctorInline,asciidoctorHeadingRule,asciidoctorAutomaticLink
-syn match asciidoctorH2 "^[^[].\+\n-\+$" contains=@asciidoctorInline,asciidoctorHeadingRule,asciidoctorAutomaticLink
-
-syn match asciidoctorHeadingRule "^[=-]\+$" contained
+" really hard to use them together with all the rest 'blocks'
+" syn match asciidoctorH1 "^[^[].\+\n=\+$" contains=@asciidoctorInline,asciidoctorHeadingRule,asciidoctorAutomaticLink
+" syn match asciidoctorH2 "^[^[].\+\n-\+$" contains=@asciidoctorInline,asciidoctorHeadingRule,asciidoctorAutomaticLink
+" syn match asciidoctorHeadingRule "^[=-]\+$" contained
 
 syn match asciidoctorTitle "^=\s.*$"
 syn match asciidoctorH1 "^==\s.*$"
@@ -101,7 +101,7 @@ hi def link asciidoctorH3                    Title
 hi def link asciidoctorH4                    Title
 hi def link asciidoctorH5                    Title
 hi def link asciidoctorH6                    Title
-hi def link asciidoctorHeadingRule           Title
+" hi def link asciidoctorHeadingRule           Title
 hi def link asciidoctorListMarker            Delimiter
 hi def link asciidoctorOrderedListMarker     asciidoctorListMarker
 hi def link asciidoctorBlockquote            Comment

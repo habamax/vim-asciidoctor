@@ -46,16 +46,6 @@ function! AsciidoctorFold() "{{{
 		return ">" . depth
 	endif
 
-	" Setext style headings
-	let nextline = getline(v:lnum + 1)
-	if (line !~ '^\[.\+\]\s*$') && (line !~ '^\s*$') && (nextline =~ '^=\+$')
-		return ">1"
-	endif
-
-	if (line !~ '^\[.\+\]\s*$') && (line !~ '^\s*$') && (nextline =~ '^-\+$')
-		return ">2"
-	endif
-
 	if g:asciidoctor_fold_options
 		" Fold options
 		let prevline = getline(v:lnum - 1)
@@ -68,18 +58,6 @@ function! AsciidoctorFold() "{{{
 			endif
 		endif
 	endif
-
-	" if g:asciidoctor_fold_blocks
-	" 	" Fold tables and other blocks
-	" 	let nextline2 = getline(v:lnum + 2)
-	" 	" if (line =~ '^\.\S.*$\|^\[.*\]\s*$')
-	" 	if (line =~ '^\[.*\]\s*$') && (nextline =~ '^\%(\(|===*\)\|=\{2,}\|\.\{2,}\|-\{2,}\|_\{3,}\s*\)$')
-	" 		return "a1"
-	" 	endif
-	" 	if (line =~ '^\%(\(|===*\)\|=\{2,}\|\.\{2,}\|-\{2,}\|_\{3,}\s*\)$') && (prevline =~ '^\s*$\|^|.*$')
-	" 		return "s1"
-	" 	endif
-	" endif
 
 	return "="
 endfunction "}}}
@@ -94,13 +72,12 @@ command! -buffer AsciidoctorOpenHTML :exe g:asciidoctor_opener." ".expand("%:p:r
 command! -buffer AsciidoctorOpenDOCX :exe g:asciidoctor_opener." ".expand("%:p:r").".docx"
 
 if has("folding") && exists("g:asciidoctor_folding")
-	setlocal foldexpr=AsciidoctorFold()
-	setlocal foldmethod=expr
-	if !exists('g:asciidoctor_fold_blocks')
-		let g:asciidoctor_fold_blocks = 0
+	if g:asciidoctor_folding
+		setlocal foldexpr=AsciidoctorFold()
+		setlocal foldmethod=expr
+		if !exists('g:asciidoctor_fold_options')
+			let g:asciidoctor_fold_options = 0
+		endif
+		let b:undo_ftplugin .= " foldexpr< foldmethod<"
 	endif
-	if !exists('g:asciidoctor_fold_options')
-		let g:asciidoctor_fold_options = 0
-	endif
-	let b:undo_ftplugin .= " foldexpr< foldmethod<"
 endif
