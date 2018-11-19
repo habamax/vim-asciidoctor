@@ -28,10 +28,10 @@ This plugin on the other hand supports:
 [source,vim]
 --------
 
-" What to use for HTML, default `asciidoctor`
+" What to use for HTML, default `asciidoctor`.
 let g:asciidoctor_executable = 'asciidoctor'
 
-" What extensions to use for HTML, default `[]`
+" What extensions to use for HTML, default `[]`.
 let g:asciidoctor_extensions = ['asciidoctor-diagram', 'asciidoctor-rouge']
 
 --------
@@ -40,17 +40,29 @@ let g:asciidoctor_extensions = ['asciidoctor-diagram', 'asciidoctor-rouge']
 [source,vim]
 --------
 
-" What to use for PDF, default `asciidoctor-pdf`
+" What to use for PDF, default `asciidoctor-pdf`.
 let g:asciidoctor_pdf_executable = "asciidoctor-pdf"
 
-" What extensions to use for PDF, default `[]`
+" What extensions to use for PDF, default `[]`.
 let g:asciidoctor_pdf_extensions = ['asciidoctor-diagram']
 
-" Path to PDF themes, default `''`
+" Path to PDF themes, default `''`.
 let g:asciidoctor_pdf_themes_path = '~/docs/AsciiDocThemes'
 
-" Path to PDF fonts, default `''`
+" Path to PDF fonts, default `''`.
 let g:asciidoctor_pdf_fonts_path = '~/docs/AsciiDocThemes/fonts'
+
+--------
+
+.asciidoctor-docx
+[source,vim]
+--------
+
+" What to use for DOCX, default `pandoc`.
+" The DOCX 'compilation' process is to generate `docbook` using
+" `g:asciidoctor-executable` and then to generate DOCX out of `docbook`
+" using `pandoc`.
+let g:asciidoctor_pandoc_executable = "pandoc"
 
 --------
 
@@ -58,10 +70,10 @@ let g:asciidoctor_pdf_fonts_path = '~/docs/AsciiDocThemes/fonts'
 [source,vim]
 --------
 
-" fold sections, default `0`
+" Fold sections, default `0`.
 let g:asciidoctor_folding = 1
 
-" fold options, default `0`
+" Fold options, default `0`.
 let g:asciidoctor_fold_options = 1
 
 --------
@@ -103,4 +115,5 @@ augroup END
 
 == Usage
 
+// add some short youtube videos
 
