@@ -116,8 +116,8 @@ hi asciidoctorBold                           gui=bold cterm=bold
 hi asciidoctorItalic                         gui=italic cterm=italic
 hi asciidoctorBoldItalic                     gui=bold,italic cterm=bold,italic
 hi def link asciidoctorDefList               asciidoctorBold
-hi def link asciidoctorCode                  PreProc
-hi def link asciidoctorOption                PreProc
+hi def link asciidoctorCode                  Constant
+hi def link asciidoctorOption                Constant
 hi def link asciidoctorCaption               asciidoctorItalic
 hi def link asciidoctorAdmonition            asciidoctorBold
 
