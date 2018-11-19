@@ -49,6 +49,7 @@ function! AsciidoctorFold() "{{{
 	if g:asciidoctor_fold_options
 		" Fold options
 		let prevline = getline(v:lnum - 1)
+		let nextline = getline(v:lnum + 1)
 		if (line =~ '^:[[:alnum:]-]\{-}:.*$')
 			if (prevline !~ '^:[[:alnum:]-]\{-}:.*$')
 				return "a1"
