@@ -52,7 +52,7 @@ syn match asciidoctorH6 "^=======\s.*$"
 syn match asciidoctorListMarker "^\s*\(-\|\*\+\|\.\+\)\%(\s\+\S\)\@="
 syn match asciidoctorOrderedListMarker "^\s*\d\+\.\%(\s\+\S\)\@="
 
-syn match asciidoctorDefList "^\S.\{-}::"
+syn match asciidoctorDefList "^\S.\{-}::\_s"
 syn match asciidoctorCaption "^\.\S.\+$"
 
 " syn match asciidoctorUrl "\S\+" nextgroup=asciidoctorUrlTitle skipwhite contained
