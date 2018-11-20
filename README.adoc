@@ -1,4 +1,4 @@
-= Asciidoctor plugin for Vim
+= Vim ❤️ Asciidoctor
 :author: Maxim Kim
 :experimental:
 :toc: left
