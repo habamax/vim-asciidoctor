@@ -11,16 +11,7 @@
 :revdate: 2018-11-19
 :imagesdir: images
 
-
-[WARNING]
-=========
-
-Under construction
-
-=========
-
 image::image1.png[]
-// add some pics here
 
 == What about built-in asciidoc support?
 
@@ -31,7 +22,7 @@ This plugin on the other hand has:
 
 * quite limited syntax highlighting;
 * sections folding;
-* commands to build `HTML` (using asciidoctor), `PDF` (using asciidoctor-pdf) and `DOCX` (using combination of asciidoctor and pandoc)
+* commands to build `HTML` (using `asciidoctor`), `PDF` (using `asciidoctor-pdf`) and `DOCX` (using combination of `asciidoctor` and `pandoc`)
 
 And it is still way faster than built-in `syntax/asciidoc.vim`, for me.
 
@@ -56,7 +47,7 @@ let g:asciidoctor_extensions = ['asciidoctor-diagram', 'asciidoctor-rouge']
 --------
 
 " What to use for PDF, default `asciidoctor-pdf`.
-let g:asciidoctor_pdf_executable = "asciidoctor-pdf"
+let g:asciidoctor_pdf_executable = 'asciidoctor-pdf'
 
 " What extensions to use for PDF, default `[]`.
 let g:asciidoctor_pdf_extensions = ['asciidoctor-diagram']
@@ -77,7 +68,7 @@ let g:asciidoctor_pdf_fonts_path = '~/docs/AsciiDocThemes/fonts'
 " The DOCX 'compilation' process is to generate `docbook` using
 " `g:asciidoctor-executable` and then to generate DOCX out of `docbook`
 " using `pandoc`.
-let g:asciidoctor_pandoc_executable = "pandoc"
+let g:asciidoctor_pandoc_executable = 'pandoc'
 
 --------
 
@@ -125,10 +116,72 @@ augroup END
 
 --------
 === Asciidoctor
+// TODO: setup asciidoctor <2018-09-20 11:09>
 
 == Commands
 
 == Usage
+
+1. Open `~/test.adoc`
+2. Enter:
++
+[literal]
+.........
+
+= Asciidoctor Title: Hanging around
+
+This is the first para and it will be rendered with bigger text.
+
+== Section 1
+
+Text of section 1
+
+== Section 2
+
+Text of section 2
+
+.........
+
+3. Save it and export to `HTML`
++
+[literal]
+.........
+
+:w<CR>
+:Asciidoctor2HTML<CR>
+
+.........
+
+4. Open the `HTML` file:
++
+[literal]
+.........
+
+:AsciidoctorOpenHTML<CR>
+
+.........
++
+That should look smth like this:
+
+image::test_html.png[]
+
+
+If you use `:Asciidoctor2DOCX` and `:AsciidoctorOpenDOCX` commands instead, you
+should see something like this (provided you have `pandoc` and `MSWord`
+installed:)
+
+image::test_docx.png[]
+
+
+And if you use `:Asciidoctor2PDF` and `:AsciidoctorOpenPDF` commands, you
+should see something like this (I have my own default theme and fonts, so you
+probably see it a bit different) :
+
+.title page
+image::test_pdf1.png[]
+
+.first page
+image::test_pdf2.png[]
 
 // add some short youtube videos
 
