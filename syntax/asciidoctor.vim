@@ -19,7 +19,7 @@ for s:type in map(copy(g:asciidoctor_fenced_languages),'matchstr(v:val,"[^=]*$")
 	if s:type =~ '\.'
 		let b:{matchstr(s:type,'[^.]*')}_subtype = matchstr(s:type,'\.\zs.*')
 	endif
-	exe 'syn include @asciidoctorHighlight'.substitute(s:type,'\.','','g').' syntax/'.matchstr(s:type,'[^.]*').'.vim'
+	exe 'syn include @asciidoctorSourceHighlight'.substitute(s:type,'\.','','g').' syntax/'.matchstr(s:type,'[^.]*').'.vim'
 	unlet! b:current_syntax
 endfor
 unlet! s:type
@@ -33,27 +33,26 @@ syn case ignore
 syn match asciidoctorOption "^:[[:alnum:]-]\{-}:.*$"
 
 syn cluster asciidoctorBlock contains=asciidoctorTitle,asciidoctorH1,asciidoctorH2,asciidoctorH3,asciidoctorH4,asciidoctorH5,asciidoctorH6,asciidoctorBlockquote,asciidoctorListMarker,asciidoctorOrderedListMarker,asciidoctorCodeBlock
-syn cluster asciidoctorInline contains=asciidoctorLineBreak,asciidoctorLinkText,asciidoctorItalic,asciidoctorBold,asciidoctorCode,asciidoctorError,asciidoctorBoldItalic
+syn cluster asciidoctorInline contains=asciidoctorItalic,asciidoctorBold,asciidoctorCode,asciidoctorBoldItalic
 
 " really hard to use them together with all the rest 'blocks'
 " syn match asciidoctorH1 "^[^[].\+\n=\+$" contains=@asciidoctorInline,asciidoctorHeadingRule,asciidoctorAutomaticLink
 " syn match asciidoctorH2 "^[^[].\+\n-\+$" contains=@asciidoctorInline,asciidoctorHeadingRule,asciidoctorAutomaticLink
 " syn match asciidoctorHeadingRule "^[=-]\+$" contained
 
-syn match asciidoctorTitle "^=\s.*$"
-syn match asciidoctorH1 "^==\s.*$"
-syn match asciidoctorH2 "^===\s.*$"
-syn match asciidoctorH3 "^====\s.*$"
-syn match asciidoctorH4 "^=====\s.*$"
-syn match asciidoctorH5 "^======\s.*$"
-syn match asciidoctorH6 "^=======\s.*$"
+syn match asciidoctorTitle "^=\s.*$" contains=@asciidoctorInline
+syn match asciidoctorH1 "^==\s.*$" contains=@asciidoctorInline
+syn match asciidoctorH2 "^===\s.*$" contains=@asciidoctorInline
+syn match asciidoctorH3 "^====\s.*$" contains=@asciidoctorInline
+syn match asciidoctorH4 "^=====\s.*$" contains=@asciidoctorInline
+syn match asciidoctorH5 "^======\s.*$" contains=@asciidoctorInline
+syn match asciidoctorH6 "^=======\s.*$" contains=@asciidoctorInline
 
 
 syn match asciidoctorListMarker "^\s*\(-\|\*\+\|\.\+\)\%(\s\+\S\)\@="
 syn match asciidoctorOrderedListMarker "^\s*\d\+\.\%(\s\+\S\)\@="
 
 syn match asciidoctorDefList "^\S.\{-}::\_s"
-syn match asciidoctorCaption "^\.\S.\+$"
 
 " syn match asciidoctorUrl "\S\+" nextgroup=asciidoctorUrlTitle skipwhite contained
 " syn region asciidoctorUrl matchgroup=asciidoctorUrlDelimiter start="<" end=">" oneline keepend nextgroup=asciidoctorUrlTitle skipwhite contained
@@ -81,12 +80,24 @@ syn match asciidoctorCode /``.\{-}``/
 
 syn match asciidoctorAdmonition /^\%(NOTE:\)\|\%(TIP:\)\|\%(IMPORTANT:\)\|\%(CAUTION:\)\|\%(WARNING:\)\s/
 
+" syn match asciidoctorCaption "^\.\S.\+$" contains=asciidoctorCode,asciidoctorBold,AsciidoctorItalic,asciidoctorBoldItalic
+syn match asciidoctorCaption "^\.\S.\+$" contains=@asciidoctorInline
+
+" Source highlighting with programming languages
 if main_syntax ==# 'asciidoctor'
 	for s:type in g:asciidoctor_fenced_languages
-		exe 'syn region asciidoctorHighlight'.substitute(matchstr(s:type,'[^=]*$'),'\..*','','').' start="^\[source,\s*'.matchstr(s:type,'[^=]*').'\]\s*\n--\+\s*$" end="^[^[]*\n--\+\s*$" keepend contains=@asciidoctorHighlight'.substitute(matchstr(s:type,'[^=]*$'),'\.','','g')
+		exe 'syn region asciidoctorSourceHighlight'.substitute(matchstr(s:type,'[^=]*$'),'\..*','','').' start="^\[source,\s*'.matchstr(s:type,'[^=]*').'\]\s*\n--\+\s*$" end="^[^[]*\n--\+\s*$" keepend contains=@asciidoctorSourceHighlight'.substitute(matchstr(s:type,'[^=]*$'),'\.','','g')
 	endfor
 	unlet! s:type
 endif
+" Source unhighlighting for general [source]
+syn region asciidoctorSourceBlock start="^\[source\]\s*\n--\+\s*$" end="^[^[]*\n--\+\s*$" keepend contains=CONTAINED
+syn region asciidoctorLiteralBlock start="^\[literal\]\s*\n...\+\s*$" end="^[^[]*\n...\+\s*$" keepend contains=CONTAINED
+
+" What about general 'listing' blocks?
+" ----
+" bla bla
+" ----
 
 " syn match asciidoctorEscape "\\[][\\`*_{}()<>#+.!-]"
 " syn match asciidoctorError "\w\@<=_\w\@="
