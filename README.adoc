@@ -173,12 +173,15 @@ Text of section 2
 :AsciidoctorOpenHTML<CR>
 
 .........
-+
+
+// pics
+
 That should look something like this:
 
 .HTML output
 image::test_html.png[]
 
+'''
 
 If you use `:Asciidoctor2DOCX` and `:AsciidoctorOpenDOCX` commands instead, you
 should see something like this (provided you have `pandoc` and `MSWord`
@@ -187,6 +190,7 @@ installed:)
 .DOCX output
 image::test_docx.png[]
 
+'''
 
 And if you use `:Asciidoctor2PDF` and `:AsciidoctorOpenPDF` commands, you
 should see something like this (I have my own default theme and fonts, so you
