@@ -52,7 +52,13 @@ syn match asciidoctorH6 "^=======\s.*$" contains=@asciidoctorInline
 syn match asciidoctorListMarker "^\s*\(-\|\*\+\|\.\+\)\%(\s\+\S\)\@="
 syn match asciidoctorOrderedListMarker "^\s*\d\+\.\%(\s\+\S\)\@="
 
-syn match asciidoctorDefList "^\S.\{-}::\_s"
+" "TODO: wrong highlighting <2018-30-20 19:30>
+" a| IF1. Customer Create/Update::
+" v| IF1. Customer Create/Update::
+" v| IF1. Customer Create/Update::
+" .^l| IF1. Customer Create/Update::
+" .3+^.>s|This cell spans 3 rows
+syn match asciidoctorDefList "\(^[^|[:space:]]\).\{-}::\_s"
 
 " syn match asciidoctorUrl "\S\+" nextgroup=asciidoctorUrlTitle skipwhite contained
 " syn region asciidoctorUrl matchgroup=asciidoctorUrlDelimiter start="<" end=">" oneline keepend nextgroup=asciidoctorUrlTitle skipwhite contained
