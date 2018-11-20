@@ -80,24 +80,26 @@ syn match asciidoctorCode /``.\{-}``/
 
 syn match asciidoctorAdmonition /^\%(NOTE:\)\|\%(TIP:\)\|\%(IMPORTANT:\)\|\%(CAUTION:\)\|\%(WARNING:\)\s/
 
-" syn match asciidoctorCaption "^\.\S.\+$" contains=asciidoctorCode,asciidoctorBold,AsciidoctorItalic,asciidoctorBoldItalic
 syn match asciidoctorCaption "^\.\S.\+$" contains=@asciidoctorInline
+
+" Listing block 
+" ----
+" block that will not be
+" highlighted
+" ----
+" syn region asciidoctorListingBlock start="\%(\%(^\[.\+\]\s*\)\|\%(^\s*\)\)\n---\+\s*$" end="^[^[]*\n---\+\s*$" contains=CONTAINED
+syn region asciidoctorListingBlock start="^----\+\s*$" end="^----\+\s*$" contains=CONTAINED
 
 " Source highlighting with programming languages
 if main_syntax ==# 'asciidoctor'
 	for s:type in g:asciidoctor_fenced_languages
-		exe 'syn region asciidoctorSourceHighlight'.substitute(matchstr(s:type,'[^=]*$'),'\..*','','').' start="^\[source,\s*'.matchstr(s:type,'[^=]*').'\]\s*\n--\+\s*$" end="^[^[]*\n--\+\s*$" keepend contains=@asciidoctorSourceHighlight'.substitute(matchstr(s:type,'[^=]*$'),'\.','','g')
+		exe 'syn region asciidoctorSourceHighlight'.substitute(matchstr(s:type,'[^=]*$'),'\..*','','').' start="^\[source,\s*'.matchstr(s:type,'[^=]*').'\]\s*\n----\+\s*$" end="^[^[]*\n----\+\s*$" keepend contains=@asciidoctorSourceHighlight'.substitute(matchstr(s:type,'[^=]*$'),'\.','','g')
 	endfor
 	unlet! s:type
 endif
-" Source unhighlighting for general [source]
-syn region asciidoctorSourceBlock start="^\[source\]\s*\n--\+\s*$" end="^[^[]*\n--\+\s*$" contains=CONTAINED
-syn region asciidoctorLiteralBlock start="^\[literal\]\s*\n\.\.\.\+\s*$" end="^[^[]*\n\.\.\.\+\s*$" contains=CONTAINED
 
-" What about general 'listing' blocks?
-" ----
-" bla bla
-" ----
+" Contents of literal blocks should not be highlighted
+syn region asciidoctorLiteralBlock start="^\[literal\]\s*\n\.\.\.\.\+\s*$" end="^[^[]*\n\.\.\.\.\+\s*$" contains=CONTAINED
 
 " syn match asciidoctorEscape "\\[][\\`*_{}()<>#+.!-]"
 " syn match asciidoctorError "\w\@<=_\w\@="
