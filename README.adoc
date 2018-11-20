@@ -124,8 +124,8 @@ augroup END
 All commands are buffer local -- available only for asciidoctor files (`set filetype=asciidoctor`)
 
 * `Asciidoctor2HTML` -- convert current file to `HTML`.
-* `Asciidoctor2PDF` -- convert current file to `PDF`
-* `Asciidoctor2DOCX` -- convert current file to `DOCX`
+* `Asciidoctor2PDF` -- convert current file to `PDF`.
+* `Asciidoctor2DOCX` -- convert current file to `DOCX`.
 * `AsciidoctorOpenRAW` -- open current file in a browser. Chrome and Firefox has extentsions to render barebone `adoc` files.
 * `AsciidoctorOpenPDF` -- open `PDF` of the current file using default PDF viewer.
 * `AsciidoctorOpenHTML` -- open `HTML` of the current file using default web browser.
