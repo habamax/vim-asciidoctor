@@ -91,8 +91,8 @@ if main_syntax ==# 'asciidoctor'
 	unlet! s:type
 endif
 " Source unhighlighting for general [source]
-syn region asciidoctorSourceBlock start="^\[source\]\s*\n--\+\s*$" end="^[^[]*\n--\+\s*$" keepend contains=CONTAINED
-syn region asciidoctorLiteralBlock start="^\[literal\]\s*\n...\+\s*$" end="^[^[]*\n...\+\s*$" keepend contains=CONTAINED
+syn region asciidoctorSourceBlock start="^\[source\]\s*\n--\+\s*$" end="^[^[]*\n--\+\s*$" contains=CONTAINED
+syn region asciidoctorLiteralBlock start="^\[literal\]\s*\n\.\.\.\+\s*$" end="^[^[]*\n\.\.\.\+\s*$" contains=CONTAINED
 
 " What about general 'listing' blocks?
 " ----
