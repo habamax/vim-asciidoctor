@@ -114,10 +114,8 @@ hi def link asciidoctorH3                    Title
 hi def link asciidoctorH4                    Title
 hi def link asciidoctorH5                    Title
 hi def link asciidoctorH6                    Title
-" hi def link asciidoctorHeadingRule           Title
 hi def link asciidoctorListMarker            Delimiter
 hi def link asciidoctorOrderedListMarker     asciidoctorListMarker
-hi def link asciidoctorBlockquote            Comment
 hi def link asciidoctorComment               Comment
 
 hi def link asciidoctorLinkText              htmlLink
@@ -125,12 +123,19 @@ hi def link asciidoctorLinkText              htmlLink
 " hi def link asciidoctorUrl                   Float
 " hi def link asciidoctorUrlTitle              String
 
+hi def link asciidoctorCode                  Constant
+hi def link asciidoctorOption                Comment
+
 hi asciidoctorBold                           gui=bold cterm=bold
 hi asciidoctorItalic                         gui=italic cterm=italic
 hi asciidoctorBoldItalic                     gui=bold,italic cterm=bold,italic
+augroup asciidoctor_highlight_create
+	au!
+	autocmd ColorScheme * :hi asciidoctorBold gui=bold cterm=bold
+	autocmd ColorScheme * :hi asciidoctorItalic gui=italic cterm=italic
+	autocmd ColorScheme * :hi asciidoctorBoldItalic gui=bold,italic cterm=bold,italic
+augroup end
 hi def link asciidoctorDefList               asciidoctorBold
-hi def link asciidoctorCode                  Constant
-hi def link asciidoctorOption                Constant
 hi def link asciidoctorCaption               asciidoctorItalic
 hi def link asciidoctorAdmonition            asciidoctorBold
 
