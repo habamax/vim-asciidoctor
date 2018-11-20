@@ -28,8 +28,51 @@ And it is still way faster than built-in `syntax/asciidoc.vim`, for me.
 
 == Installation
 
+=== Vim8 built in packages
+
+You can use git command on your command line:
+[source,bash]
+--------
+
+git clone https://github.com/habamax/vim-asciidoctor.git ~/.vim/pack/my-packages/start/vim-asciidoctor
+
+--------
+
+For windows users you should change `~/.vim` to `%USERPROFILE%/vimfiles`
+[source,cmd]
+--------
+
+git clone https://github.com/habamax/vim-asciidoctor.git %USERPROFILE%/vimfiles/pack/my-packages/start/vim-asciidoctor
+
+--------
+
+or `minpac` package manager (to add to your `.vimrc`):
+
+[source,vim]
+--------
+
+call minpac#add('habamax/vim-asciidoctor')
+
+--------
+
+=== vim-plug
+
+.Add to your .vimrc next to your other plugs
+[source,vim]
+--------
+
+Plug 'habamax/vim-asciidoctor'
+
+--------
+
 == Setup
 === Vim
+To use basic asciidoctor with vim you don't have to setup anything in vim. At
+least this was the intention. :)
+
+The following is an example setup. Part of it might not work for you if you don't have
+asciidoctor extensions installed. Or you don't have custom PDF themes and fonts.
+
 .asciidoctor
 [source,vim]
 --------
@@ -118,6 +161,8 @@ augroup END
 
 === Asciidoctor
 // TODO: setup asciidoctor <2018-09-20 11:09>
+
+TODO: point to the asciidoctor installation manual?
 
 == Commands
 
