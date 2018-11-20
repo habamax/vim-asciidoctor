@@ -115,10 +115,23 @@ augroup asciidoctor
 augroup END
 
 --------
+
 === Asciidoctor
 // TODO: setup asciidoctor <2018-09-20 11:09>
 
 == Commands
+
+All commands are buffer local -- available only for asciidoctor files (`set filetype=asciidoctor`)
+
+* `Asciidoctor2HTML` -- convert current file to `HTML`.
+* `Asciidoctor2PDF` -- convert current file to `PDF`
+* `Asciidoctor2DOCX` -- convert current file to `DOCX`
+* `AsciidoctorOpenRAW` -- open current file in a browser. Chrome and Firefox has extentsions to render barebone `adoc` files.
+* `AsciidoctorOpenPDF` -- open `PDF` of the current file using default PDF viewer.
+* `AsciidoctorOpenHTML` -- open `HTML` of the current file using default web browser.
+* `AsciidoctorOpenDOCX` -- open `DOCX` of the current file using default DOCX
+  viewer. (I haven't tried it with LibreOffice or whatever else there might be.
+  Also haven't tried it on linux and OSX...)
 
 == Usage
 
@@ -161,7 +174,7 @@ Text of section 2
 
 .........
 +
-That should look smth like this:
+That should look something like this:
 
 image::test_html.png[]
 
