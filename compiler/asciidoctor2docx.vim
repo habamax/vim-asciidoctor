@@ -9,7 +9,9 @@ let current_compiler = "Asciidoctor2DOCX"
 let s:keepcpo= &cpo
 set cpo&vim
 
-if exists("g:asciidoctor_extensions")
+if !exists("g:asciidoctor_extensions") || empty(g:asciidoctor_extensions)
+	let s:extensions = ""
+else
 	let s:extensions = "-r ".join(g:asciidoctor_extensions, ' -r ')
 endif
 
