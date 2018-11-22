@@ -13,9 +13,9 @@
 
 image::image1.png[]
 
-== What about built-in asciidoc support?
+== Intro
 
-Vim has only syntax highlighting for asciidoc out of the box. And it is/was
+Vim has syntax highlighting for asciidoc out of the box. And it is/was
 really slow for me, probably because it tries to be very smart about syntax.
 
 This plugin on the other hand has:
@@ -82,6 +82,12 @@ let g:asciidoctor_executable = 'asciidoctor'
 
 " What extensions to use for HTML, default `[]`.
 let g:asciidoctor_extensions = ['asciidoctor-diagram', 'asciidoctor-rouge']
+
+" Path to the custom css
+let g:asciidoctor_css_path = '~/docs/AsciiDocThemes'
+
+" Custom css name to use instead of built-in
+let g:asciidoctor_css = 'haba-asciidoctor.css'
 
 --------
 
@@ -247,4 +253,37 @@ image::test_pdf1.png[]
 image::test_pdf2.png[]
 
 // add some short youtube videos
+
+== Limitations
+
+=== No highlighting for underlined headers
+
+----
+ This Header level 1 is not highlighted
+ ======================================
+
+ This Header level 2 is not highlighted
+ --------------------------------------
+
+----
+
+It is not a big deal to hightlight them and in fact they were highlighed at
+some point but then it clashed badly with all different blocks asciidoctor
+has:
+
+----
+
+ [example]
+ =========
+
+ =========
+
+ [source,c]
+ --------
+
+ --------
+
+ etc...
+
+----
 
