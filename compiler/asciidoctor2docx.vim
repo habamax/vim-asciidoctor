@@ -10,7 +10,7 @@ let s:keepcpo= &cpo
 set cpo&vim
 
 if exists("g:asciidoctor_extensions")
-	let b:extensions = "-r ".join(g:asciidoctor_extensions, ' -r ')
+	let s:extensions = "-r ".join(g:asciidoctor_extensions, ' -r ')
 endif
 
 if !exists("g:asciidoctor_executable")
@@ -21,18 +21,18 @@ if !exists("g:asciidoctor_pandoc_executable")
 	let g:asciidoctor_pandoc_executable = "pandoc"
 endif
 
-let b:make_docbook = g:asciidoctor_executable." ".b:extensions.
+let s:make_docbook = g:asciidoctor_executable." ".s:extensions.
 			\" -a docdate=".strftime("%Y-%m-%d").
 			\" -a doctime=".strftime("%T").
 			\" -b docbook".
 			\" ".shellescape(expand("%:p"))
 
-let b:make_docx = g:asciidoctor_pandoc_executable.
+let s:make_docx = g:asciidoctor_pandoc_executable.
 			\" -f docbook -t docx".
 			\" -o ".expand("%:p:r").".docx".
 			\" ".expand("%:p:r").".xml"
 
-let &l:makeprg = b:make_docbook ." && ". b:make_docx
+let &l:makeprg = s:make_docbook ." && ". s:make_docx
 
 let &cpo = s:keepcpo
 unlet s:keepcpo

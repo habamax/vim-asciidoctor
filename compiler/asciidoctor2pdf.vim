@@ -9,18 +9,29 @@ let current_compiler = "Asciidoctor2PDF"
 let s:keepcpo= &cpo
 set cpo&vim
 
-let b:pdf_styles = '-a pdf-stylesdir='.shellescape(expand(g:asciidoctor_pdf_themes_path))
-let b:pdf_fonts = '-a pdf-fontsdir='.shellescape(expand(g:asciidoctor_pdf_fonts_path))
+if !exists("g:asciidoctor_pdf_themes_path") || g:asciidoctor_pdf_themes_path == ''
+	let s:pdf_styles_path = ""
+else
+	let s:pdf_styles_path = '-a pdf-stylesdir='.shellescape(expand(g:asciidoctor_pdf_themes_path))
+endif
 
-if exists("g:asciidoctor_pdf_extensions")
-	let b:extensions = "-r ".join(g:asciidoctor_pdf_extensions, ' -r ')
+if !exists("g:asciidoctor_pdf_fonts_path") || g:asciidoctor_pdf_fonts_path == ''
+	let s:pdf_fonts_path = ""
+else
+	let s:pdf_fonts_path = '-a pdf-fontsdir='.shellescape(expand(g:asciidoctor_pdf_fonts_path))
+endif
+
+if !exists("g:asciidoctor_pdf_extensions") || empty(g:asciidoctor_pdf_extensions)
+	let s:extensions = ""
+else
+	let s:extensions = "-r ".join(g:asciidoctor_pdf_extensions, ' -r ')
 endif
 
 if !exists("g:asciidoctor_pdf_executable")
 	let g:asciidoctor_pdf_executable = "asciidoctor-pdf"
 endif
 
-let &l:makeprg = g:asciidoctor_pdf_executable." ".b:extensions." -a docdate=".strftime("%Y-%m-%d")." -a doctime=".strftime("%T")." ".b:pdf_styles." ".b:pdf_fonts." ".shellescape(expand("%:p"))
+let &l:makeprg = g:asciidoctor_pdf_executable." ".s:extensions." -a docdate=".strftime("%Y-%m-%d")." -a doctime=".strftime("%H:%M:%S")." ".s:pdf_styles_path." ".s:pdf_fonts_path." ".shellescape(expand("%:p"))
 
 let &cpo = s:keepcpo
 unlet s:keepcpo
