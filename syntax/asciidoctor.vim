@@ -24,7 +24,9 @@ for s:type in map(copy(g:asciidoctor_fenced_languages),'matchstr(v:val,"[^=]*$")
 endfor
 unlet! s:type
 
-syn sync minlines=10
+" also check :h syn-sync-fourth
+syn sync minlines=50
+
 syn case ignore
 
 " syn match asciidoctorValid '[<>]\c[a-z/$!]\@!'
