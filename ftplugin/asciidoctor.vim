@@ -83,87 +83,17 @@ if has("folding") && exists("g:asciidoctor_folding")
 	endif
 endif
 
-" To be moved to another file?
-" Set default values for g:asciidoctor_img_paste_command
+if !exists('g:asciidoctor_img_paste_command')
+	" first `%s` is a path
+	" second `%s` is an image file name
+	let g:asciidoctor_img_paste_command = 'gm convert clipboard: %s%s'
+endif
 
-" Return name of an image directory.
-"
-" It is either 
-" * '' (empty)
-" * or value of :imagesdir: (stated at the top of the buffer)
-fun! s:asciidoctorImagesDir()
-	return 'images/'
-endfu
+if !exists('g:asciidoctor_img_paste_pattern')
+	" first `%s` is a base document name:
+	" (~/docs/hello-world.adoc => hello-world)
+	" second `%s` is a number of the image.
+	let g:asciidoctor_img_paste_pattern = 'img_%s_%s.png'
+endif
 
-" Return full path of an image
-"
-" It is 'current buffer path'/:imagesdir:
-fun! s:asciidoctorImagesPath()
-	return expand('%:p:h').'/'.s:asciidoctorImagesDir()
-endfu
-
-" Return list of generated images for the current buffer.
-"
-" If buffer name is `document.adoc`, search in a given path for the file
-" pattern `img_document_N.png`, where N is a number.
-"
-" Example:
-" `img_document_1.png`
-" `img_document_2.png`
-fun! s:asciidoctorListImages(path)
-	let globpattern = 'img_'.expand('%:t:r').'_*'
-	let filterpattern = 'img_'.expand('%:t:r').'_[[:digit:]]\+\.png$'
-	let images = globpath(a:path, globpattern, 0, 1)
-	return filter(images, {k,v -> v =~ filterpattern})
-endfu
-
-" Return index of the image file name
-"
-" `img_document_23.png` --> 23
-" `img_document.png` --> 0 
-" `any other` --> 0 
-fun! s:asciidoctorExtractIndex(filename)
-	let index = matchstr(a:filename, 'img_.*_\zs[[:digit:]]\+\ze\.png$')
-	if index == ''
-		let index = '0'
-	endif
-	return str2nr(index)
-endfu
-
-" Return new image name
-"
-" Having the list of images in a give path:
-" `img_document_1.png`
-" `img_document_2.png`
-" ...
-" Generate a new image name:
-" `img_document_3.png
-fun! s:asciidoctorGenerateImageName(path)
-	let index = max(map(s:asciidoctorListImages(a:path), 
-				\{k,v -> s:asciidoctorExtractIndex(v)})) + 1
-	return 'img_'.expand('%:t:r').'_'.index.'.png'
-endfu
-
-" Paste image from the clipboard.
-"
-" * Save image as png file to the :imagesdir:
-" * Insert `image::link.png[]` at cursor position
-fun! s:asciidoctorPasteImage()
-	let path = s:asciidoctorImagesPath()
-	if !isdirectory(path)
-		echoerr 'Image directory '.path.' doesn''t exist!'
-		return
-	endif
-
-	let fname = s:asciidoctorGenerateImageName(path)
-
-	" exe ":!gm convert clipboard: ".fname
-	let job = job_start(printf(g:asciidoctor_img_paste_command, path, fname))
-
-	let sav_reg_x = @x
-	let @x = printf('image::%s[]', fname)
-	put x
-	let @x = sav_reg_x
-endfu
-
-command! -buffer AsciidoctorPasteImage :call <sid>asciidoctorPasteImage()
+command! -buffer AsciidoctorPasteImage :call asciidoctor#pasteImage()
