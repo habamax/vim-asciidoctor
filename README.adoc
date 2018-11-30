@@ -265,8 +265,8 @@ Vim can't access graphical part of clipboard thus an external tool should be use
 * For Linux -- you tell me what to use :)
 
 // image::https://habamax.github.io/assets/gifs/asciidoctor-pasteimg.gif[animated screen with image pasting]
-[pass]
-<img src="https://habamax.github.io/assets/gifs/asciidoctor-pasteimg.gif" alt="animated screen with image pasting">
+
++++<img src="https://habamax.github.io/assets/gifs/asciidoctor-pasteimg.gif" alt="Animated screen with image pasting">+++
 
 .setup
 [source,vim]
