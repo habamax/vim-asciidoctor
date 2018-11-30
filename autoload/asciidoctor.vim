@@ -1,7 +1,3 @@
-" XXX: It is not Neovim ready.
-" Uses vim jobs at the moment.
-
-
 if exists("g:loaded_asciidoctor_autoload")
     finish
 endif
