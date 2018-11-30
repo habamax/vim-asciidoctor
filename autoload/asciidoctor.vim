@@ -87,7 +87,14 @@ fun! asciidoctor#pasteImage()
 
 	let fname = s:asciidoctorGenerateImageName(path)
 
-	let job = job_start(printf(g:asciidoctor_img_paste_command, path, fname))
+	let fargs = printf(g:asciidoctor_img_paste_command, path, fname)
+
+	if has('nvim')
+		let Jobfunc = function('jobstart')
+	else
+		let Jobfunc = function('job_start')
+	endif
+	call Jobfunc(fargs)
 
 	let sav_reg_x = @x
 	let @x = printf('image::%s[]', fname)
