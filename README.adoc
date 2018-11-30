@@ -264,10 +264,7 @@ Vim can't access graphical part of clipboard thus an external tool should be use
 * For OSX I use `pngpaste` (could be installed using `brew`)
 * For Linux -- you tell me what to use :)
 
-// image::https://habamax.github.io/assets/gifs/asciidoctor-pasteimg.gif[animated screen with image pasting]
-
-+++<img src="https://habamax.github.io/assets/gifs/asciidoctor-pasteimg.gif" alt="Animated screen with image pasting">+++
-
+image::https://github.com/habamax/habamax.github.io/blob/master/assets/gifs/asciidoctor-pasteimg.gif[animated screen with image pasting]
 
 +++<img src="https://github.com/habamax/habamax.github.io/blob/master/assets/gifs/asciidoctor-pasteimg.gif" alt="Another Animated screen with image pasting">+++
 
