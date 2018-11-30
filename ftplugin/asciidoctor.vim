@@ -86,7 +86,13 @@ endif
 if !exists('g:asciidoctor_img_paste_command')
 	" first `%s` is a path
 	" second `%s` is an image file name
-	let g:asciidoctor_img_paste_command = 'gm convert clipboard: %s%s'
+	if has('win32')
+		let g:asciidoctor_img_paste_command = 'gm convert clipboard: %s%s'
+	elseif has('osx')
+		let g:asciidoctor_img_paste_command = 'pngpaste %s%s'
+	else " there is probably a better tool for linux?
+		let g:asciidoctor_img_paste_command = 'gm convert clipboard: %s%s'
+	endif
 endif
 
 if !exists('g:asciidoctor_img_paste_pattern')

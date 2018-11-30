@@ -254,6 +254,41 @@ image::test_pdf2.png[]
 
 // add some short youtube videos
 
+== Paste images from clipboard
+
+NOTE: Vim only for now.
+
+Vim can't access graphical part of clipboard thus an external tool should be used to save clipboard image to a png file.
+
+* For Windows I use GraphicsMagic (could be installed using `scoop`)
+* For OSX I use `pngpaste` (could be installed using `brew`)
+* For Linux -- you tell me what to use :)
+
+image::https://habamax.github.io/assets/gifs/asciidoctor-pasteimg.gif[animated screen with image pasting]
+
+.setup
+[source,vim]
+--------
+" first `%s` is a path
+" second `%s` is an image file name
+" this is default for windows
+" for osx it is `pngpaste %s%s`
+let g:asciidoctor_img_paste_command = 'gm convert clipboard: %s%s'
+
+
+" first `%s` is a base document name:
+" (~/docs/hello-world.adoc => hello-world)
+" second `%s` is a number of the image.
+let g:asciidoctor_img_paste_pattern = 'img_%s_%s.png'
+--------
+
+If there is `:imagesdir:` as an option set up in a document, clipboard image
+is saved there (relative to the document). Otherwise image is saved in the documents directory.
+
+The name of the image is generated according to the pattern. By default it is
+
+ img_ + document_base_name + next_image_number + .png
+
 == Limitations
 
 === No highlighting for underlined headers
