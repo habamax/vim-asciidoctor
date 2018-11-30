@@ -256,8 +256,6 @@ image::test_pdf2.png[]
 
 == Paste images from clipboard
 
-NOTE: Vim only for now.
-
 Vim can't access graphical part of clipboard thus an external tool should be used to save clipboard image to a png file.
 
 * For Windows I use GraphicsMagic (could be installed using `scoop`)
