@@ -24,9 +24,10 @@ endif
 
 " gf to open include files
 setlocal includeexpr=substitute(v:fname,'include::\\(.\\{-}\\)\\[.*','\\1','g')
-setlocal comments=fb:*,fb:-,fb:+,n:> commentstring=//\ %s
+setlocal comments=
+setlocal commentstring=//\ %s
 setlocal formatoptions+=tcqln formatoptions-=r formatoptions-=o
-setlocal formatlistpat=^\\s*\\d\\+\\.\\s\\+\\\|^[-*+]\\s\\+\\\|^\\[^\\ze[^\\]]\\+\\]:
+setlocal formatlistpat=^\\s*\\d\\+\\.\\s\\+\\\|^[-*.]\\s\\+\\\|^\\[^\\ze[^\\]]\\+\\]:
 
 if exists('b:undo_ftplugin')
 	let b:undo_ftplugin .= "|setl cms< com< fo< flp< inex<"
