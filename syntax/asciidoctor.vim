@@ -97,18 +97,32 @@ syn match asciidoctorCaption "^\.\S.\+$" contains=@asciidoctorInline
 " highlighted
 " ----
 " syn region asciidoctorListingBlock start="\%(\%(^\[.\+\]\s*\)\|\%(^\s*\)\)\n---\+\s*$" end="^[^[]*\n---\+\s*$" contains=CONTAINED
-syn region asciidoctorListingBlock start="^----\+\s*$" end="^----\+\s*$" contains=CONTAINED
+syn region asciidoctorListingBlock matchgroup=asciidoctorBlock start="^----\+\s*$" end="^----\+\s*$" contains=CONTAINED
 
 " Source highlighting with programming languages
 if main_syntax ==# 'asciidoctor'
 	for s:type in g:asciidoctor_fenced_languages
-		exe 'syn region asciidoctorSourceHighlight'.substitute(matchstr(s:type,'[^=]*$'),'\..*','','').' start="^\[source,\s*'.matchstr(s:type,'[^=]*').'\]\s*\n----\+\s*$" end="^[^[]*\n----\+\s*$" keepend contains=@asciidoctorSourceHighlight'.substitute(matchstr(s:type,'[^=]*$'),'\.','','g')
+		exe 'syn region asciidoctorSourceHighlight'.substitute(matchstr(s:type,'[^=]*$'),'\..*','','').' matchgroup=asciidoctorBlock start="^\[source,\s*'.matchstr(s:type,'[^=]*').'\]\s*\n----\+\s*$" end="^[^[]*\n\zs----\+\s*$" keepend contains=@asciidoctorSourceHighlight'.substitute(matchstr(s:type,'[^=]*$'),'\.','','g')
 	endfor
 	unlet! s:type
 endif
 
 " Contents of literal blocks should not be highlighted
-syn region asciidoctorLiteralBlock start="^\[literal\]\s*\n\.\.\.\.\+\s*$" end="^[^[]*\n\.\.\.\.\+\s*$" contains=CONTAINED
+syn region asciidoctorLiteralBlock matchgroup=asciidoctorBlock start="^\[literal\]\s*\n\.\.\.\.\+\s*$" end="^[^[]*\n\zs\.\.\.\.\+\s*$" contains=CONTAINED
+
+" Admonition blocks
+syn region asciidoctorAdmonitionBlock matchgroup=asciidoctorBlock keepend start="\C^\[NOTE\]\s*\n====\+\s*$" end="^[^[]*\n\zs====\+\s*$" contains=@asciidoctorInnerBlock,@asciidoctorInline
+
+syn region asciidoctorAdmonitionBlock matchgroup=asciidoctorBlock keepend start="\C^\[TIP\]\s*\n====\+\s*$" end="^[^[]*\n\zs====\+\s*$" contains=@asciidoctorInnerBlock,@asciidoctorInline
+
+syn region asciidoctorAdmonitionBlock matchgroup=asciidoctorBlock keepend start="\C^\[IMPORTANT\]\s*\n====\+\s*$" end="^[^[]*\n\zs====\+\s*$" contains=@asciidoctorInnerBlock,@asciidoctorInline
+
+syn region asciidoctorAdmonitionBlock matchgroup=asciidoctorBlock keepend start="\C^\[CAUTION\]\s*\n====\+\s*$" end="^[^[]*\n\zs====\+\s*$" contains=@asciidoctorInnerBlock,@asciidoctorInline
+
+syn region asciidoctorAdmonitionBlock matchgroup=asciidoctorBlock keepend start="\C^\[WARNING\]\s*\n====\+\s*$" end="^[^[]*\n\zs====\+\s*$" contains=@asciidoctorInnerBlock,@asciidoctorInline
+
+" More blocks
+syn region asciidoctorQuoteBlock matchgroup=asciidoctorBlock keepend start="\C^\[quote\%(,.\{-}\)\]\s*\n____\+\s*$" end="^[^[]*\n\zs____\+\s*$" contains=@asciidoctorInnerBlock,@asciidoctorInline
 
 " syn match asciidoctorEscape "\\[][\\`*_{}()<>#+.!-]"
 " syn match asciidoctorError "\w\@<=_\w\@="
@@ -134,6 +148,7 @@ hi def link asciidoctorLinkText              htmlLink
 
 hi def link asciidoctorCode                  Constant
 hi def link asciidoctorOption                Comment
+hi def link asciidoctorBlock                 Delimiter
 
 hi asciidoctorBold                           gui=bold cterm=bold
 hi asciidoctorItalic                         gui=italic cterm=italic
