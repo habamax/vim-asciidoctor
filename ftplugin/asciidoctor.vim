@@ -7,7 +7,7 @@ if exists("b:did_ftplugin")
 	finish
 endif
 
-compiler Asciidoctor2HTML
+compiler asciidoctor2html
 
 " open files
 if !exists('g:asciidoctor_opener') || g:asciidoctor_opener == ''
