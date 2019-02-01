@@ -102,7 +102,16 @@ syn region asciidoctorListingBlock matchgroup=asciidoctorBlock start="^----\+\s*
 " Source highlighting with programming languages
 if main_syntax ==# 'asciidoctor'
 	for s:type in g:asciidoctor_fenced_languages
+		"[source,lang]
+		"----
+		"for i in ...
+		"----
 		exe 'syn region asciidoctorSourceHighlight'.substitute(matchstr(s:type,'[^=]*$'),'\..*','','').' matchgroup=asciidoctorBlock start="^\[source,\s*'.matchstr(s:type,'[^=]*').'\]\s*\n----\+\s*$" end="^[^[]*\n\zs----\+\s*$" keepend contains=@asciidoctorSourceHighlight'.substitute(matchstr(s:type,'[^=]*$'),'\.','','g')
+
+		"[source,lang]
+		" for i in ...
+		"
+		exe 'syn region asciidoctorSourceHighlight'.substitute(matchstr(s:type,'[^=]*$'),'\..*','','').' matchgroup=asciidoctorBlock start="^\[source,\s*'.matchstr(s:type,'[^=]*').'\]\s*$" end="^\s*$" keepend contains=@asciidoctorSourceHighlight'.substitute(matchstr(s:type,'[^=]*$'),'\.','','g')
 	endfor
 	unlet! s:type
 endif
