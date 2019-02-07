@@ -11,12 +11,10 @@ compiler asciidoctor2html
 
 " open files
 if !exists('g:asciidoctor_opener') || g:asciidoctor_opener == ''
-	if has("win32")
+	if has("win32") || has("win32unix")
 		let g:asciidoctor_opener = ":!start"
 	elseif has("osx")
 		let g:asciidoctor_opener = ":!open"
-	elseif has("win32unix")
-		let g:asciidoctor_opener = ":!start"
 	else
 		let g:asciidoctor_opener = ":!xdg-open"
 	endif
