@@ -18,7 +18,7 @@ if !exists('g:asciidoctor_opener') || g:asciidoctor_opener == ''
 	elseif has("win32unix")
 		let g:asciidoctor_opener = ":!start"
 	else
-		let g:asciidoctor_opener = ":!firefox"
+		let g:asciidoctor_opener = ":!xdg-open"
 	endif
 endif
 
