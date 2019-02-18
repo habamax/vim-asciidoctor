@@ -136,6 +136,9 @@ syn region asciidoctorAdmonitionBlock matchgroup=asciidoctorBlock keepend start=
 
 syn region asciidoctorAdmonitionBlock matchgroup=asciidoctorBlock keepend start="\C^\[WARNING\]\s*\n====\+\s*$" end="^[^[]*\n\zs====\+\s*$" contains=@asciidoctorInnerBlock,@asciidoctorInline
 
+" Example block
+syn region asciidoctorExampleBlock matchgroup=asciidoctorBlock keepend start="\C^\[example\]\s*\n====\+\s*$" end="^[^[]*\n\zs====\+\s*$" contains=@asciidoctorInnerBlock,@asciidoctorInline
+
 " More blocks
 syn region asciidoctorQuoteBlock matchgroup=asciidoctorBlock keepend start="\C^\[quote\%(,.\{-}\)\]\s*\n____\+\s*$" end="^[^[]*\n\zs____\+\s*$" contains=@asciidoctorInnerBlock,@asciidoctorInline
 
