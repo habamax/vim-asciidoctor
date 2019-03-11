@@ -91,13 +91,17 @@ syn match asciidoctorAdmonition /\C^\%(NOTE:\)\|\%(TIP:\)\|\%(IMPORTANT:\)\|\%(C
 
 syn match asciidoctorCaption "^\.\S.\+$" contains=@asciidoctorInline
 
-" Listing block 
+" Listing block TODO: doesn't work as expected, causes #2
 " ----
 " block that will not be
 " highlighted
 " ----
 " syn region asciidoctorListingBlock start="\%(\%(^\[.\+\]\s*\)\|\%(^\s*\)\)\n---\+\s*$" end="^[^[]*\n---\+\s*$" contains=CONTAINED
-syn region asciidoctorListingBlock matchgroup=asciidoctorBlock start="^----\+\s*$" end="^----\+\s*$" contains=CONTAINED
+" syn region asciidoctorListingBlock matchgroup=asciidoctorBlock start="^----\+\s*$" end="^----\+\s*$" contains=CONTAINED
+
+" General [source] block
+ syn region asciidoctorSourceBlock matchgroup=asciidoctorBlock start="^\[source\%(,.*\)*\]\s*$" end="^\s*$" keepend contains=CONTAINED
+ syn region asciidoctorSourceBlock matchgroup=asciidoctorBlock start="^\[source\%(,.*\)*\]\s*\n---\+\s*$" end="^[^[]*\n\zs---\+\s*$" keepend contains=CONTAINED
 
 " Source highlighting with programming languages
 if main_syntax ==# 'asciidoctor'
