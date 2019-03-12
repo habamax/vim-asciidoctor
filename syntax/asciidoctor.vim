@@ -24,7 +24,7 @@ for s:type in map(copy(g:asciidoctor_fenced_languages),'matchstr(v:val,"[^=]*$")
 endfor
 unlet! s:type
 
-if exists('g:asciidoctor_highlight_plantuml') && g:asciidoctor_highlight_plantuml == 1
+if globpath(&rtp, "syntax/plantuml.vim") != ''
 	syn include @asciidoctorPlantumlHighlight syntax/plantuml.vim
 endif
 
