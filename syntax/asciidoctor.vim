@@ -131,24 +131,24 @@ endif
 syn region asciidoctorPlantumlBlock matchgroup=asciidoctorBlock start="^\[plantuml.\{-}\]\s*\n\.\.\.\.\+\s*$" end="^[^[]*\n\zs\.\.\.\.\+\s*$" keepend contains=@asciidoctorPlantumlHighlight
 
 " Contents of literal blocks should not be highlighted
-syn region asciidoctorLiteralBlock matchgroup=asciidoctorBlock start="^\[literal\]\s*\n\.\.\.\.\+\s*$" end="^[^[]*\n\zs\.\.\.\.\+\s*$" contains=CONTAINED
+syn region asciidoctorLiteralBlock matchgroup=asciidoctorBlock start="^\[literal\]\s*\n\.\.\.\.\+\s*$" end="^[^[]*\n\zs\.\.\.\.\+\s*$" keepend contains=CONTAINED
 
 " Admonition blocks
-syn region asciidoctorAdmonitionBlock matchgroup=asciidoctorBlock keepend start="\C^\[NOTE\]\s*\n====\+\s*$" end="^[^[]*\n\zs====\+\s*$" contains=@asciidoctorInnerBlock,@asciidoctorInline
+syn region asciidoctorAdmonitionBlock matchgroup=asciidoctorBlock start="\C^\[NOTE\]\s*\n====\+\s*$" end="^[^[]*\n\zs====\+\s*$" keepend contains=@asciidoctorInnerBlock,@asciidoctorInline
 
-syn region asciidoctorAdmonitionBlock matchgroup=asciidoctorBlock keepend start="\C^\[TIP\]\s*\n====\+\s*$" end="^[^[]*\n\zs====\+\s*$" contains=@asciidoctorInnerBlock,@asciidoctorInline
+syn region asciidoctorAdmonitionBlock matchgroup=asciidoctorBlock start="\C^\[TIP\]\s*\n====\+\s*$" end="^[^[]*\n\zs====\+\s*$" keepend contains=@asciidoctorInnerBlock,@asciidoctorInline
 
-syn region asciidoctorAdmonitionBlock matchgroup=asciidoctorBlock keepend start="\C^\[IMPORTANT\]\s*\n====\+\s*$" end="^[^[]*\n\zs====\+\s*$" contains=@asciidoctorInnerBlock,@asciidoctorInline
+syn region asciidoctorAdmonitionBlock matchgroup=asciidoctorBlock start="\C^\[IMPORTANT\]\s*\n====\+\s*$" end="^[^[]*\n\zs====\+\s*$" keepend contains=@asciidoctorInnerBlock,@asciidoctorInline
 
-syn region asciidoctorAdmonitionBlock matchgroup=asciidoctorBlock keepend start="\C^\[CAUTION\]\s*\n====\+\s*$" end="^[^[]*\n\zs====\+\s*$" contains=@asciidoctorInnerBlock,@asciidoctorInline
+syn region asciidoctorAdmonitionBlock matchgroup=asciidoctorBlock start="\C^\[CAUTION\]\s*\n====\+\s*$" end="^[^[]*\n\zs====\+\s*$" keepend contains=@asciidoctorInnerBlock,@asciidoctorInline
 
-syn region asciidoctorAdmonitionBlock matchgroup=asciidoctorBlock keepend start="\C^\[WARNING\]\s*\n====\+\s*$" end="^[^[]*\n\zs====\+\s*$" contains=@asciidoctorInnerBlock,@asciidoctorInline
+syn region asciidoctorAdmonitionBlock matchgroup=asciidoctorBlock start="\C^\[WARNING\]\s*\n====\+\s*$" end="^[^[]*\n\zs====\+\s*$" keepend contains=@asciidoctorInnerBlock,@asciidoctorInline
 
 " Example block
-syn region asciidoctorExampleBlock matchgroup=asciidoctorBlock keepend start="\C^\[example\]\s*\n====\+\s*$" end="^[^[]*\n\zs====\+\s*$" contains=@asciidoctorInnerBlock,@asciidoctorInline
+syn region asciidoctorExampleBlock matchgroup=asciidoctorBlock start="\C^\[example\]\s*\n====\+\s*$" end="^[^[]*\n\zs====\+\s*$" keepend contains=@asciidoctorInnerBlock,@asciidoctorInline
 
 " More blocks
-syn region asciidoctorQuoteBlock matchgroup=asciidoctorBlock keepend start="\C^\[quote\%(,.\{-}\)\]\s*\n____\+\s*$" end="^[^[]*\n\zs____\+\s*$" contains=@asciidoctorInnerBlock,@asciidoctorInline
+syn region asciidoctorQuoteBlock matchgroup=asciidoctorBlock start="\C^\[quote\%(,.\{-}\)\]\s*\n____\+\s*$" end="^[^[]*\n\zs____\+\s*$" keepend contains=@asciidoctorInnerBlock,@asciidoctorInline
 
 " syn match asciidoctorEscape "\\[][\\`*_{}()<>#+.!-]"
 " syn match asciidoctorError "\w\@<=_\w\@="
