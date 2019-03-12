@@ -24,6 +24,10 @@ for s:type in map(copy(g:asciidoctor_fenced_languages),'matchstr(v:val,"[^=]*$")
 endfor
 unlet! s:type
 
+if exists('g:asciidoctor_highlight_plantuml') && g:asciidoctor_highlight_plantuml == 1
+	syn include @asciidoctorPlantumlHighlight syntax/plantuml.vim
+endif
+
 " also check :h syn-sync-fourth
 syn sync minlines=50
 
@@ -122,8 +126,8 @@ if main_syntax ==# 'asciidoctor'
 endif
 
 " Contents of plantuml blocks should be highlighted with plantuml syntax...
-" But there is no built in plantuml syntax as far as I know.
-" So just highlight start and end for now.
+" There is no built in plantuml syntax as far as I know.
+" Tested with https://github.com/aklt/plantuml-syntax
 syn region asciidoctorPlantumlBlock matchgroup=asciidoctorBlock start="^\[plantuml.\{-}\]\s*\n\.\.\.\.\+\s*$" end="^[^[]*\n\zs\.\.\.\.\+\s*$" contains=@asciidoctorPlantumlHighlight
 
 " Contents of literal blocks should not be highlighted

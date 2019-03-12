@@ -142,6 +142,15 @@ let g:asciidoctor_fenced_languages = ['python', 'c', 'javascript']
 
 --------
 
+.Syntax highlighting for plantuml blocks
+[source,vim]
+--------
+
+" Make sure you have https://github.com/aklt/plantuml-syntax installed
+let g:asciidoctor_highlight_plantuml = 1
+
+--------
+
 .default mappings... there are no default mappings
 [source,vim]
 --------
