@@ -40,7 +40,7 @@ syn match asciidoctorOption "^:[[:alnum:]!-]\{-}:.*$"
 
 syn cluster asciidoctorBlock contains=asciidoctorTitle,asciidoctorH1,asciidoctorH2,asciidoctorH3,asciidoctorH4,asciidoctorH5,asciidoctorH6,asciidoctorBlockquote,asciidoctorListMarker,asciidoctorOrderedListMarker,asciidoctorCodeBlock
 syn cluster asciidoctorInnerBlock contains=asciidoctorBlockquote,asciidoctorListMarker,asciidoctorOrderedListMarker,asciidoctorCodeBlock
-syn cluster asciidoctorInline contains=asciidoctorItalic,asciidoctorBold,asciidoctorCode,asciidoctorBoldItalic
+syn cluster asciidoctorInline contains=asciidoctorItalic,asciidoctorBold,asciidoctorCode,asciidoctorBoldItalic,asciidoctorUrl,asciidoctorMacro
 
 " really hard to use them together with all the rest 'blocks'
 " syn match asciidoctorH1 "^[^[].\+\n=\+$" contains=@asciidoctorInline,asciidoctorHeadingRule,asciidoctorAutomaticLink
@@ -67,8 +67,8 @@ syn match asciidoctorOrderedListMarker "^\s*\d\+\.\%(\s\+\S\)\@="
 " .3+^.>s|This cell spans 3 rows
 syn match asciidoctorDefList "\(^[^|[:space:]]\).\{-}::\_s"
 
-" syn match asciidoctorUrl "\S\+" nextgroup=asciidoctorUrlTitle skipwhite contained
-" syn region asciidoctorUrl matchgroup=asciidoctorUrlDelimiter start="<" end=">" oneline keepend nextgroup=asciidoctorUrlTitle skipwhite contained
+syn match asciidoctorMacro "\a\+::\?\w\S\{-}\[.\{-}\]" 
+syn region asciidoctorUrl matchgroup=asciidoctorMacro start="\%(image\|link\)::\?" end="\[.\{-}\]" oneline keepend skipwhite
 " syn region asciidoctorUrlTitle matchgroup=asciidoctorUrlTitleDelimiter start=+"+ end=+"+ keepend contained
 " syn region asciidoctorUrlTitle matchgroup=asciidoctorUrlTitleDelimiter start=+'+ end=+'+ keepend contained
 " syn region asciidoctorUrlTitle matchgroup=asciidoctorUrlTitleDelimiter start=+(+ end=+)+ keepend contained
@@ -168,11 +168,10 @@ hi def link asciidoctorListMarker            Delimiter
 hi def link asciidoctorOrderedListMarker     asciidoctorListMarker
 hi def link asciidoctorComment               Comment
 
-hi def link asciidoctorLinkText              htmlLink
-" hi def link asciidoctorAutomaticLink         asciidoctorUrl
-" hi def link asciidoctorUrl                   Float
+hi def link asciidoctorUrl                   Underlined
 " hi def link asciidoctorUrlTitle              String
 
+hi def link asciidoctorMacro                 Constant
 hi def link asciidoctorCode                  Constant
 hi def link asciidoctorOption                Comment
 hi def link asciidoctorBlock                 Delimiter
