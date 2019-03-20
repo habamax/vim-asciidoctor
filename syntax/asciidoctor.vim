@@ -69,14 +69,7 @@ syn match asciidoctorDefList "\(^[^|[:space:]]\).\{-}::\_s"
 
 syn match asciidoctorMacro "\a\+::\?\w\S\{-}\[.\{-}\]" 
 syn region asciidoctorUrl matchgroup=asciidoctorMacro start="\%(image\|link\)::\?" end="\[.\{-}\]" oneline keepend skipwhite
-" syn region asciidoctorUrlTitle matchgroup=asciidoctorUrlTitleDelimiter start=+"+ end=+"+ keepend contained
-" syn region asciidoctorUrlTitle matchgroup=asciidoctorUrlTitleDelimiter start=+'+ end=+'+ keepend contained
-" syn region asciidoctorUrlTitle matchgroup=asciidoctorUrlTitleDelimiter start=+(+ end=+)+ keepend contained
-
-" syn region asciidoctorLinkText matchgroup=asciidoctorLinkTextDelimiter start="!\=\[\%(\_[^]]*]\%( \=[[(]\)\)\@=" end="\]\%( \=[[(]\)\@=" nextgroup=asciidoctorLink,asciidoctorId skipwhite contains=@asciidoctorInline,asciidoctorLineStart
-" syn region asciidoctorLink matchgroup=asciidoctorLinkDelimiter start="(" end=")" contains=asciidoctorUrl keepend contained
-" syn region asciidoctorId matchgroup=asciidoctorIdDelimiter start="\[" end="\]" keepend contained
-" syn region asciidoctorAutomaticLink matchgroup=asciidoctorUrlDelimiter start="<\%(\w\+:\|[[:alnum:]_+-]\+@\)\@=" end=">" keepend oneline
+syn match asciidoctorUrl "\%(http\|ftp\)s\?://\S\+" 
 
 syn match asciidoctorBold /\%(^\|[[:punct:][:space:]]\)\zs\*[^* ].\{-}\S\*\ze\%([[:punct:][:space:]]\|$\)/
 syn match asciidoctorBold /\%(^\|[[:punct:][:space:]]\)\zs\*[^* ]\*\ze\%([[:punct:][:space:]]\|$\)/
