@@ -144,6 +144,9 @@ syn region asciidoctorExampleBlock matchgroup=asciidoctorBlock start="\C^\[examp
 " More blocks
 syn region asciidoctorQuoteBlock matchgroup=asciidoctorBlock start="\C^\[quote\%(,.\{-}\)\]\s*\n____\+\s*$" end="^.*\n\zs____\+\s*$" keepend contains=@asciidoctorInnerBlock,@asciidoctorInline
 
+" Sidebar block
+syn region asciidoctorQuoteBlock matchgroup=asciidoctorBlock start="^\*\*\*\*\+\s*$" end="^.*\n\zs\*\*\*\*\+\s*$" keepend contains=@asciidoctorInnerBlock,@asciidoctorInline
+
 " syn match asciidoctorEscape "\\[][\\`*_{}()<>#+.!-]"
 " syn match asciidoctorError "\w\@<=_\w\@="
 
