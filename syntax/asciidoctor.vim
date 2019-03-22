@@ -104,13 +104,13 @@ if main_syntax ==# 'asciidoctor'
 		"[source,lang]
 		" for i in ...
 		"
-		exe 'syn region asciidoctorSourceHighlight'.s:type.' matchgroup=asciidoctorBlock start="^\[source,\s*'.s:type.'\%(,.*\)*\]\s*$" end="^\s*$" keepend contains=@asciidoctorSourceHighlight'.s:type
+		exe 'syn region asciidoctorSourceHighlight'.s:type.' matchgroup=asciidoctorBlock start="^\[\%(source\)\?,\s*'.s:type.'\%(,.*\)*\]\s*$" end="^\s*$" keepend contains=@asciidoctorSourceHighlight'.s:type
 
 		"[source,lang]
 		"----
 		"for i in ...
 		"----
-		exe 'syn region asciidoctorSourceHighlight'.s:type.' matchgroup=asciidoctorBlock start="^\[source,\s*'.s:type.'\%(,.*\)*\]\s*\n----\+\s*$" end="^.*\n\zs----\+\s*$" keepend contains=@asciidoctorSourceHighlight'.s:type
+		exe 'syn region asciidoctorSourceHighlight'.s:type.' matchgroup=asciidoctorBlock start="^\[\%(source\)\?,\s*'.s:type.'\%(,.*\)*\]\s*\n----\+\s*$" end="^.*\n\zs----\+\s*$" keepend contains=@asciidoctorSourceHighlight'.s:type
 
 	endfor
 	unlet! s:type
