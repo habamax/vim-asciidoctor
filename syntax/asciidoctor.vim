@@ -85,7 +85,7 @@ syn match asciidoctorCode /``.\{-}``/
 
 syn match asciidoctorAdmonition /\C^\%(NOTE:\)\|\%(TIP:\)\|\%(IMPORTANT:\)\|\%(CAUTION:\)\|\%(WARNING:\)\s/
 
-syn match asciidoctorCaption "^\.\S.\+$" contains=@asciidoctorInline
+syn match asciidoctorCaption "^\.\S.\+$" contains=@asciidoctorInline,@Spell
 
 " Listing block TODO: doesn't work as expected, causes #2
 " ----
