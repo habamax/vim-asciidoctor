@@ -15,17 +15,15 @@ endif
 if !exists('g:asciidoctor_fenced_languages')
 	let g:asciidoctor_fenced_languages = []
 endif
-for s:type in map(copy(g:asciidoctor_fenced_languages),'matchstr(v:val,"[^=]*$")')
-	if s:type =~ '\.'
-		let b:{matchstr(s:type,'[^.]*')}_subtype = matchstr(s:type,'\.\zs.*')
-	endif
-	exe 'syn include @asciidoctorSourceHighlight'.substitute(s:type,'\.','','g').' syntax/'.matchstr(s:type,'[^.]*').'.vim'
+for s:type in g:asciidoctor_fenced_languages
+	exe 'syn include @asciidoctorSourceHighlight'.s:type.' syntax/'.s:type.'.vim'
 	unlet! b:current_syntax
 endfor
 unlet! s:type
 
 if globpath(&rtp, "syntax/plantuml.vim") != ''
 	syn include @asciidoctorPlantumlHighlight syntax/plantuml.vim
+	unlet! b:current_syntax
 endif
 
 " also check :h syn-sync-fourth
