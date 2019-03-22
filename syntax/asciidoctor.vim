@@ -2,7 +2,6 @@
 " Language:     asciidoctor
 " Maintainer:   Maxim Kim <habamax@gmail.com>
 " Filenames:    *.adoc
-" Last Change:  2018-11-01
 
 if exists("b:current_syntax")
 	finish

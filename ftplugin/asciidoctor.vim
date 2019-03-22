@@ -1,7 +1,7 @@
 " Vim filetype plugin
 " Language:	asciidoctor
 " Maintainer:	Maxim Kim <habamax@gmail.com>
-" Last Change:	2018-11-29
+" Filenames:    *.adoc
 
 if exists("b:did_ftplugin")
 	finish
