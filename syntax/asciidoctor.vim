@@ -8,6 +8,8 @@ if exists("b:current_syntax")
 	finish
 endif
 
+syntax spell toplevel
+
 if !exists('main_syntax')
 	let main_syntax = 'asciidoctor'
 endif
@@ -45,13 +47,13 @@ syn cluster asciidoctorInline contains=asciidoctorItalic,asciidoctorBold,asciido
 " syn match asciidoctorH2 "^[^[].\+\n-\+$" contains=@asciidoctorInline,asciidoctorHeadingRule,asciidoctorAutomaticLink
 " syn match asciidoctorHeadingRule "^[=-]\+$" contained
 
-syn match asciidoctorTitle "^=\s.*$" contains=@asciidoctorInline
-syn match asciidoctorH1 "^==\s.*$" contains=@asciidoctorInline
-syn match asciidoctorH2 "^===\s.*$" contains=@asciidoctorInline
-syn match asciidoctorH3 "^====\s.*$" contains=@asciidoctorInline
-syn match asciidoctorH4 "^=====\s.*$" contains=@asciidoctorInline
-syn match asciidoctorH5 "^======\s.*$" contains=@asciidoctorInline
-syn match asciidoctorH6 "^=======\s.*$" contains=@asciidoctorInline
+syn match asciidoctorTitle "^=\s.*$" contains=@asciidoctorInline,@Spell
+syn match asciidoctorH1 "^==\s.*$" contains=@asciidoctorInline,@Spell
+syn match asciidoctorH2 "^===\s.*$" contains=@asciidoctorInline,@Spell
+syn match asciidoctorH3 "^====\s.*$" contains=@asciidoctorInline,@Spell
+syn match asciidoctorH4 "^=====\s.*$" contains=@asciidoctorInline,@Spell
+syn match asciidoctorH5 "^======\s.*$" contains=@asciidoctorInline,@Spell
+syn match asciidoctorH6 "^=======\s.*$" contains=@asciidoctorInline,@Spell
 
 
 syn match asciidoctorListMarker "^\s*\(-\|\*\+\|\.\+\)\%(\s\+\S\)\@="
@@ -63,21 +65,21 @@ syn match asciidoctorOrderedListMarker "^\s*\d\+\.\%(\s\+\S\)\@="
 " v| IF1. Customer Create/Update::
 " .^l| IF1. Customer Create/Update::
 " .3+^.>s|This cell spans 3 rows
-syn match asciidoctorDefList "\(^[^|[:space:]]\).\{-}::\_s"
+syn match asciidoctorDefList "\(^[^|[:space:]]\).\{-}::\_s" contains=@Spell
 
 syn match asciidoctorMacro "\a\+::\?\w\S\{-}\[.\{-}\]" 
 syn region asciidoctorUrl matchgroup=asciidoctorMacro start="\%(image\|link\)::\?" end="\[.\{-}\]" oneline keepend skipwhite
 syn match asciidoctorUrl "\%(http\|ftp\)s\?://\S\+" 
 
-syn match asciidoctorBold /\%(^\|[[:punct:][:space:]]\)\zs\*[^* ].\{-}\S\*\ze\%([[:punct:][:space:]]\|$\)/
-syn match asciidoctorBold /\%(^\|[[:punct:][:space:]]\)\zs\*[^* ]\*\ze\%([[:punct:][:space:]]\|$\)/
-syn match asciidoctorBold /\*\*\S.\{-}\*\*/
-syn match asciidoctorItalic /\%(^\|[[:punct:][:space:]]\)\zs_[^_ ].\{-}\S_\ze\%([[:punct:][:space:]]\|$\)/
-syn match asciidoctorItalic /\%(^\|[[:punct:][:space:]]\)\zs_[^_ ]_\ze\%([[:punct:][:space:]]\|$\)/
-syn match asciidoctorItalic /__\S.\{-}__/
-syn match asciidoctorBoldItalic /\%(^\|\s\)\zs\*_[^*_ ].\{-}\S_\*\ze\%([[:punct:][:space:]]\|$\)/
-syn match asciidoctorBoldItalic /\%(^\|\s\)\zs\*_\S_\*\ze\%([[:punct:][:space:]]\|$\)/
-syn match asciidoctorBoldItalic /\*\*_\S.\{-}_\*\*/
+syn match asciidoctorBold /\%(^\|[[:punct:][:space:]]\)\zs\*[^* ].\{-}\S\*\ze\%([[:punct:][:space:]]\|$\)/ contains=@Spell
+syn match asciidoctorBold /\%(^\|[[:punct:][:space:]]\)\zs\*[^* ]\*\ze\%([[:punct:][:space:]]\|$\)/ contains=@Spell
+syn match asciidoctorBold /\*\*\S.\{-}\*\*/ contains=@Spell
+syn match asciidoctorItalic /\%(^\|[[:punct:][:space:]]\)\zs_[^_ ].\{-}\S_\ze\%([[:punct:][:space:]]\|$\)/ contains=@Spell
+syn match asciidoctorItalic /\%(^\|[[:punct:][:space:]]\)\zs_[^_ ]_\ze\%([[:punct:][:space:]]\|$\)/ contains=@Spell
+syn match asciidoctorItalic /__\S.\{-}__/ contains=@Spell
+syn match asciidoctorBoldItalic /\%(^\|\s\)\zs\*_[^*_ ].\{-}\S_\*\ze\%([[:punct:][:space:]]\|$\)/ contains=@Spell
+syn match asciidoctorBoldItalic /\%(^\|\s\)\zs\*_\S_\*\ze\%([[:punct:][:space:]]\|$\)/ contains=@Spell
+syn match asciidoctorBoldItalic /\*\*_\S.\{-}_\*\*/ contains=@Spell
 syn match asciidoctorCode /\%(^\|[[:punct:][:space:]]\)\zs`[^` ].\{-}\S`\ze\%([[:punct:][:space:]]\|$\)/
 syn match asciidoctorCode /\%(^\|[[:punct:][:space:]]\)\zs`[^` ]`\ze\%([[:punct:][:space:]]\|$\)/
 syn match asciidoctorCode /``.\{-}``/
@@ -123,32 +125,32 @@ syn region asciidoctorPlantumlBlock matchgroup=asciidoctorBlock start="^\[plantu
 syn region asciidoctorPlantumlBlock matchgroup=asciidoctorBlock start="^\[plantuml.\{-}\]\s*\n--\+\s*$" end="^.*\n\zs--\+\s*$" keepend contains=@asciidoctorPlantumlHighlight
 
 " Contents of literal blocks should not be highlighted
-syn region asciidoctorLiteralBlock matchgroup=asciidoctorBlock start="^\[literal\]\s*\n\.\.\.\.\+\s*$" end="^.*\n\zs\.\.\.\.\+\s*$" keepend contains=CONTAINED
+syn region asciidoctorLiteralBlock matchgroup=asciidoctorBlock start="^\[literal\]\s*\n\.\.\.\.\+\s*$" end="^.*\n\zs\.\.\.\.\+\s*$" keepend contains=CONTAINED,@Spell
 
 " Admonition blocks
-syn region asciidoctorAdmonitionBlock matchgroup=asciidoctorBlock start="\C^\[NOTE\]\s*\n====\+\s*$" end="^.*\n\zs====\+\s*$" keepend contains=@asciidoctorInnerBlock,@asciidoctorInline
+syn region asciidoctorAdmonitionBlock matchgroup=asciidoctorBlock start="\C^\[NOTE\]\s*\n====\+\s*$" end="^.*\n\zs====\+\s*$" keepend contains=@asciidoctorInnerBlock,@asciidoctorInline,@Spell
 
-syn region asciidoctorAdmonitionBlock matchgroup=asciidoctorBlock start="\C^\[TIP\]\s*\n====\+\s*$" end="^.*\n\zs====\+\s*$" keepend contains=@asciidoctorInnerBlock,@asciidoctorInline
+syn region asciidoctorAdmonitionBlock matchgroup=asciidoctorBlock start="\C^\[TIP\]\s*\n====\+\s*$" end="^.*\n\zs====\+\s*$" keepend contains=@asciidoctorInnerBlock,@asciidoctorInline,@Spell
 
-syn region asciidoctorAdmonitionBlock matchgroup=asciidoctorBlock start="\C^\[IMPORTANT\]\s*\n====\+\s*$" end="^.*\n\zs====\+\s*$" keepend contains=@asciidoctorInnerBlock,@asciidoctorInline
+syn region asciidoctorAdmonitionBlock matchgroup=asciidoctorBlock start="\C^\[IMPORTANT\]\s*\n====\+\s*$" end="^.*\n\zs====\+\s*$" keepend contains=@asciidoctorInnerBlock,@asciidoctorInline,@Spell
 
-syn region asciidoctorAdmonitionBlock matchgroup=asciidoctorBlock start="\C^\[CAUTION\]\s*\n====\+\s*$" end="^.*\n\zs====\+\s*$" keepend contains=@asciidoctorInnerBlock,@asciidoctorInline
+syn region asciidoctorAdmonitionBlock matchgroup=asciidoctorBlock start="\C^\[CAUTION\]\s*\n====\+\s*$" end="^.*\n\zs====\+\s*$" keepend contains=@asciidoctorInnerBlock,@asciidoctorInline,@Spell
 
-syn region asciidoctorAdmonitionBlock matchgroup=asciidoctorBlock start="\C^\[WARNING\]\s*\n====\+\s*$" end="^.*\n\zs====\+\s*$" keepend contains=@asciidoctorInnerBlock,@asciidoctorInline
+syn region asciidoctorAdmonitionBlock matchgroup=asciidoctorBlock start="\C^\[WARNING\]\s*\n====\+\s*$" end="^.*\n\zs====\+\s*$" keepend contains=@asciidoctorInnerBlock,@asciidoctorInline,@Spell
 
 " Example block
-syn region asciidoctorExampleBlock matchgroup=asciidoctorBlock start="\C^\[example\]\s*\n====\+\s*$" end="^.*\n\zs====\+\s*$" keepend contains=@asciidoctorInnerBlock,@asciidoctorInline
+syn region asciidoctorExampleBlock matchgroup=asciidoctorBlock start="\C^\[example\]\s*\n====\+\s*$" end="^.*\n\zs====\+\s*$" keepend contains=@asciidoctorInnerBlock,@asciidoctorInline,@Spell
 
 " More blocks
-syn region asciidoctorQuoteBlock matchgroup=asciidoctorBlock start="\C^\[quote\%(,.\{-}\)\]\s*\n____\+\s*$" end="^.*\n\zs____\+\s*$" keepend contains=@asciidoctorInnerBlock,@asciidoctorInline
+syn region asciidoctorQuoteBlock matchgroup=asciidoctorBlock start="\C^\[quote\%(,.\{-}\)\]\s*\n____\+\s*$" end="^.*\n\zs____\+\s*$" keepend contains=@asciidoctorInnerBlock,@asciidoctorInline,@Spell
 
 " Sidebar block
-syn region asciidoctorQuoteBlock matchgroup=asciidoctorBlock start="^\*\*\*\*\+\s*$" end="^.*\n\zs\*\*\*\*\+\s*$" keepend contains=@asciidoctorInnerBlock,@asciidoctorInline
+syn region asciidoctorQuoteBlock matchgroup=asciidoctorBlock start="^\*\*\*\*\+\s*$" end="^.*\n\zs\*\*\*\*\+\s*$" keepend contains=@asciidoctorInnerBlock,@asciidoctorInline,@Spell
 
 " syn match asciidoctorEscape "\\[][\\`*_{}()<>#+.!-]"
 " syn match asciidoctorError "\w\@<=_\w\@="
 
-syn match asciidoctorComment "^//.*$"
+syn match asciidoctorComment "^//.*$" contains=@Spell
 
 
 hi def link asciidoctorTitle                 Title
