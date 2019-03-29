@@ -87,6 +87,8 @@ syn match asciidoctorAdmonition /\C^\%(NOTE:\)\|\%(TIP:\)\|\%(IMPORTANT:\)\|\%(C
 
 syn match asciidoctorCaption "^\.\S.\+$" contains=@asciidoctorInline,@Spell
 
+syn match asciidoctorBlock "^\[.\{-}\]\s*$"
+
 " Listing block TODO: doesn't work as expected, causes #2
 " ----
 " block that will not be
@@ -148,6 +150,7 @@ syn region asciidoctorQuoteBlock matchgroup=asciidoctorBlock start="^\*\*\*\*\+\
 
 " syn match asciidoctorEscape "\\[][\\`*_{}()<>#+.!-]"
 " syn match asciidoctorError "\w\@<=_\w\@="
+
 
 syn match asciidoctorComment "^//.*$" contains=@Spell
 
