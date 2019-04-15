@@ -85,7 +85,7 @@ syn match asciidoctorCode /``.\{-}``/
 
 syn match asciidoctorAdmonition /\C^\%(NOTE:\)\|\%(TIP:\)\|\%(IMPORTANT:\)\|\%(CAUTION:\)\|\%(WARNING:\)\s/
 
-syn match asciidoctorCaption "^\.\S.\+$" contains=@asciidoctorInline,@Spell
+syn match asciidoctorCaption "^\.[^.[:space:]].*$" contains=@asciidoctorInline,@Spell
 
 syn match asciidoctorBlock "^\[.\{-}\]\s*$"
 
