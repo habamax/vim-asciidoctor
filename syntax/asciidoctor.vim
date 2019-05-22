@@ -152,7 +152,7 @@ syn region asciidoctorQuoteBlock matchgroup=asciidoctorBlock start="^\*\*\*\*\+\
 " syn match asciidoctorError "\w\@<=_\w\@="
 
 
-syn match asciidoctorComment "^//.*$" contains=@Spell
+syn match asciidoctorComment "^\s*//.*$" contains=@Spell
 
 
 hi def link asciidoctorTitle                 Title
