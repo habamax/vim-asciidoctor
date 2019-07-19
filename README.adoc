@@ -260,7 +260,7 @@ Vim can't access graphical part of clipboard thus an external tool should be use
 
 * For Windows I use GraphicsMagic (could be installed using `scoop`)
 * For OSX I use `pngpaste` (could be installed using `brew`)
-* For Linux -- you tell me what to use :)
+* For Linux -- `xclip` could be used (thx Matthias Fulz @mfulz)
 
 image::https://github.com/habamax/habamax.github.io/blob/master/assets/gifs/asciidoctor-pasteimg.gif[animated screen with image pasting]
 
@@ -270,8 +270,14 @@ image::https://github.com/habamax/habamax.github.io/blob/master/assets/gifs/asci
 " first `%s` is a path
 " second `%s` is an image file name
 " this is default for windows
-" for osx it is `pngpaste %s%s`
 let g:asciidoctor_img_paste_command = 'gm convert clipboard: %s%s'
+
+" for osx
+" let g:asciidoctor_img_paste_command = 'pngpaste %s%s'
+
+" for linux
+" let g:asciidoctor_img_paste_command = 'xclip -selection clipboard -t image/png -o > %s%s'
+
 
 
 " first `%s` is a base document name:
