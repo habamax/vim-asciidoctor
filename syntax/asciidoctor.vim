@@ -149,16 +149,19 @@ syn region asciidoctorQuoteBlock matchgroup=asciidoctorBlock start="\C^\[quote\%
 syn region asciidoctorQuoteBlock matchgroup=asciidoctorBlock start="^\*\*\*\*\+\s*$" end="^.*\n\zs\*\*\*\*\+\s*$" keepend contains=@asciidoctorInnerBlock,@asciidoctorInline,@Spell,asciidoctorComment
 
 " Table blocks
-syn match asciidoctorTableCell "^[.+*<^>aehlmdsv[:digit:]]*|" contained
-syn region asciidoctorTableBlock matchgroup=asciidoctorBlock start="^|===\s*$" end="^|===\s*$" keepend contains=asciidoctorTableCell,@asciidoctorInnerBlock,@asciidoctorInline,@Spell,asciidoctorComment
+" Table blocks could be really long and this trick vim syntax hl
+" Trying to use simple matches instead -- it is dumber but anyway we don't
+" need anything really smart here
+syn match asciidoctorTableCell "^[.+*<^>aehlmdsv[:digit:]]*|"
+syn match asciidoctorTableSep "^[,;:|]====*"
 
-syn region asciidoctorTableBlock matchgroup=asciidoctorBlock start="^,===\s*$" end="^,===\s*$" keepend contains=@asciidoctorInline,@Spell,asciidoctorComment
+"" Block version
+" syn match asciidoctorTableCell "^[.+*<^>aehlmdsv[:digit:]]*|" contained
+" syn region asciidoctorTableBlock matchgroup=asciidoctorBlock start="^|===\s*$" end="^|===\s*$" keepend contains=asciidoctorTableCell,@asciidoctorInnerBlock,@asciidoctorInline,@Spell,asciidoctorComment
 
-syn region asciidoctorTableBlock matchgroup=asciidoctorBlock start="^;===\s*$" end="^;===\s*$" keepend contains=@asciidoctorInline,@Spell,asciidoctorComment
+" syn region asciidoctorTableBlock matchgroup=asciidoctorBlock start="^,===\s*$" end="^,===\s*$" keepend contains=@asciidoctorInline,@Spell,asciidoctorComment
 
-" syn match asciidoctorEscape "\\[][\\`*_{}()<>#+.!-]"
-" syn match asciidoctorError "\w\@<=_\w\@="
-
+" syn region asciidoctorTableBlock matchgroup=asciidoctorBlock start="^;===\s*$" end="^;===\s*$" keepend contains=@asciidoctorInline,@Spell,asciidoctorComment
 
 syn match asciidoctorComment "^\s*//.*$" contains=@Spell
 
@@ -181,6 +184,7 @@ hi def link asciidoctorMacro                 Constant
 hi def link asciidoctorCode                  Constant
 hi def link asciidoctorOption                Comment
 hi def link asciidoctorBlock                 Delimiter
+hi def link asciidoctorTableSep              Delimiter
 hi def link asciidoctorTableCell             Delimiter
 
 hi asciidoctorBold                           gui=bold cterm=bold
