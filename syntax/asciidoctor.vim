@@ -148,6 +148,14 @@ syn region asciidoctorQuoteBlock matchgroup=asciidoctorBlock start="\C^\[quote\%
 " Sidebar block
 syn region asciidoctorQuoteBlock matchgroup=asciidoctorBlock start="^\*\*\*\*\+\s*$" end="^.*\n\zs\*\*\*\*\+\s*$" keepend contains=@asciidoctorInnerBlock,@asciidoctorInline,@Spell,asciidoctorComment
 
+" Table blocks
+syn match asciidoctorTableCell "^[.+*<^>aehlmdsv[:digit:]]*|" contained
+syn region asciidoctorTableBlock matchgroup=asciidoctorBlock start="^|===\s*$" end="^|===\s*$" keepend contains=asciidoctorTableCell,@asciidoctorInnerBlock,@asciidoctorInline,@Spell,asciidoctorComment
+
+syn region asciidoctorTableBlock matchgroup=asciidoctorBlock start="^,===\s*$" end="^,===\s*$" keepend contains=@asciidoctorInline,@Spell,asciidoctorComment
+
+syn region asciidoctorTableBlock matchgroup=asciidoctorBlock start="^;===\s*$" end="^;===\s*$" keepend contains=@asciidoctorInline,@Spell,asciidoctorComment
+
 " syn match asciidoctorEscape "\\[][\\`*_{}()<>#+.!-]"
 " syn match asciidoctorError "\w\@<=_\w\@="
 
@@ -173,6 +181,7 @@ hi def link asciidoctorMacro                 Constant
 hi def link asciidoctorCode                  Constant
 hi def link asciidoctorOption                Comment
 hi def link asciidoctorBlock                 Delimiter
+hi def link asciidoctorTableCell             Delimiter
 
 hi asciidoctorBold                           gui=bold cterm=bold
 hi asciidoctorItalic                         gui=italic cterm=italic
