@@ -28,7 +28,7 @@ if globpath(&rtp, "syntax/plantuml.vim") != ''
 endif
 
 " also check :h syn-sync-fourth
-syn sync minlines=50
+syn sync minlines=100
 
 syn case ignore
 
