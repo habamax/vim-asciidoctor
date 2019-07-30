@@ -31,13 +31,15 @@ setlocal formatlistpat+=\\[({]\\?
 setlocal formatlistpat+=\\(
 setlocal formatlistpat+=[0-9]\\+
 setlocal formatlistpat+=\\\|
-setlocal formatlistpat+=[a-zA-Z]\\+
+setlocal formatlistpat+=[a-zA-Z]
 setlocal formatlistpat+=\\)
 setlocal formatlistpat+=[\\]:.)}
 setlocal formatlistpat+=]
 setlocal formatlistpat+=\\s\\+
 setlocal formatlistpat+=\\\|
-setlocal formatlistpat+=^\\s*[-*]\\s\\+
+setlocal formatlistpat+=^\\s*-\\s\\+
+setlocal formatlistpat+=\\\|
+setlocal formatlistpat+=^\\s*[*]\\+\\s\\+
 
 if exists('b:undo_ftplugin')
 	let b:undo_ftplugin .= "|setl cms< com< fo< flp< inex<"
