@@ -34,7 +34,8 @@ let s:make_docx = g:asciidoctor_pandoc_executable.
 			\" -o ".expand("%:p:r").".docx".
 			\" ".expand("%:p:r").".xml"
 
-let &l:makeprg = s:make_docbook ." && ". s:make_docx
+let s:cd = "cd ".expand("%:p:h")
+let &l:makeprg = s:make_docbook . " && " . s:cd ." && ". s:make_docx
 
 let &cpo = s:keepcpo
 unlet s:keepcpo
