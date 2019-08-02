@@ -129,24 +129,10 @@ syn region asciidoctorPlantumlBlock matchgroup=asciidoctorBlock start="^\[plantu
 syn region asciidoctorLiteralBlock matchgroup=asciidoctorBlock start="^\[literal\]\s*\n\.\.\.\.\+\s*$" end="^.*\n\zs\.\.\.\.\+\s*$" keepend contains=CONTAINED,@Spell,asciidoctorComment
 
 " Admonition blocks
-syn region asciidoctorAdmonitionBlock matchgroup=asciidoctorBlock start="\C^\[NOTE\]\s*\n====\+\s*$" end="^.*\n\zs====\+\s*$" keepend contains=@asciidoctorInnerBlock,@asciidoctorInline,@Spell,asciidoctorComment
-
-syn region asciidoctorAdmonitionBlock matchgroup=asciidoctorBlock start="\C^\[TIP\]\s*\n====\+\s*$" end="^.*\n\zs====\+\s*$" keepend contains=@asciidoctorInnerBlock,@asciidoctorInline,@Spell,asciidoctorComment
-
-syn region asciidoctorAdmonitionBlock matchgroup=asciidoctorBlock start="\C^\[IMPORTANT\]\s*\n====\+\s*$" end="^.*\n\zs====\+\s*$" keepend contains=@asciidoctorInnerBlock,@asciidoctorInline,@Spell,asciidoctorComment
-
-syn region asciidoctorAdmonitionBlock matchgroup=asciidoctorBlock start="\C^\[CAUTION\]\s*\n====\+\s*$" end="^.*\n\zs====\+\s*$" keepend contains=@asciidoctorInnerBlock,@asciidoctorInline,@Spell
-
-syn region asciidoctorAdmonitionBlock matchgroup=asciidoctorBlock start="\C^\[WARNING\]\s*\n====\+\s*$" end="^.*\n\zs====\+\s*$" keepend contains=@asciidoctorInnerBlock,@asciidoctorInline,@Spell,asciidoctorComment
-
-" Example block
-syn region asciidoctorExampleBlock matchgroup=asciidoctorBlock start="\C^\[example\]\s*\n====\+\s*$" end="^.*\n\zs====\+\s*$" keepend contains=@asciidoctorInnerBlock,@asciidoctorInline,@Spell,asciidoctorComment
-
-" More blocks
-syn region asciidoctorQuoteBlock matchgroup=asciidoctorBlock start="\C^\[quote\%(,.\{-}\)\]\s*\n____\+\s*$" end="^.*\n\zs____\+\s*$" keepend contains=@asciidoctorInnerBlock,@asciidoctorInline,@Spell,asciidoctorComment
-
-" Sidebar block
-syn region asciidoctorQuoteBlock matchgroup=asciidoctorBlock start="^\*\*\*\*\+\s*$" end="^.*\n\zs\*\*\*\*\+\s*$" keepend contains=@asciidoctorInnerBlock,@asciidoctorInline,@Spell,asciidoctorComment
+" It would be way faster to just highlight block separators for some of them
+syn match asciidoctorBlock "^====\+\s*$"
+syn match asciidoctorBlock "^\*\*\*\*\+\s*$"
+" syn region asciidoctorAdmonitionBlock matchgroup=asciidoctorBlock start="\C^\(\[NOTE]\|\[TIP]\|\[IMPORTANT]\|\[CAUTION]\|\[WARNING]\|\[example]\)\s*\%(\n\.\S.\{-}\)\?\n====\+\s*$" end="^.*\n\zs====\s*$" contains=@asciidoctorInnerBlock,@asciidoctorInline,@Spell,asciidoctorComment
 
 " Table blocks
 " Table blocks could be really long and this trick vim syntax hl
