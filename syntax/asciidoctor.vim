@@ -99,7 +99,7 @@ syn match asciidoctorBlock "^\[.\{-}\]\s*$"
 
 " General [source] block
  syn region asciidoctorSourceBlock matchgroup=asciidoctorBlock start="^\[source\%(,.*\)*\]\s*$" end="^\s*$" keepend contains=CONTAINED
- syn region asciidoctorSourceBlock matchgroup=asciidoctorBlock start="^\[source\%(,.*\)*\]\s*\%(\n\.\S.\{-}\)\?\n---\+\s*$" end="^.*\n\zs---\+\s*$" contains=CONTAINED
+ syn region asciidoctorSourceBlock matchgroup=asciidoctorBlock start="^\[source\%(,.*\)*\]\s*\n---\+\s*$" end="^.*\n\zs---\+\s*$" keepend contains=CONTAINED
 
 " Source highlighting with programming languages
 if main_syntax ==# 'asciidoctor'
@@ -113,7 +113,7 @@ if main_syntax ==# 'asciidoctor'
 		"----
 		"for i in ...
 		"----
-		exe 'syn region asciidoctorSourceHighlight'.s:type.' matchgroup=asciidoctorBlock start="^\[\%(source\)\?,\s*'.s:type.'\%(,.*\)*\]\s*\%(\n\.\S.\{-}\)\?\n----\+\s*$" end="^.*\n\zs----\+\s*$" contains=@asciidoctorSourceHighlight'.s:type
+		exe 'syn region asciidoctorSourceHighlight'.s:type.' matchgroup=asciidoctorBlock start="^\[\%(source\)\?,\s*'.s:type.'\%(,.*\)*\]\s*\n----\+\s*$" end="^.*\n\zs----\+\s*$" keepend contains=@asciidoctorSourceHighlight'.s:type
 
 	endfor
 	unlet! s:type
@@ -122,11 +122,12 @@ endif
 " Contents of plantuml blocks should be highlighted with plantuml syntax...
 " There is no built in plantuml syntax as far as I know.
 " Tested with https://github.com/aklt/plantuml-syntax
-syn region asciidoctorPlantumlBlock matchgroup=asciidoctorBlock start="^\[plantuml.\{-}\]\s*\%(\n\.\S.\{-}\)\?\n\.\.\.\.\+\s*$" end="^.*\n\zs\.\.\.\.\+\s*$" contains=@asciidoctorPlantumlHighlight
+syn region asciidoctorPlantumlBlock matchgroup=asciidoctorBlock start="^\[plantuml.\{-}\]\s*\n\.\.\.\.\+\s*$" end="^.*\n\zs\.\.\.\.\+\s*$" keepend contains=@asciidoctorPlantumlHighlight
+" syn region asciidoctorPlantumlBlock matchgroup=asciidoctorBlock start="^\[plantuml.\{-}\]\s*\%(\n\.\S.\{-}\)\?\n\.\.\.\.\+\s*$" end="^.*\n\zs\.\.\.\.\+\s*$" contains=@asciidoctorPlantumlHighlight
 syn region asciidoctorPlantumlBlock matchgroup=asciidoctorBlock start="^\[plantuml.\{-}\]\s*\n--\+\s*$" end="^.*\n\zs--\+\s*$" keepend contains=@asciidoctorPlantumlHighlight
 
 " Contents of literal blocks should not be highlighted
-syn region asciidoctorLiteralBlock matchgroup=asciidoctorBlock start="^\[literal\]\s*\%(\n\.\S.\{-}\)\?\n\.\.\.\.\+\s*$" end="^.*\n\zs\.\.\.\.\+\s*$" contains=CONTAINED,@Spell,asciidoctorComment
+syn region asciidoctorLiteralBlock matchgroup=asciidoctorBlock start="^\[literal\]\s*\n\.\.\.\.\+\s*$" end="^.*\n\zs\.\.\.\.\+\s*$" keepend contains=CONTAINED,@Spell,asciidoctorComment
 
 " Admonition blocks
 " It would be way faster to just highlight block separators for some of them
