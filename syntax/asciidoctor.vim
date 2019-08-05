@@ -66,7 +66,7 @@ syn match asciidoctorOrderedListMarker "^\s*\d\+\.\%(\s\+\S\)\@="
 " .3+^.>s|This cell spans 3 rows
 syn match asciidoctorDefList "\(^[^|[:space:]]\).\{-}::\_s" contains=@Spell
 
-syn match asciidoctorMacro "\a\+::\?\w\S\{-}\[.\{-}\]" 
+syn match asciidoctorMacro "\a\+::\?\(\w\S\{-}\)\?\[.\{-}\]" 
 syn region asciidoctorUrl matchgroup=asciidoctorMacro start="\%(image\|link\)::\?" end="\[.\{-}\]" oneline keepend skipwhite
 syn match asciidoctorUrl "\%(http\|ftp\)s\?://\S\+" 
 
