@@ -116,3 +116,8 @@ if !exists('g:asciidoctor_img_paste_pattern')
 endif
 
 command! -buffer AsciidoctorPasteImage :call asciidoctor#pasteImage()
+
+
+"" Next/Previous section mappings
+nnoremap <silent><buffer> ]] :call search('^=\+\s\+\S\+')<CR>
+nnoremap <silent><buffer> [[ :call search('^=\+\s\+\S\+', 'b')<CR>
