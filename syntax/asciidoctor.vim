@@ -150,7 +150,7 @@ syn match asciidoctorTableSep "^[,;:|]====*"
 
 " syn region asciidoctorTableBlock matchgroup=asciidoctorBlock start="^;===\s*$" end="^;===\s*$" keepend contains=@asciidoctorInline,@Spell,asciidoctorComment
 
-syn match asciidoctorComment "^\s*//.*$" contains=@Spell
+syn match asciidoctorComment "^//.*$" contains=@Spell
 
 
 hi def link asciidoctorTitle                 Title
