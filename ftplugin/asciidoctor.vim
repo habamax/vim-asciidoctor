@@ -24,6 +24,18 @@ endif
 setlocal includeexpr=substitute(v:fname,'include::\\(.\\{-}\\)\\[.*','\\1','g')
 setlocal comments=
 setlocal commentstring=//\ %s
+"" vim-commentary is awesome but not quite as good for asciidoc comments
+"" upstream plugin insert comment characters right next to the line
+"" and for indented lines this would be not a commentary:
+"" = Section
+"" * list item
+""     // ** list item that is NOT commented out
+"" //     ** list item that is commented out
+""
+"" For now there is a fork: habamax/vim-commentary which handles this
+"" PR was sent and hopefully it would be accepted...
+let b:commentary_startofline = 1
+
 setlocal formatoptions=tcqln
 setlocal formatlistpat=^\\s*
 setlocal formatlistpat+=[
