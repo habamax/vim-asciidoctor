@@ -184,7 +184,7 @@ augroup asciidoctor_highlight_create
 	autocmd ColorScheme * :hi asciidoctorBoldItalic gui=bold,italic cterm=bold,italic
 augroup end
 hi def link asciidoctorDefList               asciidoctorBold
-hi def link asciidoctorCaption               asciidoctorItalic
+hi def link asciidoctorCaption               Statement
 hi def link asciidoctorAdmonition            asciidoctorBold
 
 " hi def link asciidoctorEscape                Special
