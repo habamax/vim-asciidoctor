@@ -39,7 +39,7 @@ syn match asciidoctorOption "^:[[:alnum:]!-]\{-}:.*$"
 
 syn cluster asciidoctorBlock contains=asciidoctorTitle,asciidoctorH1,asciidoctorH2,asciidoctorH3,asciidoctorH4,asciidoctorH5,asciidoctorH6,asciidoctorBlockquote,asciidoctorListMarker,asciidoctorOrderedListMarker,asciidoctorCodeBlock
 syn cluster asciidoctorInnerBlock contains=asciidoctorBlockquote,asciidoctorListMarker,asciidoctorOrderedListMarker,asciidoctorCodeBlock,asciidoctorDefList
-syn cluster asciidoctorInline contains=asciidoctorItalic,asciidoctorBold,asciidoctorCode,asciidoctorBoldItalic,asciidoctorUrl,asciidoctorMacro
+syn cluster asciidoctorInline contains=asciidoctorItalic,asciidoctorBold,asciidoctorCode,asciidoctorBoldItalic,asciidoctorUrl,asciidoctorMacro,asciidoctorAttribute
 
 " really hard to use them together with all the rest 'blocks'
 " syn match asciidoctorH1 "^[^[].\+\n=\+$" contains=@asciidoctorInline,asciidoctorHeadingRule,asciidoctorAutomaticLink
@@ -67,6 +67,7 @@ syn match asciidoctorOrderedListMarker "^\s*\d\+\.\%(\s\+\S\)\@="
 syn match asciidoctorDefList "\(^[^|[:space:]]\).\{-}::\_s" contains=@Spell
 
 syn match asciidoctorMacro "\a\+::\?\(\w\S\{-}\)\?\[.\{-}\]" 
+syn match asciidoctorAttribute "{[[:alpha:]][[:alnum:]-_:]\{-}}" 
 syn region asciidoctorUrl matchgroup=asciidoctorMacro start="\%(image\|link\)::\?" end="\[.\{-}\]" oneline keepend skipwhite
 syn match asciidoctorUrl "\%(http\|ftp\)s\?://\S\+" 
 syn match asciidoctorUrl "<<.\{-}>>" 
@@ -169,6 +170,7 @@ hi def link asciidoctorUrl                   Underlined
 " hi def link asciidoctorUrlTitle              String
 
 hi def link asciidoctorMacro                 Constant
+hi def link asciidoctorAttribute             Constant
 hi def link asciidoctorCode                  Constant
 hi def link asciidoctorOption                Comment
 hi def link asciidoctorBlock                 Delimiter
