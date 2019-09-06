@@ -28,7 +28,13 @@ if globpath(&rtp, "syntax/plantuml.vim") != ''
 endif
 
 " also check :h syn-sync-fourth
+" syn-syc-fourth will not help here I guess.
+" the issue is that start and end of the blocks have the same delimiters
+" and it looks like impossible to setup correct 'syn sync match'
+" but let's try to do it...
+" 1. redefin headings as regions instead of matches and sync them
 syn sync minlines=100
+" syn sync fromstart
 
 syn case ignore
 
@@ -47,13 +53,20 @@ syn cluster asciidoctorInline contains=asciidoctorItalic,asciidoctorBold,asciido
 " syn match asciidoctorHeadingRule "^[=-]\+$" contained
 
 syn match asciidoctorTitle "^=\s.*$" contains=@asciidoctorInline,@Spell
-syn match asciidoctorH1 "^==\s.*$" contains=@asciidoctorInline,@Spell
-syn match asciidoctorH2 "^===\s.*$" contains=@asciidoctorInline,@Spell
-syn match asciidoctorH3 "^====\s.*$" contains=@asciidoctorInline,@Spell
-syn match asciidoctorH4 "^=====\s.*$" contains=@asciidoctorInline,@Spell
-syn match asciidoctorH5 "^======\s.*$" contains=@asciidoctorInline,@Spell
-syn match asciidoctorH6 "^=======\s.*$" contains=@asciidoctorInline,@Spell
+syn region asciidoctorH1 start="^==\s" end="$" contains=@asciidoctorInline,@Spell
+syn region asciidoctorH2 start="^===\s" end="$" contains=@asciidoctorInline,@Spell
+syn region asciidoctorH3 start="^====\s" end="$" contains=@asciidoctorInline,@Spell
+syn region asciidoctorH4 start="^=====\s" end="$" contains=@asciidoctorInline,@Spell
+syn region asciidoctorH5 start="^======\s" end="$" contains=@asciidoctorInline,@Spell
+syn region asciidoctorH6 start="^=======\s" end="$" contains=@asciidoctorInline,@Spell
 
+syn sync clear
+syn sync match syncH1 grouphere asciidoctorH1 "^==\s"
+syn sync match syncH2 grouphere asciidoctorH2 "^===\s"
+syn sync match syncH3 grouphere asciidoctorH3 "^====\s"
+syn sync match syncH4 grouphere asciidoctorH4 "^=====\s"
+syn sync match syncH5 grouphere asciidoctorH5 "^======\s"
+syn sync match syncH6 grouphere asciidoctorH5 "^=======\s"
 
 syn match asciidoctorListMarker "^\s*\(-\|\*\+\|\.\+\)\%(\s\+\S\)\@="
 syn match asciidoctorOrderedListMarker "^\s*\d\+\.\%(\s\+\S\)\@="
@@ -145,15 +158,12 @@ syn match asciidoctorBlock "^\*\*\*\*\+\s*$"
 " syn match asciidoctorTableSep "^[,;:|]====*"
 
 "" Block version
-syn match asciidoctorTableCell "[.+*<^>aehlmdsv[:digit:]]*|" contained
+syn match asciidoctorTableCell "\(^\|\s\)\@<=[.+*<^>aehlmdsv[:digit:]]\+|\||" contained
 syn region asciidoctorTableBlock matchgroup=asciidoctorBlock start="^|===\s*$" end="^|===\s*$" keepend contains=asciidoctorTableCell,@asciidoctorInnerBlock,@asciidoctorInline,@Spell,asciidoctorComment
-
-" syn region asciidoctorTableBlock matchgroup=asciidoctorBlock start="^,===\s*$" end="^,===\s*$" keepend contains=@asciidoctorInline,@Spell,asciidoctorComment
-
-" syn region asciidoctorTableBlock matchgroup=asciidoctorBlock start="^;===\s*$" end="^;===\s*$" keepend contains=@asciidoctorInline,@Spell,asciidoctorComment
+syn region asciidoctorTableBlock matchgroup=asciidoctorBlock start="^,===\s*$" end="^,===\s*$" keepend contains=@asciidoctorInline,@Spell,asciidoctorComment
+syn region asciidoctorTableBlock matchgroup=asciidoctorBlock start="^;===\s*$" end="^;===\s*$" keepend contains=@asciidoctorInline,@Spell,asciidoctorComment
 
 syn match asciidoctorComment "^//.*$" contains=@Spell
-
 
 hi def link asciidoctorTitle                 Title
 hi def link asciidoctorH1                    Title
