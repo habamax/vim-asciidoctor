@@ -72,17 +72,17 @@ syn region asciidoctorUrl matchgroup=asciidoctorMacro start="\%(image\|link\)::\
 syn match asciidoctorUrl "\%(http\|ftp\)s\?://\S\+" 
 syn match asciidoctorUrl "<<.\{-}>>" 
 
-syn match asciidoctorBold /\%(^\|[[:punct:][:space:]]\)\zs\*[^* ].\{-}\S\*\ze\%([[:punct:][:space:]]\|$\)/ contains=@Spell
-syn match asciidoctorBold /\%(^\|[[:punct:][:space:]]\)\zs\*[^* ]\*\ze\%([[:punct:][:space:]]\|$\)/ contains=@Spell
+syn match asciidoctorBold /\%(^\|[[:punct:][:space:]]\@<=\)\*[^* ].\{-}\S\*\%([[:punct:][:space:]]\@=\|$\)/ contains=@Spell
+" syn match asciidoctorBold /\%(^\|[[:punct:][:space:]]\)\@=\*[^* ]\*\ze\%([[:punct:][:space:]]\|$\)/ contains=@Spell
 syn match asciidoctorBold /\*\*\S.\{-}\*\*/ contains=@Spell
-syn match asciidoctorItalic /\%(^\|[[:punct:][:space:]]\)\zs_[^_ ].\{-}\S_\ze\%([[:punct:][:space:]]\|$\)/ contains=@Spell
-syn match asciidoctorItalic /\%(^\|[[:punct:][:space:]]\)\zs_[^_ ]_\ze\%([[:punct:][:space:]]\|$\)/ contains=@Spell
+syn match asciidoctorItalic /\%(^\|[[:punct:][:space:]]\@<=\)_[^_ ].\{-}\S_\%([[:punct:][:space:]]\@=\|$\)/ contains=@Spell
+" syn match asciidoctorItalic /\%(^\|[[:punct:][:space:]]\)\@=_[^_ ]_\ze\%([[:punct:][:space:]]\|$\)/ contains=@Spell
 syn match asciidoctorItalic /__\S.\{-}__/ contains=@Spell
-syn match asciidoctorBoldItalic /\%(^\|\s\)\zs\*_[^*_ ].\{-}\S_\*\ze\%([[:punct:][:space:]]\|$\)/ contains=@Spell
-syn match asciidoctorBoldItalic /\%(^\|\s\)\zs\*_\S_\*\ze\%([[:punct:][:space:]]\|$\)/ contains=@Spell
+syn match asciidoctorBoldItalic /\%(^\|[[:punct:][:space:]]\@<=\)\*_[^*_ ].\{-}\S_\*\%([[:punct:][:space:]]\@=\|$\)/ contains=@Spell
+" syn match asciidoctorBoldItalic /\%(^\|\s\)\@=\*_\S_\*\ze\%([[:punct:][:space:]]\|$\)/ contains=@Spell
 syn match asciidoctorBoldItalic /\*\*_\S.\{-}_\*\*/ contains=@Spell
-syn match asciidoctorCode /\%(^\|[[:punct:][:space:]]\)\zs`[^` ].\{-}\S`\ze\%([[:punct:][:space:]]\|$\)/
-syn match asciidoctorCode /\%(^\|[[:punct:][:space:]]\)\zs`[^` ]`\ze\%([[:punct:][:space:]]\|$\)/
+syn match asciidoctorCode /\%(^\|[[:punct:][:space:]]\@<=\)`[^` ].\{-}\S`\%([[:punct:][:space:]]\@=\|$\)/
+" syn match asciidoctorCode /\%(^\|[[:punct:][:space:]]\)\@=`[^` ]`\ze\%([[:punct:][:space:]]\|$\)/
 syn match asciidoctorCode /``.\{-}``/
 
 syn match asciidoctorAdmonition /\C^\%(NOTE:\)\|\%(TIP:\)\|\%(IMPORTANT:\)\|\%(CAUTION:\)\|\%(WARNING:\)\s/
