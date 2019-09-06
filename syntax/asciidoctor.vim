@@ -37,8 +37,8 @@ syn case ignore
 
 syn match asciidoctorOption "^:[[:alnum:]!-]\{-}:.*$"
 
-syn cluster asciidoctorBlock contains=asciidoctorTitle,asciidoctorH1,asciidoctorH2,asciidoctorH3,asciidoctorH4,asciidoctorH5,asciidoctorH6,asciidoctorBlockquote,asciidoctorListMarker,asciidoctorOrderedListMarker,asciidoctorCodeBlock
-syn cluster asciidoctorInnerBlock contains=asciidoctorBlockquote,asciidoctorListMarker,asciidoctorOrderedListMarker,asciidoctorCodeBlock,asciidoctorDefList
+syn cluster asciidoctorBlock contains=asciidoctorTitle,asciidoctorH1,asciidoctorH2,asciidoctorH3,asciidoctorH4,asciidoctorH5,asciidoctorH6,asciidoctorBlockquote,asciidoctorListMarker,asciidoctorOrderedListMarker,asciidoctorCodeBlock,asciidoctorAdmonition,asciidoctorAdmonitionBlock
+syn cluster asciidoctorInnerBlock contains=asciidoctorBlockquote,asciidoctorListMarker,asciidoctorOrderedListMarker,asciidoctorCodeBlock,asciidoctorDefList,asciidoctorAdmonition,asciidoctorAdmonitionBlock
 syn cluster asciidoctorInline contains=asciidoctorItalic,asciidoctorBold,asciidoctorCode,asciidoctorBoldItalic,asciidoctorUrl,asciidoctorMacro,asciidoctorAttribute
 
 " really hard to use them together with all the rest 'blocks'
@@ -141,12 +141,12 @@ syn match asciidoctorBlock "^\*\*\*\*\+\s*$"
 " Table blocks could be really long and this trick vim syntax hl
 " Trying to use simple matches instead -- it is dumber but anyway we don't
 " need anything really smart here
-syn match asciidoctorTableCell "^[.+*<^>aehlmdsv[:digit:]]*|"
-syn match asciidoctorTableSep "^[,;:|]====*"
+" syn match asciidoctorTableCell "^[.+*<^>aehlmdsv[:digit:]]*|"
+" syn match asciidoctorTableSep "^[,;:|]====*"
 
 "" Block version
-" syn match asciidoctorTableCell "^[.+*<^>aehlmdsv[:digit:]]*|" contained
-" syn region asciidoctorTableBlock matchgroup=asciidoctorBlock start="^|===\s*$" end="^|===\s*$" keepend contains=asciidoctorTableCell,@asciidoctorInnerBlock,@asciidoctorInline,@Spell,asciidoctorComment
+syn match asciidoctorTableCell "[.+*<^>aehlmdsv[:digit:]]*|" contained
+syn region asciidoctorTableBlock matchgroup=asciidoctorBlock start="^|===\s*$" end="^|===\s*$" keepend contains=asciidoctorTableCell,@asciidoctorInnerBlock,@asciidoctorInline,@Spell,asciidoctorComment
 
 " syn region asciidoctorTableBlock matchgroup=asciidoctorBlock start="^,===\s*$" end="^,===\s*$" keepend contains=@asciidoctorInline,@Spell,asciidoctorComment
 
