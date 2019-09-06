@@ -36,7 +36,7 @@ setlocal commentstring=//\ %s
 "" PR was sent and hopefully it would be accepted...
 let b:commentary_startofline = 1
 
-setlocal formatoptions=tcqln
+setlocal formatoptions=cqln
 setlocal formatlistpat=^\\s*
 setlocal formatlistpat+=[
 setlocal formatlistpat+=\\[({]\\?
