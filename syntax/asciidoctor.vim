@@ -186,7 +186,7 @@ hi def link asciidoctorUrl                   Underlined
 hi def link asciidoctorMacro                 Constant
 hi def link asciidoctorAttribute             Constant
 hi def link asciidoctorCode                  Constant
-hi def link asciidoctorOption                Comment
+hi def link asciidoctorOption                Define
 hi def link asciidoctorBlock                 Delimiter
 hi def link asciidoctorTableSep              Delimiter
 hi def link asciidoctorTableCell             Delimiter
