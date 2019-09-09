@@ -86,16 +86,20 @@ syn match asciidoctorUrl "\%(http\|ftp\)s\?://\S\+"
 syn match asciidoctorUrl "<<.\{-}>>" 
 
 syn match asciidoctorBold /\%(^\|[[:punct:][:space:]]\@<=\)\*[^* ].\{-}\S\*\%([[:punct:][:space:]]\@=\|$\)/ contains=@Spell
-" syn match asciidoctorBold /\%(^\|[[:punct:][:space:]]\)\@=\*[^* ]\*\ze\%([[:punct:][:space:]]\|$\)/ contains=@Spell
+" single char *b* bold
+syn match asciidoctorBold /\%(^\|[[:punct:][:space:]]\@<=\)\*[^* ]\*\%([[:punct:][:space:]]\@=\|$\)/ contains=@Spell
 syn match asciidoctorBold /\*\*\S.\{-}\*\*/ contains=@Spell
 syn match asciidoctorItalic /\%(^\|[[:punct:][:space:]]\@<=\)_[^_ ].\{-}\S_\%([[:punct:][:space:]]\@=\|$\)/ contains=@Spell
-" syn match asciidoctorItalic /\%(^\|[[:punct:][:space:]]\)\@=_[^_ ]_\ze\%([[:punct:][:space:]]\|$\)/ contains=@Spell
+" single char _b_ italic
+syn match asciidoctorItalic /\%(^\|[[:punct:][:space:]]\@<=\)_[^_ ]_\%([[:punct:][:space:]]\@=\|$\)/ contains=@Spell
 syn match asciidoctorItalic /__\S.\{-}__/ contains=@Spell
 syn match asciidoctorBoldItalic /\%(^\|[[:punct:][:space:]]\@<=\)\*_[^*_ ].\{-}\S_\*\%([[:punct:][:space:]]\@=\|$\)/ contains=@Spell
-" syn match asciidoctorBoldItalic /\%(^\|\s\)\@=\*_\S_\*\ze\%([[:punct:][:space:]]\|$\)/ contains=@Spell
+" single char *_b_* bold+italic
+syn match asciidoctorBoldItalic /\%(^\|[[:punct:][:space:]]\@<=\)\*_[^*_ ]_\*\%([[:punct:][:space:]]\@=\|$\)/ contains=@Spell
 syn match asciidoctorBoldItalic /\*\*_\S.\{-}_\*\*/ contains=@Spell
 syn match asciidoctorCode /\%(^\|[[:punct:][:space:]]\@<=\)`[^` ].\{-}\S`\%([[:punct:][:space:]]\@=\|$\)/
-" syn match asciidoctorCode /\%(^\|[[:punct:][:space:]]\)\@=`[^` ]`\ze\%([[:punct:][:space:]]\|$\)/
+" single char `c` code
+syn match asciidoctorCode /\%(^\|[[:punct:][:space:]]\@<=\)`[^` ]`\%([[:punct:][:space:]]\@=\|$\)/
 syn match asciidoctorCode /``.\{-}``/
 
 syn match asciidoctorAdmonition /\C^\%(NOTE:\)\|\%(TIP:\)\|\%(IMPORTANT:\)\|\%(CAUTION:\)\|\%(WARNING:\)\s/
