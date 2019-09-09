@@ -115,7 +115,7 @@ let g:asciidoctor_pdf_fonts_path = '~/docs/AsciiDocThemes/fonts'
 
 " What to use for DOCX, default `pandoc`.
 " The DOCX 'compilation' process is to generate `docbook` using
-" `g:asciidoctor-executable` and then to generate DOCX out of `docbook`
+" `g:asciidoctor_executable` and then to generate DOCX out of `docbook`
 " using `pandoc`.
 let g:asciidoctor_pandoc_executable = 'pandoc'
 
