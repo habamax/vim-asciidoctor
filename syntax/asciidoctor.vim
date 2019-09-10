@@ -48,17 +48,16 @@ syn cluster asciidoctorInnerBlock contains=asciidoctorBlockquote,asciidoctorList
 syn cluster asciidoctorInline contains=asciidoctorItalic,asciidoctorBold,asciidoctorCode,asciidoctorBoldItalic,asciidoctorUrl,asciidoctorMacro,asciidoctorAttribute
 
 " really hard to use them together with all the rest 'blocks'
-" syn match asciidoctorH1 "^[^[].\+\n=\+$" contains=@asciidoctorInline,asciidoctorHeadingRule,asciidoctorAutomaticLink
-" syn match asciidoctorH2 "^[^[].\+\n-\+$" contains=@asciidoctorInline,asciidoctorHeadingRule,asciidoctorAutomaticLink
-" syn match asciidoctorHeadingRule "^[=-]\+$" contained
+" syn match asciidoctorMarkdownH1 "^\s*[[:alpha:]].\+\n=\+$" contains=@asciidoctorInline
+" syn match asciidoctorMarkdownH2 "^\s*[[:alpha:]].\+\n-\+$" contains=@asciidoctorInline
 
 syn match asciidoctorTitle "^=\s.*$" contains=@asciidoctorInline,@Spell
-syn region asciidoctorH1 start="^==\s" end="$" contains=@asciidoctorInline,@Spell
-syn region asciidoctorH2 start="^===\s" end="$" contains=@asciidoctorInline,@Spell
-syn region asciidoctorH3 start="^====\s" end="$" contains=@asciidoctorInline,@Spell
-syn region asciidoctorH4 start="^=====\s" end="$" contains=@asciidoctorInline,@Spell
-syn region asciidoctorH5 start="^======\s" end="$" contains=@asciidoctorInline,@Spell
-syn region asciidoctorH6 start="^=======\s" end="$" contains=@asciidoctorInline,@Spell
+syn region asciidoctorH1 start="^==\s" end="$" oneline contains=@asciidoctorInline,@Spell
+syn region asciidoctorH2 start="^===\s" end="$" oneline contains=@asciidoctorInline,@Spell
+syn region asciidoctorH3 start="^====\s" end="$" oneline contains=@asciidoctorInline,@Spell
+syn region asciidoctorH4 start="^=====\s" end="$" oneline contains=@asciidoctorInline,@Spell
+syn region asciidoctorH5 start="^======\s" end="$" oneline contains=@asciidoctorInline,@Spell
+syn region asciidoctorH6 start="^=======\s" end="$" oneline contains=@asciidoctorInline,@Spell
 
 syn sync clear
 syn sync match syncH1 grouphere asciidoctorH1 "^==\s"
@@ -171,7 +170,9 @@ syn match asciidoctorComment "^//.*$" contains=@Spell
 
 hi def link asciidoctorTitle                 Title
 hi def link asciidoctorH1                    Title
+" hi def link asciidoctorMarkdownH1            Title
 hi def link asciidoctorH2                    Title
+" hi def link asciidoctorMarkdownH2            Title
 hi def link asciidoctorH3                    Title
 hi def link asciidoctorH4                    Title
 hi def link asciidoctorH5                    Title
