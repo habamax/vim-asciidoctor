@@ -25,63 +25,63 @@ It should work out of the box (at least it was the intention). But sometimes
 one needs settings to set.
 
 
-|g:asciidoctor_executable|            What to use for HTML. 
+*g:asciidoctor_executable*            What to use for HTML. 
                                     Default: asciidoctor
   Example: 
 
   let g:asciidoctor_executable = '~/projects/asciidoctor/bin/asciidoctor'
 
 
-|g:asciidoctor_extensions|            What extensions to use with HTML. 
+*g:asciidoctor_extensions*            What extensions to use with HTML. 
                                     Default: []
   Example: 
 
   let g:asciidoctor_extensions = ['asciidoctor-diagram', 'asciidoctor-rouge']
 
 
-|g:asciidoctor_css_path|              Path to custom CSS to use with HTML.
+*g:asciidoctor_css_path*              Path to custom CSS to use with HTML.
                                     Default: ''
   Example: 
 
   let g:asciidoctor_css_path = '~/docs/ascidoctor-themes/'
 
 
-|g:asciidoctor_css|                   Custom CSS file name to use with HTML.
+*g:asciidoctor_css*                   Custom CSS file name to use with HTML.
                                     Default: ''
   Example: 
 
   let g:asciidoctor_css = 'mytheme.css'
 
 
-|g:asciidoctor_pdf_executable|        What to use for PDF. 
+*g:asciidoctor_pdf_executable*        What to use for PDF. 
                                     Default: asciidoctor-pdf
   Example: 
 
   let g:asciidoctor_pdf_executable = '~/asciidoctor-pdf/bin/asciidoctor-pdf'
 
 
-|g:asciidoctor_pdf_extensions|        What extensions to use with PDF. 
+*g:asciidoctor_pdf_extensions*        What extensions to use with PDF. 
                                     Default: []
   Example: 
 
   let g:asciidoctor_pdf_extensions = ['asciidoctor-diagram']
 
 
-|g:asciidoctor_pdf_themes_path|       Path to custom themes.
+*g:asciidoctor_pdf_themes_path*       Path to custom themes.
                                     Default: ''
   Example: 
 
   let g:asciidoctor_pdf_themes_path = '~/docs/ascidoctor-themes/'
 
 
-|g:asciidoctor_pdf_fonts_path|        Path to fonts used in themes.
+*g:asciidoctor_pdf_fonts_path*        Path to fonts used in themes.
                                     Default: ''
   Example: 
 
   let g:asciidoctor_pdf_fonts_path = '~/docs/fonts/'
 
 
-|g:asciidoctor_pandoc_executable|     What to use for DOCX. The process is to
+*g:asciidoctor_pandoc_executable*     What to use for DOCX. The process is to
                                     convert ADOC to DOCBOOK with
                                     |g:asciidoctor_executable| and then
                                     DOCBOOK to DOCX with pandoc.
@@ -91,21 +91,21 @@ one needs settings to set.
   let g:asciidoctor_pandoc_executable = '~/bin/pandoc'
 
 
-|g:asciidoctor_folding|               Fold sections (headers).
+*g:asciidoctor_folding*               Fold sections (headers).
                                     Default: 0
   Example: 
 
   let g:asciidoctor_folding = 1
 
 
-|g:asciidoctor_fold_options|          Fold options (usually under the title).
+*g:asciidoctor_fold_options*          Fold options (usually under the title).
                                     Default: 0
   Example: 
 
   let g:asciidoctor_fold_options = 1
 
 
-|g:asciidoctor_fenced_languages|      Highlight syntax of source blocks
+*g:asciidoctor_fenced_languages*      Highlight syntax of source blocks
                                     Default: []
   Example: 
 
@@ -122,7 +122,7 @@ one needs settings to set.
   should be highlighted with python syntax.
 
 
-|g:asciidoctor_img_paste_command|     Command to save clipboard image to a
+*g:asciidoctor_img_paste_command*     Command to save clipboard image to a
                                     file.
                                     Default: 'gm convert clipboard: %s%s'
                                     Where first %s is a path, second %s is an
@@ -136,7 +136,7 @@ one needs settings to set.
   let g:asciidoctor_img_paste_command = 'xclip -selection clipboard -t image/png -o > %s%s'
 
 
-|g:asciidoctor_img_paste_pattern|     Pattern of the saved clipboard image file.
+*g:asciidoctor_img_paste_pattern*     Pattern of the saved clipboard image file.
                                     Default: 'img_%s_%s.png'
                                     Where first %s is a document base name,
                                     second %s is an image number.
@@ -167,7 +167,7 @@ These commands are local to the asciidoctor buffers.
 
                                                            *:Asciidoctor2DOCX*
 :Asciidoctor2DOCX          Convert current file to DOCX.
-                           Uses combination of |g:asciidoctor_executable|to
+                           Uses combination of |g:asciidoctor_executable| to
                            generate docbook file and
                            |g:asciidoctor_pandoc_executable| to generate
                            result DOCX file.
