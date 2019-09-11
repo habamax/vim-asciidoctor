@@ -70,13 +70,9 @@ syn sync match syncH6 grouphere asciidoctorH5 "^=======\s"
 syn match asciidoctorListMarker "^\s*\(-\|\*\+\|\.\+\)\%(\s\+\[[Xx ]\]\+\s*\)\?\%(\s\+\S\)\@="
 syn match asciidoctorOrderedListMarker "^\s*\d\+\.\%(\s\+\S\)\@="
 
-" "TODO: wrong highlighting <2018-30-20 19:30>
-" a| IF1. Customer Create/Update::
-" v| IF1. Customer Create/Update::
-" v| IF1. Customer Create/Update::
-" .^l| IF1. Customer Create/Update::
-" .3+^.>s|This cell spans 3 rows
-syn match asciidoctorDefList "\(^[^|[:space:]]\).\{-}::\_s" contains=@Spell
+" syn match asciidoctorDefList "\(^[^|[:space:]]\).\{-}::\_s" contains=@Spell
+" syn match asciidoctorDefList "\(^\|\(.\{-}a.\{-}|\)\)\@<=.\{-}::\_s" contains=@Spell
+syn match asciidoctorDefList ".\{-}::\_s" contains=@Spell
 
 syn match asciidoctorMacro "\a\+::\?\(\w\S\{-}\)\?\[.\{-}\]" 
 syn match asciidoctorAttribute "{[[:alpha:]][[:alnum:]-_:]\{-}}" 
