@@ -130,7 +130,8 @@ syn region asciidoctorPlantumlBlock matchgroup=asciidoctorBlock start="^\[plantu
 syn region asciidoctorPlantumlBlock matchgroup=asciidoctorBlock start="^\[plantuml.\{-}\]\s*\n--\+\s*$" end="^.*\n\zs--\+\s*$" keepend contains=@asciidoctorPlantumlHighlight
 
 " Contents of literal blocks should not be highlighted
-syn region asciidoctorLiteralBlock matchgroup=asciidoctorBlock start="^\[literal\]\s*\n\.\.\.\.\+\s*$" end="^.*\n\zs\.\.\.\.\+\s*$" keepend contains=CONTAINED,@Spell,asciidoctorComment
+" TODO: make [literal] works with paragraph
+syn region asciidoctorLiteralBlock matchgroup=asciidoctorBlock start="^\.\.\.\.\+\s*$" end="^\.\.\.\.\+\s*$" contains=CONTAINED,@Spell,asciidoctorComment
 
 " Admonition blocks
 " It would be way faster to just highlight block separators for some of them
