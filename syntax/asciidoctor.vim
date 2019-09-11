@@ -51,12 +51,12 @@ syn region asciidoctorH5 start="^======\s" end="$" oneline contains=@asciidoctor
 syn region asciidoctorH6 start="^=======\s" end="$" oneline contains=@asciidoctorInline,@Spell
 
 syn sync clear
-syn sync match syncH1 grouphere asciidoctorH1 "^==\s"
-syn sync match syncH2 grouphere asciidoctorH2 "^===\s"
-syn sync match syncH3 grouphere asciidoctorH3 "^====\s"
-syn sync match syncH4 grouphere asciidoctorH4 "^=====\s"
-syn sync match syncH5 grouphere asciidoctorH5 "^======\s"
-syn sync match syncH6 grouphere asciidoctorH5 "^=======\s"
+syn sync match syncH1 grouphere NONE "^==\s.*$"
+syn sync match syncH2 grouphere NONE "^===\s.*$"
+syn sync match syncH3 grouphere NONE "^====\s.*$"
+syn sync match syncH4 grouphere NONE "^=====\s.*$"
+syn sync match syncH5 grouphere NONE "^======\s.*$"
+syn sync match syncH6 grouphere NONE "^=======\s.*$"
 
 syn match asciidoctorListMarker "^\s*\(-\|\*\+\|\.\+\)\%(\s\+\[[Xx ]\]\+\s*\)\?\%(\s\+\S\)\@="
 syn match asciidoctorOrderedListMarker "^\s*\d\+\.\%(\s\+\S\)\@="
