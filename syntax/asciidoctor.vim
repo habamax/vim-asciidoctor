@@ -27,19 +27,10 @@ if globpath(&rtp, "syntax/plantuml.vim") != ''
 	unlet! b:current_syntax
 endif
 
-" also check :h syn-sync-fourth
-" syn-syc-fourth will not help here I guess.
-" the issue is that start and end of the blocks have the same delimiters
-" and it looks like impossible to setup correct 'syn sync match'
-" but let's try to do it...
-" 1. redefin headings as regions instead of matches and sync them
+" Check :h syn-sync-fourth
 syn sync minlines=100
-" syn sync fromstart
 
 syn case ignore
-
-" syn match asciidoctorValid '[<>]\c[a-z/$!]\@!'
-" syn match asciidoctorValid '&\%(#\=\w*;\)\@!'
 
 syn match asciidoctorOption "^:[[:alnum:]!-]\{-}:"
 
@@ -70,8 +61,6 @@ syn sync match syncH6 grouphere asciidoctorH5 "^=======\s"
 syn match asciidoctorListMarker "^\s*\(-\|\*\+\|\.\+\)\%(\s\+\[[Xx ]\]\+\s*\)\?\%(\s\+\S\)\@="
 syn match asciidoctorOrderedListMarker "^\s*\d\+\.\%(\s\+\S\)\@="
 
-" syn match asciidoctorDefList "\(^[^|[:space:]]\).\{-}::\_s" contains=@Spell
-" syn match asciidoctorDefList "\(^\|\(.\{-}a.\{-}|\)\)\@<=.\{-}::\_s" contains=@Spell
 syn match asciidoctorDefList ".\{-}::\_s" contains=@Spell
 
 syn match asciidoctorMacro "\a\+::\?\(\w\S\{-}\)\?\[.\{-}\]" 
@@ -150,17 +139,10 @@ syn match asciidoctorBlock "^\*\*\*\*\+\s*$"
 " syn region asciidoctorAdmonitionBlock matchgroup=asciidoctorBlock start="\C^\(\[NOTE]\|\[TIP]\|\[IMPORTANT]\|\[CAUTION]\|\[WARNING]\|\[example]\)\s*\%(\n\.\S.\{-}\)\?\n====\+\s*$" end="^.*\n\zs====\s*$" contains=@asciidoctorInnerBlock,@asciidoctorInline,@Spell,asciidoctorComment
 
 " Table blocks
-" Table blocks could be really long and this trick vim syntax hl
-" Trying to use simple matches instead -- it is dumber but anyway we don't
-" need anything really smart here
-" syn match asciidoctorTableCell "^[.+*<^>aehlmdsv[:digit:]]*|"
-" syn match asciidoctorTableSep "^[,;:|]====*"
-
-"" Block version
 syn match asciidoctorTableCell "\(^\|\s\)\@<=[.+*<^>aehlmdsv[:digit:]]\+|\||" contained
 syn region asciidoctorTableBlock matchgroup=asciidoctorBlock start="^|===\s*$" end="^|===\s*$" keepend contains=asciidoctorTableCell,@asciidoctorInnerBlock,@asciidoctorInline,@Spell,asciidoctorComment
-syn region asciidoctorTableBlock matchgroup=asciidoctorBlock start="^,===\s*$" end="^,===\s*$" keepend contains=@asciidoctorInline,@Spell,asciidoctorComment
-syn region asciidoctorTableBlock matchgroup=asciidoctorBlock start="^;===\s*$" end="^;===\s*$" keepend contains=@asciidoctorInline,@Spell,asciidoctorComment
+syn region asciidoctorTableBlock matchgroup=asciidoctorBlock start="^,===\s*$" end="^,===\s*$" keepend
+syn region asciidoctorTableBlock matchgroup=asciidoctorBlock start="^;===\s*$" end="^;===\s*$" keepend
 
 syn match asciidoctorComment "^//.*$" contains=@Spell
 
