@@ -67,7 +67,7 @@ syn sync match syncH4 grouphere asciidoctorH4 "^=====\s"
 syn sync match syncH5 grouphere asciidoctorH5 "^======\s"
 syn sync match syncH6 grouphere asciidoctorH5 "^=======\s"
 
-syn match asciidoctorListMarker "^\s*\(-\|\*\+\|\.\+\)\%(\s\+\S\)\@="
+syn match asciidoctorListMarker "^\s*\(-\|\*\+\|\.\+\)\%(\s\+\[[Xx ]\]\+\s*\)\?\%(\s\+\S\)\@="
 syn match asciidoctorOrderedListMarker "^\s*\d\+\.\%(\s\+\S\)\@="
 
 " "TODO: wrong highlighting <2018-30-20 19:30>
