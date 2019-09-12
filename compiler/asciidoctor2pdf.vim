@@ -31,7 +31,12 @@ if !exists("g:asciidoctor_pdf_executable")
 	let g:asciidoctor_pdf_executable = "asciidoctor-pdf"
 endif
 
-let &l:makeprg = g:asciidoctor_pdf_executable." ".s:extensions." -a docdate=".strftime("%Y-%m-%d")." -a doctime=".strftime("%H:%M:%S")." ".s:pdf_themes_path." ".s:pdf_fonts_path." ".shellescape(expand("%:p"))
+let &l:makeprg = g:asciidoctor_pdf_executable . " " . s:extensions
+			\. " -a docdate=" . strftime("%Y-%m-%d")
+			\. " -a doctime=" . strftime("%H:%M:%S") . " "
+			\. s:pdf_themes_path . " "
+			\. s:pdf_fonts_path . " "
+			\. shellescape(expand("%:p"))
 
 let &cpo = s:keepcpo
 unlet s:keepcpo
