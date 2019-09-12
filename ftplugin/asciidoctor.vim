@@ -7,6 +7,12 @@ if exists("b:did_ftplugin")
 	finish
 endif
 
+if exists('b:undo_ftplugin')
+	let b:undo_ftplugin .= "|setl cms< com< fo< flp< inex< efm<"
+else
+	let b:undo_ftplugin = "setl cms< com< fo< flp< inex< efm<"
+endif
+
 compiler asciidoctor2html
 
 " open files
@@ -19,6 +25,9 @@ if !exists('g:asciidoctor_opener') || g:asciidoctor_opener == ''
 		let g:asciidoctor_opener = ":!xdg-open"
 	endif
 endif
+
+" see https://github.com/asciidoctor/asciidoctor-pdf/issues/1273
+setlocal errorformat=asciidoctor:\ ERROR:\ %f:\ line\ %l:\ %m
 
 " gf to open include files
 setlocal includeexpr=substitute(v:fname,'include::\\(.\\{-}\\)\\[.*','\\1','g')
@@ -52,12 +61,6 @@ setlocal formatlistpat+=\\\|
 setlocal formatlistpat+=^\\s*-\\s\\+
 setlocal formatlistpat+=\\\|
 setlocal formatlistpat+=^\\s*[*]\\+\\s\\+
-
-if exists('b:undo_ftplugin')
-	let b:undo_ftplugin .= "|setl cms< com< fo< flp< inex<"
-else
-	let b:undo_ftplugin = "setl cms< com< fo< flp< inex<"
-endif
 
 function! AsciidoctorFold() "{{{
 	let line = getline(v:lnum)
