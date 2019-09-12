@@ -15,16 +15,15 @@ image::image1.png[]
 
 == Intro
 
-Vim has syntax highlighting for asciidoc out of the box. And it is/was
-really slow for me, probably because it tries to be very smart about syntax.
+Vim has syntax highlighting for asciidoc out of the box. And it is/was really
+slow for me, probably because it tries to be very smart about syntax.
 
-This plugin on the other hand has:
+This plugin:
 
-* quite limited syntax highlighting;
-* sections folding;
-* commands to build `HTML` (using `asciidoctor`), `PDF` (using `asciidoctor-pdf`) and `DOCX` (using combination of `asciidoctor` and `pandoc`)
-
-And it is still way faster than built-in `syntax/asciidoc.vim`, for me.
+    - has different syntax highlighting;
+    - is way faster (your vim lags less :) );
+    - has folding;
+    - has commands to compile documents (html, pdf, docx).
 
 == Installation
 

@@ -13,8 +13,8 @@ slow for me, probably because it tries to be very smart about syntax.
 
 This plugin:
 
-    - is way faster;
     - has different syntax highlighting;
+    - is way faster (your vim lags less :) );
     - has folding;
     - has commands to compile documents (html, pdf, docx).
 
