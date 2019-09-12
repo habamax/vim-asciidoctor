@@ -149,6 +149,20 @@ one needs settings to set.
   'README_img_2.png' etc.
 
 
+*g:asciidoctor_opener*                Shell command to open asciidoctor files.
+                                    Used in |:AsciidoctorOpenRAW|,
+                                    |AsciidoctorOpenPDF|,
+                                    |:AsciidoctorOpenHTML| and
+                                    |:AsciidoctorOpenDOCX| commands.
+                                    Default Windows: ':!start'
+                                    Default Linux:   ':!open'
+                                    Default OSX:     ':!xdg-open'
+  Example: 
+
+  let g:asciidoctor_opener = ':!firefox'
+
+
+
 
 COMMANDS                                                *asciidoctor-commands*
 
@@ -176,22 +190,25 @@ These commands are local to the asciidoctor buffers.
                                                          *:AsciidoctorOpenRAW*
 :AsciidoctorOpenRAW        Open current file in Web browser. Chrome and
                            Firefox have extension to render barebone .adoc
-                           files.
+                           files. Uses |g:asciidoctor_opener|.
 
 
                                                         *:AsciidoctorOpenHTML*
 :AsciidoctorOpenHTML       Open HTML file of the current file. It should exist
                            (created first with |:Asciidoctor2HTML| command).
+                           Uses |g:asciidoctor_opener|.
 
 
                                                          *:AsciidoctorOpenPDF*
 :AsciidoctorOpenPDF        Open PDF file of the current file. It should exist
                            (created first with |:Asciidoctor2PDF| command).
+                           Uses |g:asciidoctor_opener|.
 
 
                                                         *:AsciidoctorOpenDOCX*
 :AsciidoctorOpenDOCX       Open DOCX file of the current file. It should exist
                            (created first with |:Asciidoctor2DOCX| command).
+                           Uses |g:asciidoctor_opener|.
 
 
                                                       *:AsciidoctorPasteImage*
