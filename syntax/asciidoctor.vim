@@ -63,7 +63,7 @@ syn match asciidoctorOrderedListMarker "^\s*\d\+\.\%(\s\+\S\)\@="
 
 syn match asciidoctorDefList ".\{-}::\_s" contains=@Spell
 
-syn match asciidoctorMacro "\a\+::\?\(\w\S\{-}\)\?\[.\{-}\]" 
+syn match asciidoctorMacro "\a\+::\?\(.\{-}\)\?\[.\{-}\]" 
 syn match asciidoctorAttribute "{[[:alpha:]][[:alnum:]-_:]\{-}}" 
 syn region asciidoctorUrl matchgroup=asciidoctorMacro start="link::\?" end="\[.\{-}\]" oneline keepend skipwhite
 syn match asciidoctorUrl "\%(http\|ftp\)s\?://\S\+" 
