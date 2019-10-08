@@ -136,3 +136,10 @@ command! -buffer AsciidoctorPasteImage :call asciidoctor#pasteImage()
 "" Next/Previous section mappings
 nnoremap <silent><buffer> ]] :call search('^=\+\s\+\S\+')<CR>
 nnoremap <silent><buffer> [[ :call search('^=\+\s\+\S\+', 'b')<CR>
+
+call asciidoctor#detect_source_language()
+
+augroup asciidoctor_source_language
+	au!
+	au bufwrite *.adoc,*.asciidoc call asciidoctor#detect_source_language() | syn enable
+augroup END

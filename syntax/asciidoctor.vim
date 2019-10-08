@@ -106,6 +106,29 @@ syn match asciidoctorBlock "^\[.\{-}\]\s*$"
 
 " Source highlighting with programming languages
 if main_syntax ==# 'asciidoctor'
+
+	"" Default :source-language: is set up
+	"" b:asciidoctor_source_language should be set up in ftplugin -- reading
+	"" first 20(?) rows of a file
+	" :source-language: python
+	"[source]
+	" for i in ...
+	"
+	if get(b:, "asciidoctor_source_language", "NONE") != "NONE"
+		exe 'syn region asciidoctorSourceHighlightDefault'.b:asciidoctor_source_language.' matchgroup=asciidoctorBlock start="^\[source\]\s*$" end="^\s*$" keepend contains=@asciidoctorSourceHighlight'.b:asciidoctor_source_language
+	endif
+
+	" if :source-language: is set up
+	" :source-language: python
+	"[source]
+	"----
+	" for i in ...
+	"----
+	if get(b:, "asciidoctor_source_language", "NONE") != "NONE"
+		exe 'syn region asciidoctorSourceHighlightDefault'.b:asciidoctor_source_language.' matchgroup=asciidoctorBlock start="^\[source\]\s*\n----\+\s*$" end="^.*\n\zs----\+\s*$" keepend contains=@asciidoctorSourceHighlight'.b:asciidoctor_source_language
+	endif
+
+	"" Other languages
 	for s:type in g:asciidoctor_fenced_languages
 		"[source,lang]
 		" for i in ...
@@ -117,6 +140,7 @@ if main_syntax ==# 'asciidoctor'
 		"for i in ...
 		"----
 		exe 'syn region asciidoctorSourceHighlight'.s:type.' matchgroup=asciidoctorBlock start="^\[\%(source\)\?,\s*'.s:type.'\%(,.*\)*\]\s*\n----\+\s*$" end="^.*\n\zs----\+\s*$" keepend contains=@asciidoctorSourceHighlight'.s:type
+
 
 	endfor
 	unlet! s:type

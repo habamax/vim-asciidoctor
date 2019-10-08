@@ -98,3 +98,17 @@ fun! asciidoctor#pasteImage()
 	let @x = sav_reg_x
 endfu
 
+
+" Check header (20 lines) of the file for default source language
+func! asciidoctor#detect_source_language()
+	for line in getline(1, 20)
+		let m = matchlist(line, '^:source-language: \(.*\)$')
+		if !empty(m)
+			let src_lang = trim(m[1])
+			if src_lang != ''
+				let b:asciidoctor_source_language = trim(m[1])
+				break
+			endif
+		endif
+	endfor
+endfunc
