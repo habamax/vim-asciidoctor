@@ -141,5 +141,5 @@ call asciidoctor#detect_source_language()
 
 augroup asciidoctor_source_language
 	au!
-	au bufwrite *.adoc,*.asciidoc call asciidoctor#detect_source_language() | syn enable
+	au bufwrite *.adoc,*.asciidoc call asciidoctor#refresh_source_language_hl()
 augroup END

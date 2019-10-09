@@ -112,3 +112,16 @@ func! asciidoctor#detect_source_language()
 		endif
 	endfor
 endfunc
+
+" Refresh highlighting for default source language.
+"
+" Should be called on buffer write.
+func! asciidoctor#refresh_source_language_hl()
+	let cur_b_source_language = get(b:, "asciidoctor_source_language", "NONE")
+
+	call asciidoctor#detect_source_language()
+
+	if cur_b_source_language != get(b:, "asciidoctor_source_language", "NONE")
+		syn enable
+	endif
+endfunc
