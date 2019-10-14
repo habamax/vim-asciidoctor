@@ -65,7 +65,7 @@ syn match asciidoctorDefList ".\{-}::\_s" contains=@Spell
 
 syn match asciidoctorMacro "\a\+::\?\(.\{-}\)\?\[.\{-}\]" 
 syn match asciidoctorAttribute "{[[:alpha:]][[:alnum:]-_:]\{-}}" 
-syn region asciidoctorUrl matchgroup=asciidoctorMacro start="link::\?" end="\[.\{-}\]" oneline keepend skipwhite
+syn region asciidoctorUrl matchgroup=asciidoctorMacro start="link\|xref::\?" end="\[.\{-}\]" oneline keepend skipwhite
 syn match asciidoctorUrl "\%(http\|ftp\)s\?://\S\+" 
 syn match asciidoctorUrl "<<.\{-}>>" 
 
