@@ -9,23 +9,23 @@ let current_compiler = "Asciidoctor2HTML"
 let s:keepcpo= &cpo
 set cpo&vim
 
-if !exists("g:asciidoctor_extensions") || empty(g:asciidoctor_extensions)
+if get(g:, 'asciidoctor_extensions', []) == []
 	let s:extensions = ""
 else
 	let s:extensions = "-r ".join(g:asciidoctor_extensions, ' -r ')
 endif
 
-if !exists("g:asciidoctor_executable")
+if get(g:, 'asciidoctor_executable', '') == ''
 	let g:asciidoctor_executable = "asciidoctor"
 endif
 
-if !exists("g:asciidoctor_css_path") || g:asciidoctor_css_path == ''
+if get(g:, 'asciidoctor_css_path', '') == ''
 	let s:css_path = ""
 else
 	let s:css_path = '-a stylesdir='.shellescape(expand(g:asciidoctor_css_path))
 endif
 
-if !exists("g:asciidoctor_css") || g:asciidoctor_css == ''
+if get(g:, 'asciidoctor_css', '') == ''
 	let s:css_name = ""
 else
 	let s:css_name = '-a stylesheet='.shellescape(expand(g:asciidoctor_css))

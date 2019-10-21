@@ -9,25 +9,25 @@ let current_compiler = "Asciidoctor2PDF"
 let s:keepcpo= &cpo
 set cpo&vim
 
-if !exists("g:asciidoctor_pdf_themes_path") || g:asciidoctor_pdf_themes_path == ''
+if get(g:, 'asciidoctor_pdf_themes_path', '') == ''
 	let s:pdf_themes_path = ""
 else
 	let s:pdf_themes_path = '-a pdf-stylesdir='.shellescape(expand(g:asciidoctor_pdf_themes_path))
 endif
 
-if !exists("g:asciidoctor_pdf_fonts_path") || g:asciidoctor_pdf_fonts_path == ''
+if get(g:, 'asciidoctor_pdf_fonts_path', '') == ''
 	let s:pdf_fonts_path = ""
 else
 	let s:pdf_fonts_path = '-a pdf-fontsdir='.shellescape(expand(g:asciidoctor_pdf_fonts_path))
 endif
 
-if !exists("g:asciidoctor_pdf_extensions") || empty(g:asciidoctor_pdf_extensions)
+if get(g:, 'asciidoctor_pdf_extensions', []) == []
 	let s:extensions = ""
 else
 	let s:extensions = "-r ".join(g:asciidoctor_pdf_extensions, ' -r ')
 endif
 
-if !exists("g:asciidoctor_pdf_executable")
+if get(g:, 'asciidoctor_pdf_executable', '') == ''
 	let g:asciidoctor_pdf_executable = "asciidoctor-pdf"
 endif
 

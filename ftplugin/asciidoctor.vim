@@ -16,7 +16,7 @@ endif
 compiler asciidoctor2html
 
 " open files
-if !exists('g:asciidoctor_opener') || g:asciidoctor_opener == ''
+if get(g:, 'asciidoctor_opener', '') == ''
 	if has("win32") || has("win32unix")
 		let g:asciidoctor_opener = ":!start"
 	elseif has("osx")
@@ -66,7 +66,7 @@ function! AsciidoctorFold() "{{{
 	endif
 
 	" Fold options
-	if g:asciidoctor_fold_options
+	if s:asciidoctor_fold_options
 		if (line =~ '^:[[:alnum:]-!]\{-}:.*$')
 			let prevline = getline(v:lnum - 1)
 			if (prevline !~ '^:[[:alnum:]-!]\{-}:.*$')
@@ -91,18 +91,14 @@ command! -buffer AsciidoctorOpenPDF :exe g:asciidoctor_opener." ".expand("%:p:r"
 command! -buffer AsciidoctorOpenHTML :exe g:asciidoctor_opener." ".expand("%:p:r").".html"
 command! -buffer AsciidoctorOpenDOCX :exe g:asciidoctor_opener." ".expand("%:p:r").".docx"
 
-if has("folding") && exists("g:asciidoctor_folding")
-	if g:asciidoctor_folding
-		setlocal foldexpr=AsciidoctorFold()
-		setlocal foldmethod=expr
-		if !exists('g:asciidoctor_fold_options')
-			let g:asciidoctor_fold_options = 0
-		endif
-		let b:undo_ftplugin .= " foldexpr< foldmethod<"
-	endif
+if has("folding") && get(g:, 'asciidoctor_folding', 0)
+	setlocal foldexpr=AsciidoctorFold()
+	setlocal foldmethod=expr
+	let b:undo_ftplugin .= " foldexpr< foldmethod<"
+	let s:asciidoctor_fold_options = get(g:, 'asciidoctor_fold_options', 0)
 endif
 
-if !exists('g:asciidoctor_img_paste_command')
+if get(g:, 'asciidoctor_img_paste_command', '') == ''
 	" first `%s` is a path
 	" second `%s` is an image file name
 	if has('win32')
@@ -114,7 +110,7 @@ if !exists('g:asciidoctor_img_paste_command')
 	endif
 endif
 
-if !exists('g:asciidoctor_img_paste_pattern')
+if get(g:, 'asciidoctor_img_paste_pattern', '') == ''
 	" first `%s` is a base document name:
 	" (~/docs/hello-world.adoc => hello-world)
 	" second `%s` is a number of the image.

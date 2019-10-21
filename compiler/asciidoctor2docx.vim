@@ -9,17 +9,17 @@ let current_compiler = "Asciidoctor2DOCX"
 let s:keepcpo= &cpo
 set cpo&vim
 
-if !exists("g:asciidoctor_extensions") || empty(g:asciidoctor_extensions)
+if get(g:, 'asciidoctor_extensions', []) == []
 	let s:extensions = ""
 else
 	let s:extensions = "-r ".join(g:asciidoctor_extensions, ' -r ')
 endif
 
-if !exists("g:asciidoctor_executable")
+if get(g:, 'asciidoctor_executable', '') == ''
 	let g:asciidoctor_executable = "asciidoctor"
 endif
 
-if !exists("g:asciidoctor_pandoc_executable")
+if get(g:, 'asciidoctor_pandoc_executable', '') == ''
 	let g:asciidoctor_pandoc_executable = "pandoc"
 endif
 
