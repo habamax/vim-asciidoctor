@@ -82,14 +82,23 @@ function! AsciidoctorFold() "{{{
 	return "="
 endfunction "}}}
 
-command! -buffer Asciidoctor2PDF :compiler asciidoctor2pdf | :make
-command! -buffer Asciidoctor2HTML :compiler asciidoctor2html | :make
-command! -buffer Asciidoctor2DOCX :compiler asciidoctor2docx | :make
+" Use vim-dispatch if available
+if exists(':Make') == 2
+	let s:make = ':Make!'
+	let s:open = ':Start'
+else
+	let s:make = ':make'
+	let s:open = ''
+endif
 
-command! -buffer AsciidoctorOpenRAW :exe g:asciidoctor_opener." ".expand("%:p")
-command! -buffer AsciidoctorOpenPDF :exe g:asciidoctor_opener." ".expand("%:p:r").".pdf"
-command! -buffer AsciidoctorOpenHTML :exe g:asciidoctor_opener." ".expand("%:p:r").".html"
-command! -buffer AsciidoctorOpenDOCX :exe g:asciidoctor_opener." ".expand("%:p:r").".docx"
+exe 'command! -buffer Asciidoctor2PDF :compiler asciidoctor2pdf | '   . s:make
+exe 'command! -buffer Asciidoctor2HTML :compiler asciidoctor2html | ' . s:make
+exe 'command! -buffer Asciidoctor2DOCX :compiler asciidoctor2docx | ' . s:make
+
+exe 'command! -buffer AsciidoctorOpenRAW '  . s:open . ' ' . g:asciidoctor_opener . ' ' . expand("%:p")
+exe 'command! -buffer AsciidoctorOpenPDF '  . s:open . ' ' . g:asciidoctor_opener . ' ' . expand("%:p:r").".pdf"
+exe 'command! -buffer AsciidoctorOpenHTML ' . s:open . ' ' . g:asciidoctor_opener . ' ' . expand("%:p:r").".html"
+exe 'command! -buffer AsciidoctorOpenDOCX ' . s:open . ' ' . g:asciidoctor_opener . ' ' . expand("%:p:r").".docx"
 
 if has("folding") && get(g:, 'asciidoctor_folding', 0)
 	setlocal foldexpr=AsciidoctorFold()
