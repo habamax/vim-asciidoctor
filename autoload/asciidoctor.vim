@@ -34,10 +34,8 @@ endfu
 " `img_document_1.png`
 " `img_document_2.png`
 fun! s:asciidoctorListImages(path)
-	let globpattern = '*'.matchstr(g:asciidoctor_img_paste_pattern, '.*\zs\.\%(png\|jpg\)$')
-
 	let rxpattern = '\V\[\\/]'.printf(g:asciidoctor_img_paste_pattern, expand('%:t:r'), '\d\+').'\$'
-	let images = globpath(a:path, globpattern, 0, 1)
+	let images = globpath(a:path, '*.png', 1, 1)
 	return filter(images, {k,v -> v =~ rxpattern})
 endfu
 
