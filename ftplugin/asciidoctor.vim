@@ -84,7 +84,7 @@ endfunction "}}}
 
 " Use vim-dispatch if available
 if exists(':Make') == 2
-	let s:make = ':Make!'
+	let s:make = ':Make'
 	let s:open = ':Start'
 else
 	let s:make = ':make'
