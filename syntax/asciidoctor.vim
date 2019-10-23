@@ -36,7 +36,7 @@ syn match asciidoctorOption "^:[[:alnum:]!-]\{-}:"
 
 syn cluster asciidoctorBlock contains=asciidoctorTitle,asciidoctorH1,asciidoctorH2,asciidoctorH3,asciidoctorH4,asciidoctorH5,asciidoctorH6,asciidoctorBlockquote,asciidoctorListMarker,asciidoctorOrderedListMarker,asciidoctorCodeBlock,asciidoctorAdmonition,asciidoctorAdmonitionBlock
 syn cluster asciidoctorInnerBlock contains=asciidoctorBlockquote,asciidoctorListMarker,asciidoctorOrderedListMarker,asciidoctorCodeBlock,asciidoctorDefList,asciidoctorAdmonition,asciidoctorAdmonitionBlock
-syn cluster asciidoctorInline contains=asciidoctorItalic,asciidoctorBold,asciidoctorCode,asciidoctorBoldItalic,asciidoctorUrl,asciidoctorMacro,asciidoctorAttribute
+syn cluster asciidoctorInline contains=asciidoctorItalic,asciidoctorBold,asciidoctorCode,asciidoctorBoldItalic,asciidoctorUrl,asciidoctorMacro,asciidoctorAttribute,asciidoctorInlineAnchor
 
 " really hard to use them together with all the rest 'blocks'
 " syn match asciidoctorMarkdownH1 "^\s*[[:alpha:]].\+\n=\+$" contains=@asciidoctorInline
@@ -91,6 +91,8 @@ syn match asciidoctorAdmonition /\C^\%(NOTE:\)\|\%(TIP:\)\|\%(IMPORTANT:\)\|\%(C
 syn match asciidoctorCaption "^\.[^.[:space:]].*$" contains=@asciidoctorInline,@Spell
 
 syn match asciidoctorBlock "^\[.\{-}\]\s*$"
+
+syn match asciidoctorInlineAnchor "\[\[.\{-}\]\]"
 
 " Listing block TODO: doesn't work as expected, causes #2
 " ----
@@ -194,6 +196,7 @@ hi def link asciidoctorOption                Define
 hi def link asciidoctorBlock                 Delimiter
 hi def link asciidoctorTableSep              Delimiter
 hi def link asciidoctorTableCell             Delimiter
+hi def link asciidoctorInlineAnchor          Delimiter
 
 hi asciidoctorBold                           gui=bold cterm=bold
 hi asciidoctorItalic                         gui=italic cterm=italic
