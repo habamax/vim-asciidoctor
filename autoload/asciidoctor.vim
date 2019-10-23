@@ -72,7 +72,7 @@ endfu
 "
 " * Save image as png file to the :imagesdir:
 " * Insert `image::link.png[]` at cursor position
-fun! asciidoctor#pasteImage()
+fun! asciidoctor#pasteImage() abort
 	let path = s:asciidoctorImagesPath()
 	if !isdirectory(path)
 		echoerr 'Image directory '.path.' doesn''t exist!'
@@ -81,14 +81,13 @@ fun! asciidoctor#pasteImage()
 
 	let fname = s:asciidoctorGenerateImageName(path)
 
-	let fargs = printf(g:asciidoctor_img_paste_command, path, fname)
+	let cmd = printf(g:asciidoctor_img_paste_command, path, fname)
 
-	if has('nvim')
-		let Jobfunc = function('jobstart')
-	else
-		let Jobfunc = function('job_start')
+	let res = system(cmd)
+	if v:shell_error
+		echohl Error | echomsg trim(res) | echohl None
+		return
 	endif
-	call Jobfunc(fargs)
 
 	let sav_reg_x = @x
 	let @x = printf('image::%s[]', fname)
