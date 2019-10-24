@@ -33,6 +33,7 @@ syn sync minlines=100
 syn case ignore
 
 syn match asciidoctorOption "^:[[:alnum:]!-]\{-}:"
+syn match asciidoctorListContinuation "^+\s*$"
 
 syn cluster asciidoctorBlock contains=asciidoctorTitle,asciidoctorH1,asciidoctorH2,asciidoctorH3,asciidoctorH4,asciidoctorH5,asciidoctorH6,asciidoctorBlockquote,asciidoctorListMarker,asciidoctorOrderedListMarker,asciidoctorCodeBlock,asciidoctorAdmonition,asciidoctorAdmonitionBlock
 syn cluster asciidoctorInnerBlock contains=asciidoctorBlockquote,asciidoctorListMarker,asciidoctorOrderedListMarker,asciidoctorCodeBlock,asciidoctorDefList,asciidoctorAdmonition,asciidoctorAdmonitionBlock
@@ -184,6 +185,7 @@ hi def link asciidoctorH5                    Title
 hi def link asciidoctorH6                    Title
 hi def link asciidoctorListMarker            Delimiter
 hi def link asciidoctorOrderedListMarker     asciidoctorListMarker
+hi def link asciidoctorListContinuation      Delimiter
 hi def link asciidoctorComment               Comment
 
 hi def link asciidoctorUrl                   Underlined
