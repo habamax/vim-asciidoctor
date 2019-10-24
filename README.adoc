@@ -164,11 +164,6 @@ augroup END
 
 --------
 
-=== Asciidoctor
-// TODO: setup asciidoctor <2018-09-20 11:09>
-
-TODO: point to the asciidoctor installation manual?
-
 == Commands
 
 All commands are buffer local -- available only for asciidoctor files (`set filetype=asciidoctor`)
