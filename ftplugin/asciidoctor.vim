@@ -63,7 +63,11 @@ function! AsciidoctorFold() "{{{
 		if depth > 1
 			let depth -= 1
 		endif
-		return ">" . depth
+		" check syntax, it should be asciidoctorTitle or asciidoctorH
+		let syncode = synstack(v:lnum, 1)
+		if len(syncode) > 0 && synIDattr(syncode[0], 'name') =~ 'asciidoctor\%(H[1-6]\)\|Title'
+			return ">" . depth
+		endif
 	endif
 
 	" Fold options
