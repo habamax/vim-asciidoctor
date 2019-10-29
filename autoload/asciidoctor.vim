@@ -134,7 +134,12 @@ func! asciidoctor#complete_bibliography(findstart, base)
 			return -3
 		endif
 	else
-		return filter(s:read_all_bibtex(), {_, val -> val =~ '^'.a:base.'.*'})
+		" return filtered list of
+		" [{"word": "citation1", "menu": "article"}, {"word": "citation2", "menu": "book"}, ...]
+		" if "word" matches with a:base
+		return filter(
+					\ map(s:read_all_bibtex(), {_, val -> {'word': matchstr(val, '{\zs.\{-}\ze,'), 'menu': matchstr(val, '@\zs.\{-}\ze{')}}),
+					\ {_, val -> val['word'] =~ '^'.a:base.'.*'})
 	endif
 endfunc
 
@@ -145,9 +150,7 @@ func! s:read_bibtex(file)
 	let citation_types = '@book\|@article\|@booklet\|@conference\|@inbook'
 				\.'\|@incollection\|@inproceedings\|@manual\|@mastersthesis'
 				\.'\|@misc\|@phdthesis\|@proceedings\|@techreport\|@unpublished'
-	let citations = map(
-				\ filter(readfile(a:file), {_, val -> val =~ citation_types}), 
-				\ {_, val -> matchstr(val, '{\zs.*\ze,')})
+	let citations = filter(readfile(a:file), {_, val -> val =~ citation_types})
 
 	return citations
 endfunc
