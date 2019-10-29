@@ -9,9 +9,9 @@ endif
 let b:did_ftplugin = 1
 
 if exists('b:undo_ftplugin')
-	let b:undo_ftplugin .= "|setl cms< com< fo< flp< inex< efm<"
+	let b:undo_ftplugin .= "|setl cms< com< fo< flp< inex< efm< cfu<"
 else
-	let b:undo_ftplugin = "setl cms< com< fo< flp< inex< efm<"
+	let b:undo_ftplugin = "setl cms< com< fo< flp< inex< efm< cfu<"
 endif
 
 compiler asciidoctor2html
@@ -138,9 +138,13 @@ command! -buffer AsciidoctorPasteImage :call asciidoctor#pasteImage()
 nnoremap <silent><buffer> ]] :call search('^=\+\s\+\S\+')<CR>
 nnoremap <silent><buffer> [[ :call search('^=\+\s\+\S\+', 'b')<CR>
 
+"" Detect default source code language
 call asciidoctor#detect_source_language()
 
 augroup asciidoctor_source_language
 	au!
 	au bufwrite *.adoc,*.asciidoc call asciidoctor#refresh_source_language_hl()
 augroup END
+
+"" Set completefunc
+setl completefunc=asciidoctor#complete_bibliography

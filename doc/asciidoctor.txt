@@ -247,4 +247,17 @@ There are no default mappings. You can setup yours with:
     augroup END
 
 
+BIBLIOGRAPHY COMPLETION                               *asciidoctor-completion*
+
+There is initial support for bibtex citation added.
+
+Usage:
+
+Place your bibtex files next to your asciidoctor file. Then completion would
+be available for:
+
+cite:[cit<C-X><C-U>
+citenp:[cit<C-X><C-U>
+
+
  vim:tw=78:et:ft=help:norl:
