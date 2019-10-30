@@ -96,9 +96,16 @@ syn match asciidoctorBlock "^\[.\{-}\]\s*$"
 
 syn match asciidoctorInlineAnchor "\[\[.\{-}\]\]"
 
+" Listing block
+" --
+" block that will not be
+" highlighted
+" --
+syn region asciidoctorListingBlock matchgroup=asciidoctorBlock start="^\z(--\+\)\s*$" end="^\z1\s*$" contains=CONTAINED,asciidoctorUrlDescription
+
 " General [source] block
  syn region asciidoctorSourceBlock matchgroup=asciidoctorBlock start="^\[source\%(,.*\)*\]\s*$" end="^\s*$" keepend contains=CONTAINED,asciidoctorUrlDescription
- syn region asciidoctorSourceBlock matchgroup=asciidoctorBlock start="^\[source\%(,.*\)*\]\s*\n---\+\s*$" end="^.*\n\zs---\+\s*$" keepend contains=CONTAINED,asciidoctorUrlDescription
+ syn region asciidoctorSourceBlock matchgroup=asciidoctorBlock start="^\[source\%(,.*\)*\]\s*\n\z(--\+\)\s*$" end="^.*\n\zs\z1\s*$" keepend contains=CONTAINED,asciidoctorUrlDescription
 
 " Source highlighting with programming languages
 if main_syntax ==# 'asciidoctor'
@@ -121,7 +128,7 @@ if main_syntax ==# 'asciidoctor'
 	" for i in ...
 	"----
 	if get(b:, "asciidoctor_source_language", "NONE") != "NONE"
-		exe 'syn region asciidoctorSourceHighlightDefault'.b:asciidoctor_source_language.' matchgroup=asciidoctorBlock start="^\[source\]\s*\n----\+\s*$" end="^.*\n\zs----\+\s*$" keepend contains=@asciidoctorSourceHighlight'.b:asciidoctor_source_language
+		exe 'syn region asciidoctorSourceHighlightDefault'.b:asciidoctor_source_language.' matchgroup=asciidoctorBlock start="^\[source\]\s*\n\z(--\+\)\s*$" end="^.*\n\zs\z1\s*$" keepend contains=@asciidoctorSourceHighlight'.b:asciidoctor_source_language
 	endif
 
 	"" Other languages
@@ -135,7 +142,7 @@ if main_syntax ==# 'asciidoctor'
 		"----
 		"for i in ...
 		"----
-		exe 'syn region asciidoctorSourceHighlight'.s:type.' matchgroup=asciidoctorBlock start="^\[\%(source\)\?,\s*'.s:type.'\%(,.*\)*\]\s*\n----\+\s*$" end="^.*\n\zs----\+\s*$" keepend contains=@asciidoctorSourceHighlight'.s:type
+		exe 'syn region asciidoctorSourceHighlight'.s:type.' matchgroup=asciidoctorBlock start="^\[\%(source\)\?,\s*'.s:type.'\%(,.*\)*\]\s*\n\z(--\+\)\s*$" end="^.*\n\zs\z1\s*$" keepend contains=@asciidoctorSourceHighlight'.s:type
 
 
 	endfor
@@ -145,13 +152,12 @@ endif
 " Contents of plantuml blocks should be highlighted with plantuml syntax...
 " There is no built in plantuml syntax as far as I know.
 " Tested with https://github.com/aklt/plantuml-syntax
-syn region asciidoctorPlantumlBlock matchgroup=asciidoctorBlock start="^\[plantuml.\{-}\]\s*\n\.\.\.\.\+\s*$" end="^.*\n\zs\.\.\.\.\+\s*$" keepend contains=@asciidoctorPlantumlHighlight
-" syn region asciidoctorPlantumlBlock matchgroup=asciidoctorBlock start="^\[plantuml.\{-}\]\s*\%(\n\.\S.\{-}\)\?\n\.\.\.\.\+\s*$" end="^.*\n\zs\.\.\.\.\+\s*$" contains=@asciidoctorPlantumlHighlight
-syn region asciidoctorPlantumlBlock matchgroup=asciidoctorBlock start="^\[plantuml.\{-}\]\s*\n--\+\s*$" end="^.*\n\zs--\+\s*$" keepend contains=@asciidoctorPlantumlHighlight
+syn region asciidoctorPlantumlBlock matchgroup=asciidoctorBlock start="^\[plantuml.\{-}\]\s*\n\z(\.\.\.\.\+\)\s*$" end="^.*\n\zs\z1\s*$" keepend contains=@asciidoctorPlantumlHighlight
+syn region asciidoctorPlantumlBlock matchgroup=asciidoctorBlock start="^\[plantuml.\{-}\]\s*\n\z(--\+\)\s*$" end="^.*\n\zs\z1\s*$" keepend contains=@asciidoctorPlantumlHighlight
 
 " Contents of literal blocks should not be highlighted
 " TODO: make [literal] works with paragraph
-syn region asciidoctorLiteralBlock matchgroup=asciidoctorBlock start="^\.\.\.\.\+\s*$" end="^\.\.\.\.\+\s*$" contains=CONTAINED,@Spell,asciidoctorComment,asciidoctorUrlDescription
+syn region asciidoctorLiteralBlock matchgroup=asciidoctorBlock start="^\z(\.\.\.\.\+\)\s*$" end="^\z1\s*$" contains=CONTAINED,@Spell,asciidoctorComment,asciidoctorUrlDescription
 
 " Admonition blocks
 " It would be way faster to just highlight block separators for some of them
@@ -159,12 +165,6 @@ syn match asciidoctorBlock "^====\+\s*$"
 syn match asciidoctorBlock "^\*\*\*\*\+\s*$"
 " syn region asciidoctorAdmonitionBlock matchgroup=asciidoctorBlock start="\C^\(\[NOTE]\|\[TIP]\|\[IMPORTANT]\|\[CAUTION]\|\[WARNING]\|\[example]\)\s*\%(\n\.\S.\{-}\)\?\n====\+\s*$" end="^.*\n\zs====\s*$" contains=@asciidoctorInnerBlock,@asciidoctorInline,@Spell,asciidoctorComment
 
-" Listing block
-" --
-" block that will not be
-" highlighted
-" --
-syn region asciidoctorListingBlock matchgroup=asciidoctorBlock start="^\z(--\+\)\s*$" end="^\z1\s*$" contains=CONTAINED,asciidoctorUrlDescription
 
 " Table blocks
 syn match asciidoctorTableCell "\(^\|\s\)\@<=[.+*<^>aehlmdsv[:digit:]]\+|\||" contained
