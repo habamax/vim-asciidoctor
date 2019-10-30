@@ -65,8 +65,7 @@ Plug 'habamax/vim-asciidoctor'
 --------
 
 == Setup
-=== Vim
-To use basic asciidoctor with vim you don't have to setup anything in vim. At
+NOTE: To use basic asciidoctor with vim you don't have to setup anything in vim. At
 least this was the intention. :)
 
 The following is an example setup. Part of it might not work for you if you don't have
@@ -177,6 +176,15 @@ All commands are buffer local -- available only for asciidoctor files (`set file
 * `AsciidoctorOpenDOCX` -- open `DOCX` of the current file using default DOCX
   viewer. (I haven't tried it with LibreOffice or whatever else there might be.
   Also haven't tried it on linux and OSX...)
+
+[NOTE]
+======
+Commands: `Asciidoctor2HTML`, `Asciidoctor2PDF` wouldn't work 
+if link:https://asciidoctor.org/docs/user-manual/#installing-the-asciidoctor-ruby-gem[asciidoctor] 
+and link:https://github.com/asciidoctor/asciidoctor-pdf#getting-started[asciidoctor-pdf] are not installed.
+
+Command `Asciidoctor2DOCX` should also have link:https://pandoc.org/installing.html[pandoc] installed.
+======
 
 == Usage
 
