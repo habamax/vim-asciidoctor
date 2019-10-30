@@ -312,6 +312,21 @@ cite:[cit<C-X><C-U>
 citenp:[cit<C-X><C-U>
 ----
 
+.Bibliography in Asciidoctor
+****
+To create bibliography in asciidoctor, i.e., to put it into PDF or HTML you
+should install
+https://github.com/asciidoctor/asciidoctor-bibtex[asciidoctor-bibtex]
+extension and provide it to vim-asciidoctor extension list(s):
+
+[source,vim]
+" For asciidoctor backend
+let g:asciidoctor_extensions = ['asciidoctor-bibtex']
+" For asciidoctor-pdf backend
+let g:asciidoctor_pdf_extensions = ['asciidoctor-bibtex']
+
+****
+
 == Limitations
 
 === No highlighting for underlined headers
