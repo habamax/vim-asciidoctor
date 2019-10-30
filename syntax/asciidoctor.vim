@@ -96,14 +96,6 @@ syn match asciidoctorBlock "^\[.\{-}\]\s*$"
 
 syn match asciidoctorInlineAnchor "\[\[.\{-}\]\]"
 
-" Listing block TODO: doesn't work as expected, causes #2
-" ----
-" block that will not be
-" highlighted
-" ----
-" syn region asciidoctorListingBlock start="\%(\%(^\[.\+\]\s*\)\|\%(^\s*\)\)\n---\+\s*$" end="^[^[]*\n---\+\s*$" contains=CONTAINED
-" syn region asciidoctorListingBlock matchgroup=asciidoctorBlock start="^----\+\s*$" end="^----\+\s*$" contains=CONTAINED
-
 " General [source] block
  syn region asciidoctorSourceBlock matchgroup=asciidoctorBlock start="^\[source\%(,.*\)*\]\s*$" end="^\s*$" keepend contains=CONTAINED,asciidoctorUrlDescription
  syn region asciidoctorSourceBlock matchgroup=asciidoctorBlock start="^\[source\%(,.*\)*\]\s*\n---\+\s*$" end="^.*\n\zs---\+\s*$" keepend contains=CONTAINED,asciidoctorUrlDescription
@@ -166,6 +158,13 @@ syn region asciidoctorLiteralBlock matchgroup=asciidoctorBlock start="^\.\.\.\.\
 syn match asciidoctorBlock "^====\+\s*$"
 syn match asciidoctorBlock "^\*\*\*\*\+\s*$"
 " syn region asciidoctorAdmonitionBlock matchgroup=asciidoctorBlock start="\C^\(\[NOTE]\|\[TIP]\|\[IMPORTANT]\|\[CAUTION]\|\[WARNING]\|\[example]\)\s*\%(\n\.\S.\{-}\)\?\n====\+\s*$" end="^.*\n\zs====\s*$" contains=@asciidoctorInnerBlock,@asciidoctorInline,@Spell,asciidoctorComment
+
+" Listing block
+" --
+" block that will not be
+" highlighted
+" --
+syn region asciidoctorListingBlock matchgroup=asciidoctorBlock start="^\z(--\+\)\s*$" end="^\z1\s*$" contains=CONTAINED,asciidoctorUrlDescription
 
 " Table blocks
 syn match asciidoctorTableCell "\(^\|\s\)\@<=[.+*<^>aehlmdsv[:digit:]]\+|\||" contained
