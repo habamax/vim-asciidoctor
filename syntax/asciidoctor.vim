@@ -66,7 +66,7 @@ syn match asciidoctorDefList ".\{-}::\_s" contains=@Spell
 
 syn match asciidoctorMacro "\a\+::\?\(\S[[:alnum:][:blank:]]\{-}\)\?\[.\{-}\]" 
 syn match asciidoctorAttribute "{[[:alpha:]][[:alnum:]-_:]\{-}}" 
-syn region asciidoctorUrl matchgroup=asciidoctorMacro start="link\|xref::\?" end="\[.\{-}\]" oneline keepend skipwhite
+syn region asciidoctorUrl matchgroup=asciidoctorMacro start="\%(link\|xref\|image\)::\?" end="\[.\{-}\]" oneline keepend skipwhite
 syn match asciidoctorUrlDescription "\[.\{-}\]" contained containedin=asciidoctorUrl
 syn match asciidoctorUrl "\%(http\|ftp\)s\?://\S\+\ze\%(\[.\{-}\]\)" nextgroup=asciidoctorUrlDescription
 syn match asciidoctorUrl "<<.\{-}>>" 
@@ -177,9 +177,7 @@ syn match asciidoctorComment "^//.*$" contains=@Spell
 
 hi def link asciidoctorTitle                 Title
 hi def link asciidoctorH1                    Title
-" hi def link asciidoctorMarkdownH1            Title
 hi def link asciidoctorH2                    Title
-" hi def link asciidoctorMarkdownH2            Title
 hi def link asciidoctorH3                    Title
 hi def link asciidoctorH4                    Title
 hi def link asciidoctorH5                    Title
