@@ -179,9 +179,9 @@ All commands are buffer local -- available only for asciidoctor files (`set file
 
 [NOTE]
 ======
-Commands: `Asciidoctor2HTML`, `Asciidoctor2PDF` wouldn't work 
+Commands: `Asciidoctor2HTML`, `Asciidoctor2PDF` should convert files
 if link:https://asciidoctor.org/docs/user-manual/#installing-the-asciidoctor-ruby-gem[asciidoctor] 
-and link:https://github.com/asciidoctor/asciidoctor-pdf#getting-started[asciidoctor-pdf] are not installed.
+and link:https://github.com/asciidoctor/asciidoctor-pdf#getting-started[asciidoctor-pdf] are installed.
 
 Command `Asciidoctor2DOCX` should also have link:https://pandoc.org/installing.html[pandoc] installed.
 ======
