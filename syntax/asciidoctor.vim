@@ -105,8 +105,8 @@ syn match asciidoctorInlineAnchor "\[\[.\{-}\]\]"
 " syn region asciidoctorListingBlock matchgroup=asciidoctorBlock start="^----\+\s*$" end="^----\+\s*$" contains=CONTAINED
 
 " General [source] block
- syn region asciidoctorSourceBlock matchgroup=asciidoctorBlock start="^\[source\%(,.*\)*\]\s*$" end="^\s*$" keepend contains=CONTAINED
- syn region asciidoctorSourceBlock matchgroup=asciidoctorBlock start="^\[source\%(,.*\)*\]\s*\n---\+\s*$" end="^.*\n\zs---\+\s*$" keepend contains=CONTAINED
+ syn region asciidoctorSourceBlock matchgroup=asciidoctorBlock start="^\[source\%(,.*\)*\]\s*$" end="^\s*$" keepend contains=CONTAINED,asciidoctorUrlDescription
+ syn region asciidoctorSourceBlock matchgroup=asciidoctorBlock start="^\[source\%(,.*\)*\]\s*\n---\+\s*$" end="^.*\n\zs---\+\s*$" keepend contains=CONTAINED,asciidoctorUrlDescription
 
 " Source highlighting with programming languages
 if main_syntax ==# 'asciidoctor'
@@ -159,7 +159,7 @@ syn region asciidoctorPlantumlBlock matchgroup=asciidoctorBlock start="^\[plantu
 
 " Contents of literal blocks should not be highlighted
 " TODO: make [literal] works with paragraph
-syn region asciidoctorLiteralBlock matchgroup=asciidoctorBlock start="^\.\.\.\.\+\s*$" end="^\.\.\.\.\+\s*$" contains=CONTAINED,@Spell,asciidoctorComment
+syn region asciidoctorLiteralBlock matchgroup=asciidoctorBlock start="^\.\.\.\.\+\s*$" end="^\.\.\.\.\+\s*$" contains=CONTAINED,@Spell,asciidoctorComment,asciidoctorUrlDescription
 
 " Admonition blocks
 " It would be way faster to just highlight block separators for some of them
