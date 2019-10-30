@@ -287,6 +287,23 @@ The name of the image is generated according to the pattern. By default it is
 
  img_ + document_base_name + next_image_number + .png
 
+== Bibliography completion
+There is initial support for bibliograpy completion. Works with `*.bib` files
+placed to the same folder as file being edited.
+
+No setup is needed although additional setting for a base bibtex folder might
+be added in the future.
+
+It uses vim's `completefunc` which is usually called in insert mode with
+kbd:[<C-X><C-U>], and it works for
+
+[source]
+----
+cite:[<C-X><C-U>
+cite:[cit<C-X><C-U>
+citenp:[cit<C-X><C-U>
+----
+
 == Limitations
 
 === No highlighting for underlined headers

@@ -253,8 +253,8 @@ There is initial support for bibtex citation added.
 
 Usage:
 
-Place your bibtex files next to your asciidoctor file. Then completion would
-be available for:
+Place your bibtex files next to your asciidoctor file (to the same path). Then
+completion would be available for:
 
 cite:[cit<C-X><C-U>
 citenp:[cit<C-X><C-U>
