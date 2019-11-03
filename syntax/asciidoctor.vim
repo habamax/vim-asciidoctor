@@ -191,8 +191,8 @@ hi def link asciidoctorUrlDescription        Constant
 
 " hi def link asciidoctorUrlTitle              String
 
-hi def link asciidoctorMacro                 Constant
-hi def link asciidoctorAttribute             Constant
+hi def link asciidoctorMacro                 PreProc
+hi def link asciidoctorAttribute             Identifier
 hi def link asciidoctorCode                  Constant
 hi def link asciidoctorOption                Identifier
 hi def link asciidoctorBlock                 Delimiter
