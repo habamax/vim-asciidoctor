@@ -96,11 +96,12 @@ else
 	let s:open = ''
 endif
 
-func! s:get_fname(ext = '')
-	if a:ext == ''
+func! s:get_fname(...)
+	let ext = get(a:, 1, '')
+	if ext == ''
 		return expand("%:p")
 	else
-		return expand("%:p:r").a:ext
+		return expand("%:p:r").ext
 	endif
 endfunc
 
