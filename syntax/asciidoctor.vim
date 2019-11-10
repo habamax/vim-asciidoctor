@@ -64,7 +64,7 @@ syn match asciidoctorOrderedListMarker "^\s*\d\+\.\%(\s\+\S\)\@="
 
 syn match asciidoctorDefList ".\{-}::\_s" contains=@Spell
 
-syn match asciidoctorMacro "\a\+::\?\(\S[[:alnum:][:blank:]]\{-}\)\?\[.\{-}\]" 
+syn match asciidoctorMacro "\a\+::\?\(\S[[:alnum:][:blank:]./\\:-]\{-}\)\?\[.\{-}\]" 
 syn match asciidoctorAttribute "{[[:alpha:]][[:alnum:]-_:]\{-}}" 
 syn region asciidoctorUrl matchgroup=asciidoctorMacro start="\%(link\|xref\|image\)::\?" end="\[.\{-}\]" oneline keepend skipwhite
 syn match asciidoctorUrlDescription "\[.\{-}\]" contained containedin=asciidoctorUrl
