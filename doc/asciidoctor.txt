@@ -113,7 +113,7 @@ one needs settings to set.
 
   Then in your asciidoctor document:
 
-  [python]
+  [source,python]
   ----
   def hello():
       print("hello world")
