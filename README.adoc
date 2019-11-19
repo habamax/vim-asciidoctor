@@ -327,6 +327,42 @@ let g:asciidoctor_pdf_extensions = ['asciidoctor-bibtex']
 
 ======
 
+== Misc
+
+=== Generate HTML on file save
+
+Add following snippet to your vim config to generate an HTML file upon saving:
+[source,vim]
+--------
+augroup ON_ASCIIDOCTOR_SAVE | au!
+	au BufWritePost *.adoc :Asciidoctor2HTML
+augroup end
+--------
+
+If you want to add text files to the mix you can have something similar to:
+
+[source,vim]
+--------
+func! ConvertAsciidoctorToHTML()
+	" Text file with asciidoctor contents?
+	if &filetype == 'text' && getline(1) =~ '^= .*$'
+		" text files have no asciidoctor commands
+		set filetype=asciidoctor
+		Asciidoctor2HTML
+		set filetype=text
+	elseif &filetype == 'asciidoctor'
+		Asciidoctor2HTML
+	endif
+endfunc
+augroup ON_ASCIIDOCTOR_SAVE | au!
+	au BufWritePost *.adoc,*.txt call ConvertAsciidoctorToHTML()
+augroup end
+--------
+
+NOTE: if you have link:https://github.com/tpope/vim-dispatch[vim-dispatch]
+installed HTML conversion would be done in background.
+
+
 == Limitations
 
 === No highlighting for underlined headers
