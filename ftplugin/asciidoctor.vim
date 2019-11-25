@@ -99,9 +99,9 @@ endif
 func! s:get_fname(...)
 	let ext = get(a:, 1, '')
 	if ext == ''
-		return expand("%:p")
+		return shellescape(expand("%:p"))
 	else
-		return expand("%:p:r").ext
+		return shellescape(expand("%:p:r").ext)
 	endif
 endfunc
 
