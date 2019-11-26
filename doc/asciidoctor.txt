@@ -98,6 +98,13 @@ one needs settings to set.
   let g:asciidoctor_folding = 1
 
 
+*g:asciidoctor_syntax_indented*       Enable highlight for indented blocks.
+                                    Default: 1
+  Example: 
+
+  let g:asciidoctor_syntax_indented = 0
+
+
 *g:asciidoctor_fold_options*          Fold options (usually under the title).
                                     Default: 0
   Example: 

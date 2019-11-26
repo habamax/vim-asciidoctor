@@ -62,7 +62,7 @@ syn sync match syncH6 grouphere NONE "^=======\s.*$"
 syn match asciidoctorListMarker "^\s*\(-\|\*\+\|\.\+\)\%(\s\+\[[Xx ]\]\+\s*\)\?\%(\s\+\S\)\@="
 syn match asciidoctorOrderedListMarker "^\s*\d\+\.\%(\s\+\S\)\@="
 
-syn match asciidoctorDefList ".\{-}::\_s" contains=@Spell
+syn match asciidoctorDefList ".\{-}::\_s\%(\_^\n\)\?" contains=@Spell
 
 syn match asciidoctorMacro "\a\+::\?\(\S[[:alnum:][:blank:]./\\:-]\{-}\)\?\[.\{-}\]" 
 syn match asciidoctorAttribute "{[[:alpha:]][[:alnum:]-_:]\{-}}" 
@@ -93,6 +93,11 @@ syn match asciidoctorAdmonition /\C^\%(NOTE:\)\|\%(TIP:\)\|\%(IMPORTANT:\)\|\%(C
 syn match asciidoctorCaption "^\.[^.[:space:]].*$" contains=@asciidoctorInline,@Spell
 
 syn match asciidoctorBlock "^\[.\{-}\]\s*$"
+
+if get(g:, 'asciidoctor_syntax_indented', 1)
+  syn match asciidoctorPlus      '^+\n\s' contained
+  syn match asciidoctorIndented  '^+\?\n\%(\s\+[-*.]\+\s\)\@!\(\s.*\n\)\+' contains=asciidoctorPlus
+endif
 
 syn match asciidoctorInlineAnchor "\[\[.\{-}\]\]"
 
@@ -168,7 +173,7 @@ syn match asciidoctorBlock "^\*\*\*\*\+\s*$"
 
 " Table blocks
 syn match asciidoctorTableCell "\(^\|\s\)\@<=[.+*<^>aehlmdsv[:digit:]]\+|\||" contained
-syn region asciidoctorTableBlock matchgroup=asciidoctorBlock start="^|===\s*$" end="^|===\s*$" keepend contains=asciidoctorTableCell,@asciidoctorInnerBlock,@asciidoctorInline,@Spell,asciidoctorComment
+syn region asciidoctorTableBlock matchgroup=asciidoctorBlock start="^|===\s*$" end="^|===\s*$" keepend contains=asciidoctorTableCell,asciidoctorIndented,@asciidoctorInnerBlock,@asciidoctorInline,@Spell,asciidoctorComment
 syn region asciidoctorTableBlock matchgroup=asciidoctorBlock start="^,===\s*$" end="^,===\s*$" keepend
 syn region asciidoctorTableBlock matchgroup=asciidoctorBlock start="^;===\s*$" end="^;===\s*$" keepend
 
@@ -185,6 +190,8 @@ hi def link asciidoctorListMarker            Delimiter
 hi def link asciidoctorOrderedListMarker     asciidoctorListMarker
 hi def link asciidoctorListContinuation      Delimiter
 hi def link asciidoctorComment               Comment
+hi def link asciidoctorIndented              Comment
+hi def link asciidoctorPlus                  Delimiter
 
 hi def link asciidoctorUrl                   Underlined
 hi def link asciidoctorUrlDescription        Constant
@@ -198,6 +205,7 @@ hi def link asciidoctorOption                Identifier
 hi def link asciidoctorBlock                 Delimiter
 hi def link asciidoctorTableSep              Delimiter
 hi def link asciidoctorTableCell             Delimiter
+hi def link asciidoctorTableEmbed            Delimiter
 hi def link asciidoctorInlineAnchor          Delimiter
 
 hi asciidoctorBold                           gui=bold cterm=bold
