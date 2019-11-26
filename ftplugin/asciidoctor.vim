@@ -146,6 +146,8 @@ command! -buffer AsciidoctorPasteImage :call asciidoctor#pasteImage()
 "" Next/Previous section mappings
 nnoremap <silent><buffer> ]] :call search('^=\+\s\+\S\+')<CR>
 nnoremap <silent><buffer> [[ :call search('^=\+\s\+\S\+', 'b')<CR>
+xmap     <buffer>         ]] <esc>]]m>gv
+xmap     <buffer>         [[ <esc>[[m>gv
 
 "" Detect default source code language
 call asciidoctor#detect_source_language()
