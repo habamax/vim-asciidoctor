@@ -171,8 +171,9 @@ syn match asciidoctorBlock "^\*\*\*\*\+\s*$"
 
 
 " Table blocks
-syn match asciidoctorTableCell "\(^\|\s\)\@<=[.+*<^>aehlmdsv[:digit:]]\+|\||" contained
-syn region asciidoctorTableBlock matchgroup=asciidoctorBlock start="^|===\s*$" end="^|===\s*$" keepend contains=asciidoctorTableCell,@asciidoctorInnerBlock,@asciidoctorInline,@Spell,asciidoctorComment
+syn match asciidoctorTableCell "\(^\|\s\)\@<=[.+*<^>ehlmdsv[:digit:]]\+|\||" contained
+syn match asciidoctorTableEmbed "\(^\|\s\)\@<=a|.*\n\n\s\+.*" contained contains=asciidoctorIndented,asciidoctorTableCell
+syn region asciidoctorTableBlock matchgroup=asciidoctorBlock start="^|===\s*$" end="^|===\s*$" keepend contains=asciidoctorTableCell,asciidoctorTableEmbed,@asciidoctorInnerBlock,@asciidoctorInline,@Spell,asciidoctorComment
 syn region asciidoctorTableBlock matchgroup=asciidoctorBlock start="^,===\s*$" end="^,===\s*$" keepend
 syn region asciidoctorTableBlock matchgroup=asciidoctorBlock start="^;===\s*$" end="^;===\s*$" keepend
 
@@ -203,6 +204,7 @@ hi def link asciidoctorOption                Identifier
 hi def link asciidoctorBlock                 Delimiter
 hi def link asciidoctorTableSep              Delimiter
 hi def link asciidoctorTableCell             Delimiter
+hi def link asciidoctorTableEmbed            Delimiter
 hi def link asciidoctorInlineAnchor          Delimiter
 
 hi asciidoctorBold                           gui=bold cterm=bold
