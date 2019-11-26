@@ -94,6 +94,10 @@ syn match asciidoctorCaption "^\.[^.[:space:]].*$" contains=@asciidoctorInline,@
 
 syn match asciidoctorBlock "^\[.\{-}\]\s*$"
 
+if get(g:, 'asciidoctor_syntax_indented', 0)
+  syn match asciidoctorIndented  '^\n\(\s.*\n\)\+'
+endif
+
 syn match asciidoctorInlineAnchor "\[\[.\{-}\]\]"
 
 " Listing block
@@ -185,6 +189,7 @@ hi def link asciidoctorListMarker            Delimiter
 hi def link asciidoctorOrderedListMarker     asciidoctorListMarker
 hi def link asciidoctorListContinuation      Delimiter
 hi def link asciidoctorComment               Comment
+hi def link asciidoctorIndented              Comment
 
 hi def link asciidoctorUrl                   Underlined
 hi def link asciidoctorUrlDescription        Constant
