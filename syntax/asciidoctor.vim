@@ -62,7 +62,7 @@ syn sync match syncH6 grouphere NONE "^=======\s.*$"
 syn match asciidoctorListMarker "^\s*\(-\|\*\+\|\.\+\)\%(\s\+\[[Xx ]\]\+\s*\)\?\%(\s\+\S\)\@="
 syn match asciidoctorOrderedListMarker "^\s*\d\+\.\%(\s\+\S\)\@="
 
-syn match asciidoctorDefList ".\{-}::\_s" contains=@Spell
+syn match asciidoctorDefList ".\{-}::\_s\%(\_^\n\)\?" contains=@Spell
 
 syn match asciidoctorMacro "\a\+::\?\(\S[[:alnum:][:blank:]./\\:-]\{-}\)\?\[.\{-}\]" 
 syn match asciidoctorAttribute "{[[:alpha:]][[:alnum:]-_:]\{-}}" 
