@@ -94,7 +94,7 @@ syn match asciidoctorCaption "^\.[^.[:space:]].*$" contains=@asciidoctorInline,@
 
 syn match asciidoctorBlock "^\[.\{-}\]\s*$"
 
-if get(g:, 'asciidoctor_syntax_indented', 0)
+if get(g:, 'asciidoctor_syntax_indented', 1)
   syn match asciidoctorPlus      '^+\n\s' contained
   syn match asciidoctorIndented  '^+\?\n\%(\s\+[-*.]\+\s\)\@!\(\s.*\n\)\+' contains=asciidoctorPlus
 endif
