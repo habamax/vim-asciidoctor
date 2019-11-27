@@ -20,7 +20,11 @@ compiler asciidoctor2html
 " open files
 if get(g:, 'asciidoctor_opener', '') == ''
 	if has("win32") || has("win32unix")
-		let g:asciidoctor_opener = ":!start"
+		if has("nvim")
+			let g:asciidoctor_opener = ':silent !start ""'
+		else
+			let g:asciidoctor_opener = ':silent !start'
+		endif
 	elseif has("osx")
 		let g:asciidoctor_opener = ":!open"
 	else
@@ -91,10 +95,8 @@ endfunction "}}}
 " Use vim-dispatch if available
 if exists(':Make') == 2
 	let s:make = ':Make'
-	let s:open = ':Start'
 else
 	let s:make = ':make'
-	let s:open = ''
 endif
 
 func! s:get_fname(...)
@@ -110,10 +112,10 @@ exe 'command! -buffer Asciidoctor2PDF :compiler asciidoctor2pdf | '   . s:make
 exe 'command! -buffer Asciidoctor2HTML :compiler asciidoctor2html | ' . s:make
 exe 'command! -buffer Asciidoctor2DOCX :compiler asciidoctor2docx | ' . s:make
 
-command! -buffer AsciidoctorOpenRAW exe s:open . ' ' . g:asciidoctor_opener . ' ' . s:get_fname()
-command! -buffer AsciidoctorOpenPDF  exe s:open . ' ' . g:asciidoctor_opener . ' ' . s:get_fname(".pdf")
-command! -buffer AsciidoctorOpenHTML exe s:open . ' ' . g:asciidoctor_opener . ' ' . s:get_fname(".html")
-command! -buffer AsciidoctorOpenDOCX exe s:open . ' ' . g:asciidoctor_opener . ' ' . s:get_fname(".docx")
+command! -buffer AsciidoctorOpenRAW  exe g:asciidoctor_opener . ' ' . s:get_fname()
+command! -buffer AsciidoctorOpenPDF  exe g:asciidoctor_opener . ' ' . s:get_fname(".pdf")
+command! -buffer AsciidoctorOpenHTML exe g:asciidoctor_opener . ' ' . s:get_fname(".html")
+command! -buffer AsciidoctorOpenDOCX exe g:asciidoctor_opener . ' ' . s:get_fname(".docx")
 
 if has("folding") && get(g:, 'asciidoctor_folding', 0)
 	setlocal foldexpr=AsciidoctorFold()
