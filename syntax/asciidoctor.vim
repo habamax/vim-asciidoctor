@@ -89,7 +89,7 @@ syn match asciidoctorCode /\%(^\|[[:punct:][:space:]]\@<=\)`[^` ].\{-}\S`\%([[:p
 syn match asciidoctorCode /\%(^\|[[:punct:][:space:]]\@<=\)`[^` ]`\%([[:punct:][:space:]]\@=\|$\)/
 syn match asciidoctorCode /``.\{-}``/
 
-if get(g:, 'asciidoctor_syntax_concealed', 0)
+if get(g:, 'asciidoctor_syntax_conceal', 0)
   syn match asciidoctorParagraph '^\([_`*]\+\)\?\k.*' contains=ALL
   syn match asciidoctorList      "^\s*\%(\%(-\|[*.]\+\|\d\+\.\|\a\.\)\s\+\)\@=.*\(\n\s\+\S.*\)*" contains=ALL
 
