@@ -90,16 +90,16 @@ syn match asciidoctorCode /\%(^\|[[:punct:][:space:]]\@<=\)`[^` ]`\%([[:punct:][
 syn match asciidoctorCode /``.\{-}``/
 
 if get(g:, 'asciidoctor_syntax_conceal', 0)
-  syn match asciidoctorParagraph '^\([_`*]\+\)\?\k.*' contains=ALL
-  syn match asciidoctorList      "^\s*\%(\%(-\|[*.]\+\|\d\+\.\|\a\.\)\s\+\)\@=.*\(\n\s\+\S.*\)*" contains=ALL
+	syn match asciidoctorParagraph '^\([_`*]\+\)\?\k.*' contains=ALL
+	syn match asciidoctorList      "^\s*\%(\%(-\|[*.]\+\|\d\+\.\|\a\.\)\s\+\)\@=.*\(\n\s\+\S.*\)*" contains=ALL
 
-  syn region asciidoctorBold       matchgroup=Conceal start=/\m\(\*\+\)\ze[^* \t]\+\1/ end=/\*\+/ contained contains=@Spell concealends
-  syn region asciidoctorItalic     matchgroup=Conceal start=/\m\(_\+\)\ze[^_ \t]\+\1/  end=/_\+/  contained contains=@Spell concealends
-  syn region asciidoctorItalic     matchgroup=Conceal start=/\m_\+\ze\%(\k\|\s\)\+_\+/ end=/_\+/  contained contains=@Spell concealends
-  syn region asciidoctorBoldItalic matchgroup=Conceal start=/\m\*_\ze[^_ \t]\+_\*/     end=/_\*/  contained contains=@Spell concealends
-  syn region asciidoctorBoldItalic matchgroup=Conceal start=/\m_\*\ze[^* \t]\+\*_/     end=/\*_/  contained contains=@Spell concealends
-  syn region asciidoctorCode       matchgroup=Conceal start=/\m\(`\+\)\ze[^` \t]\+\1/  end=/`\+/  contained contains=@Spell concealends
-  syn region asciidoctorCode       matchgroup=Conceal start=/\m`\+\ze\%(\k\|\s\)\+`\+/ end=/`\+/  contained contains=@Spell concealends
+	syn region asciidoctorBold       matchgroup=Conceal start=/\m\(\*\+\)\ze[^* \t]\+\1/ end=/\*\+/ contained contains=@Spell concealends
+	syn region asciidoctorItalic     matchgroup=Conceal start=/\m\(_\+\)\ze[^_ \t]\+\1/  end=/_\+/  contained contains=@Spell concealends
+	syn region asciidoctorItalic     matchgroup=Conceal start=/\m_\+\ze\%(\k\|\s\)\+_\+/ end=/_\+/  contained contains=@Spell concealends
+	syn region asciidoctorBoldItalic matchgroup=Conceal start=/\m\*_\ze[^_ \t]\+_\*/     end=/_\*/  contained contains=@Spell concealends
+	syn region asciidoctorBoldItalic matchgroup=Conceal start=/\m_\*\ze[^* \t]\+\*_/     end=/\*_/  contained contains=@Spell concealends
+	syn region asciidoctorCode       matchgroup=Conceal start=/\m\(`\+\)\ze[^` \t]\+\1/  end=/`\+/  contained contains=@Spell concealends
+	syn region asciidoctorCode       matchgroup=Conceal start=/\m`\+\ze\%(\k\|\s\)\+`\+/ end=/`\+/  contained contains=@Spell concealends
 endif
 
 syn match asciidoctorAdmonition /\C^\%(NOTE:\)\|\%(TIP:\)\|\%(IMPORTANT:\)\|\%(CAUTION:\)\|\%(WARNING:\)\s/
@@ -123,8 +123,8 @@ syn match asciidoctorInlineAnchor "\[\[.\{-}\]\]"
 syn region asciidoctorListingBlock matchgroup=asciidoctorBlock start="^\z(--\+\)\s*$" end="^\z1\s*$" contains=CONTAINED,asciidoctorUrlDescription,asciidoctorTableCell
 
 " General [source] block
- syn region asciidoctorSourceBlock matchgroup=asciidoctorBlock start="^\[source\%(,.*\)*\]\s*$" end="^\s*$" keepend contains=CONTAINED,asciidoctorUrlDescription,asciidoctorTableCell
- syn region asciidoctorSourceBlock matchgroup=asciidoctorBlock start="^\[source\%(,.*\)*\]\s*\n\z(--\+\)\s*$" end="^.*\n\zs\z1\s*$" keepend contains=CONTAINED,asciidoctorUrlDescription,asciidoctorTableCell
+syn region asciidoctorSourceBlock matchgroup=asciidoctorBlock start="^\[source\%(,.*\)*\]\s*$" end="^\s*$" keepend contains=CONTAINED,asciidoctorUrlDescription,asciidoctorTableCell
+syn region asciidoctorSourceBlock matchgroup=asciidoctorBlock start="^\[source\%(,.*\)*\]\s*\n\z(--\+\)\s*$" end="^.*\n\zs\z1\s*$" keepend contains=CONTAINED,asciidoctorUrlDescription,asciidoctorTableCell
 
 " Source highlighting with programming languages
 if main_syntax ==# 'asciidoctor'
