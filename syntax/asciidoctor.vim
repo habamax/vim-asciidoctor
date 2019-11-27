@@ -96,7 +96,7 @@ syn match asciidoctorBlock "^\[.\{-}\]\s*$"
 
 if get(g:, 'asciidoctor_syntax_indented', 1)
 	syn match asciidoctorPlus      '^+\n\s' contained
-	syn match asciidoctorIndented  '^+\?\n\%(\s\+\(-\|[*.]\+\)\s\)\@!\(\s.*\n\)\+' contains=asciidoctorPlus
+	syn match asciidoctorIndented  '^+\?\n\%(\s\+\(-\|[*.]\+\|\d\+\.\|\a\.\)\s\)\@!\(\s.*\n\)\+' contains=asciidoctorPlus
 endif
 
 syn match asciidoctorInlineAnchor "\[\[.\{-}\]\]"
