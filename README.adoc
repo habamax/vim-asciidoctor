@@ -143,7 +143,7 @@ let g:asciidoctor_syntax_indented = 0
 
 --------
 
-.Syntax highlighting for other languages in [source] blocks
+.syntax highlighting for languages in [source] blocks
 [source,vim]
 --------
 
