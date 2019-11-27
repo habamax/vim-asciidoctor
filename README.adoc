@@ -131,6 +131,18 @@ let g:asciidoctor_fold_options = 1
 
 --------
 
+.syntax
+[source,vim]
+--------
+
+" Conceal *bold*, _italic_ and `code` in lists and paragraphs, default `0`.
+let g:asciidoctor_syntax_conceal = 1
+
+" Highlight indented text, default `1`.
+let g:asciidoctor_syntax_indented = 0
+
+--------
+
 .Syntax highlighting for other languages in [source] blocks
 [source,vim]
 --------
