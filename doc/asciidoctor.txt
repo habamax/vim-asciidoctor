@@ -105,6 +105,15 @@ one needs settings to set.
   let g:asciidoctor_syntax_indented = 0
 
 
+*g:asciidoctor_syntax_conceal*        Enable concealable syntax.
+                                    Currently it only works inside regular
+                                    paragraphs and lists.
+                                    Default: 0
+  Example: 
+
+  let g:asciidoctor_syntax_conceal = 1
+
+
 *g:asciidoctor_fold_options*          Fold options (usually under the title).
                                     Default: 0
   Example: 
