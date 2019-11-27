@@ -60,7 +60,7 @@ syn sync match syncH5 grouphere NONE "^======\s.*$"
 syn sync match syncH6 grouphere NONE "^=======\s.*$"
 
 syn match asciidoctorListMarker "^\s*\(-\|\*\+\|\.\+\)\%(\s\+\[[Xx ]\]\+\s*\)\?\%(\s\+\S\)\@="
-syn match asciidoctorOrderedListMarker "^\s*\d\+\.\%(\s\+\S\)\@="
+syn match asciidoctorOrderedListMarker "^\s*\%(\d\+\|\a\)\.\%(\s\+\S\)\@="
 
 syn match asciidoctorDefList ".\{-}::\_s\%(\_^\n\)\?" contains=@Spell
 
