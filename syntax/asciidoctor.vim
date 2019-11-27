@@ -90,14 +90,14 @@ syn match asciidoctorCode /\%(^\|[[:punct:][:space:]]\@<=\)`[^` ]`\%([[:punct:][
 syn match asciidoctorCode /``.\{-}``/
 
 if get(g:, 'asciidoctor_syntax_concealed', 0)
-  syn match asciidoctorParagraph '^[_`*]\?\k.*' contains=ALL
+  syn match asciidoctorParagraph '^\([_`*]\+\)\?\k.*' contains=ALL
   syn match asciidoctorList      "^\s*\%(\%(-\|[*.]\+\|\d\+\.\|\a\.\)\s\+\)\@=.*\(\n\s\+\S.*\)*" contains=ALL
 
   syn region asciidoctorBold       matchgroup=Conceal start=/\m\(\*\+\)\ze[^* \t]\+\1/ end=/\*\+/ contained contains=@Spell concealends
   syn region asciidoctorItalic     matchgroup=Conceal start=/\m\(_\+\)\ze[^_ \t]\+\1/  end=/_\+/  contained contains=@Spell concealends
   syn region asciidoctorItalic     matchgroup=Conceal start=/\m_\+\ze\%(\k\|\s\)\+_\+/ end=/_\+/  contained contains=@Spell concealends
-  syn region asciidoctorBoldItalic matchgroup=Conceal start=/\m\(\*_\)\ze[^* \t]\+\1/  end=/_\*/  contained contains=@Spell concealends
-  syn region asciidoctorBoldItalic matchgroup=Conceal start=/\m\(_\*\)\ze[^_ \t]\+\1/  end=/\*_/  contained contains=@Spell concealends
+  syn region asciidoctorBoldItalic matchgroup=Conceal start=/\m\*_\ze[^_ \t]\+_\*/     end=/_\*/  contained contains=@Spell concealends
+  syn region asciidoctorBoldItalic matchgroup=Conceal start=/\m_\*\ze[^* \t]\+\*_/     end=/\*_/  contained contains=@Spell concealends
   syn region asciidoctorCode       matchgroup=Conceal start=/\m\(`\+\)\ze[^` \t]\+\1/  end=/`\+/  contained contains=@Spell concealends
   syn region asciidoctorCode       matchgroup=Conceal start=/\m`\+\ze\%(\k\|\s\)\+`\+/ end=/`\+/  contained contains=@Spell concealends
 endif
