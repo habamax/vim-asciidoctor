@@ -371,36 +371,36 @@ Colorthemes can use following highlight groups to redefine default highlighting:
 | Highlight Group Name
 | Default Value
 
-l|asciidoctorTitle                l|Title
-l|asciidoctorH1                   l|Title
-l|asciidoctorH2                   l|Title
-l|asciidoctorH3                   l|Title
-l|asciidoctorH4                   l|Title
-l|asciidoctorH5                   l|Title
-l|asciidoctorH6                   l|Title
-l|asciidoctorListMarker           l|Delimiter
-l|asciidoctorOrderedListMarker    l|asciidoctorListMarker
-l|asciidoctorListContinuation     l|Delimiter
-l|asciidoctorComment              l|Comment
-l|asciidoctorIndented             l|Comment
-l|asciidoctorPlus                 l|Delimiter
-l|asciidoctorUrl                  l|Underlined
-l|asciidoctorUrlDescription       l|Constant
-l|asciidoctorMacro                l|PreProc
-l|asciidoctorAttribute            l|Identifier
-l|asciidoctorCode                 l|Constant
-l|asciidoctorOption               l|Identifier
-l|asciidoctorBlock                l|Delimiter
-l|asciidoctorTableSep             l|Delimiter
-l|asciidoctorTableCell            l|Delimiter
-l|asciidoctorTableEmbed           l|Delimiter
-l|asciidoctorInlineAnchor         l|Delimiter
-l|asciidoctorBold                 l|gui=bold cterm=bold
-l|asciidoctorItalic               l|gui=italic cterm=italic
-l|asciidoctorBoldItalic           l|gui=bold,italic cterm=bold,italic
-l|asciidoctorDefList              l|asciidoctorBold
-l|asciidoctorCaption              l|Statement
-l|asciidoctorAdmonition           l|asciidoctorBold
+|asciidoctorTitle                |Title
+|asciidoctorH1                   |Title
+|asciidoctorH2                   |Title
+|asciidoctorH3                   |Title
+|asciidoctorH4                   |Title
+|asciidoctorH5                   |Title
+|asciidoctorH6                   |Title
+|asciidoctorListMarker           |Delimiter
+|asciidoctorOrderedListMarker    |asciidoctorListMarker
+|asciidoctorListContinuation     |Delimiter
+|asciidoctorComment              |Comment
+|asciidoctorIndented             |Comment
+|asciidoctorPlus                 |Delimiter
+|asciidoctorUrl                  |Underlined
+|asciidoctorUrlDescription       |Constant
+|asciidoctorMacro                |PreProc
+|asciidoctorAttribute            |Identifier
+|asciidoctorCode                 |Constant
+|asciidoctorOption               |Identifier
+|asciidoctorBlock                |Delimiter
+|asciidoctorTableSep             |Delimiter
+|asciidoctorTableCell            |Delimiter
+|asciidoctorTableEmbed           |Delimiter
+|asciidoctorInlineAnchor         |Delimiter
+|asciidoctorBold                 |gui=bold cterm=bold
+|asciidoctorItalic               |gui=italic cterm=italic
+|asciidoctorBoldItalic           |gui=bold,italic cterm=bold,italic
+|asciidoctorDefList              |asciidoctorBold
+|asciidoctorCaption              |Statement
+|asciidoctorAdmonition           |asciidoctorBold
 |===
 
 
