@@ -410,7 +410,7 @@ Colorthemes can use following highlight groups to redefine default highlighting:
 
 Works for all table cells, although should only be applied to `a|` cells.
 
-[source,text]
+[source]
 --------
 [cols=".^1,.^2", options="header"]
 |===
