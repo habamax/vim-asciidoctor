@@ -1,6 +1,7 @@
 " Vim compiler file
 " Compiler: Asciidoctor2PDF
 " Maintainer: Maxim Kim (habamax@gmail.com)
+" vim: set noet
 
 if exists("current_compiler")
 	finish

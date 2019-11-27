@@ -1,6 +1,7 @@
 " Vim compiler file
 " Compiler: Asciidoctor 2 DOCX using docbook intermediate format and pandoc
 " Maintainer: Maxim Kim (habamax@gmail.com)
+" vim: set noet
 
 if exists("current_compiler")
 	finish
