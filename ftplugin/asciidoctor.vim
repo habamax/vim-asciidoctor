@@ -99,23 +99,31 @@ else
 	let s:make = ':make'
 endif
 
-func! s:get_fname(...)
-	let ext = get(a:, 1, '')
-	if ext == ''
-		return shellescape(expand("%:p"))
-	else
-		return shellescape(expand("%:p:r").ext)
-	endif
-endfunc
-
 exe 'command! -buffer Asciidoctor2PDF :compiler asciidoctor2pdf | '   . s:make
 exe 'command! -buffer Asciidoctor2HTML :compiler asciidoctor2html | ' . s:make
 exe 'command! -buffer Asciidoctor2DOCX :compiler asciidoctor2docx | ' . s:make
 
-command! -buffer AsciidoctorOpenRAW  exe g:asciidoctor_opener . ' ' . s:get_fname()
-command! -buffer AsciidoctorOpenPDF  exe g:asciidoctor_opener . ' ' . s:get_fname(".pdf")
-command! -buffer AsciidoctorOpenHTML exe g:asciidoctor_opener . ' ' . s:get_fname(".html")
-command! -buffer AsciidoctorOpenDOCX exe g:asciidoctor_opener . ' ' . s:get_fname(".docx")
+func! s:get_fname(...)
+	let ext = get(a:, 1, '')
+	if ext == ''
+		return expand("%:p")
+	else
+		return expand("%:p:r").ext
+	endif
+endfunc
+
+func! s:open_file(filename)
+	if filereadable(a:filename)
+		exe g:asciidoctor_opener . ' ' . shellescape(a:filename)
+	else
+		echom a:filename . " doesn't exist!"
+	endif
+endfunc
+
+command! -buffer AsciidoctorOpenRAW  call s:open_file(s:get_fname())
+command! -buffer AsciidoctorOpenPDF  call s:open_file(s:get_fname(".pdf"))
+command! -buffer AsciidoctorOpenHTML call s:open_file(s:get_fname(".html"))
+command! -buffer AsciidoctorOpenDOCX call s:open_file(s:get_fname(".docx"))
 
 if has("folding") && get(g:, 'asciidoctor_folding', 0)
 	setlocal foldexpr=AsciidoctorFold()
