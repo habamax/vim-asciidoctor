@@ -415,6 +415,28 @@ Colorthemes can use following highlight groups to redefine default highlighting:
 |asciidoctorAdmonition           |asciidoctorBold
 |===
 
+If you want to change highlight yourself for existing colorscheme without
+touching it, add the following to you vimrc:
+
+[source,vim]
+--------
+func! AsciidoctorHighlight()
+	" Highlight asciidoctor syntax with colors you like.
+	" For solarized8 colorscheme
+	if get(g:, "colors_name", "default") == "solarized8"
+		hi asciidoctorTitle guifg=#ff0000 gui=bold ctermfg=red cterm=bold
+		hi asciidoctorOption guifg=#00ff00 ctermfg=green
+		hi link asciidoctorH1 Directory
+	elseif get(g:, "colors_name", "default") == "default"
+		hi link asciidoctorIndented PreProc
+	endif
+endfunc
+augroup ASCIIDOCTOR_COLORS | au!
+	au Colorscheme * call AsciidoctorHighlight()
+	au BufNew,BufRead *.adoc call AsciidoctorHighlight()
+augroup end
+--------
+
 
 == Limitations
 
