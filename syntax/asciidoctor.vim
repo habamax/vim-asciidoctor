@@ -192,9 +192,9 @@ syn match asciidoctorBlock "^\*\*\*\*\+\s*$"
 
 " Table blocks
 syn match asciidoctorTableCell "\(^\|\s\)\@<=[.+*<^>aehlmdsv[:digit:]]\+|\||" contained containedin=asciidoctorTableBlock
-syn region asciidoctorTableBlock matchgroup=asciidoctorBlock start="^|===\s*$" end="^|===\s*$" keepend contains=asciidoctorTableCell,asciidoctorIndented,@asciidoctorInnerBlock,@asciidoctorInline,@Spell,asciidoctorComment
-syn region asciidoctorTableBlock matchgroup=asciidoctorBlock start="^,===\s*$" end="^,===\s*$" keepend
-syn region asciidoctorTableBlock matchgroup=asciidoctorBlock start="^;===\s*$" end="^;===\s*$" keepend
+syn region asciidoctorTableBlock matchgroup=asciidoctorBlock start="^|===\+\s*$" end="^|===\+\s*$" keepend contains=asciidoctorTableCell,asciidoctorIndented,@asciidoctorInnerBlock,@asciidoctorInline,@Spell,asciidoctorComment
+syn region asciidoctorTableBlock matchgroup=asciidoctorBlock start="^,===\+\s*$" end="^,===\+\s*$" keepend
+syn region asciidoctorTableBlock matchgroup=asciidoctorBlock start="^;===\+\s*$" end="^;===\+\s*$" keepend
 
 syn match asciidoctorComment "^//.*$" contains=@Spell
 
