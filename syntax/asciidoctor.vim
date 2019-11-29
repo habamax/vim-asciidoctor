@@ -35,6 +35,7 @@ syn case ignore
 
 syn match asciidoctorOption "^:[[:alnum:]!-]\{-}:"
 syn match asciidoctorListContinuation "^+\s*$"
+syn match asciidoctorPageBreak "^<<<\+\s*$"
 
 syn cluster asciidoctorBlock contains=asciidoctorTitle,asciidoctorH1,asciidoctorH2,asciidoctorH3,asciidoctorH4,asciidoctorH5,asciidoctorH6,asciidoctorBlockquote,asciidoctorListMarker,asciidoctorOrderedListMarker,asciidoctorCodeBlock,asciidoctorAdmonition,asciidoctorAdmonitionBlock
 syn cluster asciidoctorInnerBlock contains=asciidoctorBlockquote,asciidoctorListMarker,asciidoctorOrderedListMarker,asciidoctorCodeBlock,asciidoctorDefList,asciidoctorAdmonition,asciidoctorAdmonitionBlock
@@ -206,6 +207,7 @@ hi def link asciidoctorListContinuation      Delimiter
 hi def link asciidoctorComment               Comment
 hi def link asciidoctorIndented              Comment
 hi def link asciidoctorPlus                  Delimiter
+hi def link asciidoctorPageBreak             Delimiter
 
 hi def link asciidoctorUrl                   Underlined
 hi def link asciidoctorUrlDescription        Constant
