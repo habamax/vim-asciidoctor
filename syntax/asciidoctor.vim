@@ -121,11 +121,11 @@ syn match asciidoctorInlineAnchor "\[\[.\{-}\]\]"
 " block that will not be
 " highlighted
 " --
-syn region asciidoctorListingBlock matchgroup=asciidoctorBlock start="^\z(--\+\)\s*$" end="^\z1\s*$" contains=CONTAINED,asciidoctorUrlDescription,asciidoctorTableCell
+syn region asciidoctorListingBlock matchgroup=asciidoctorBlock start="^\z(--\+\)\s*$" end="^\z1\s*$" contains=CONTAINED,asciidoctorUrlDescription,asciidoctorTableCell,@asciidoctorInline
 
 " General [source] block
-syn region asciidoctorSourceBlock matchgroup=asciidoctorBlock start="^\[source\%(,.*\)*\]\s*$" end="^\s*$" keepend contains=CONTAINED,asciidoctorUrlDescription,asciidoctorTableCell
-syn region asciidoctorSourceBlock matchgroup=asciidoctorBlock start="^\[source\%(,.*\)*\]\s*\n\z(--\+\)\s*$" end="^.*\n\zs\z1\s*$" keepend contains=CONTAINED,asciidoctorUrlDescription,asciidoctorTableCell
+syn region asciidoctorSourceBlock matchgroup=asciidoctorBlock start="^\[source\%(,.*\)*\]\s*$" end="^\s*$" keepend contains=CONTAINED,asciidoctorUrlDescription,asciidoctorTableCell,@asciidoctorInline
+syn region asciidoctorSourceBlock matchgroup=asciidoctorBlock start="^\[source\%(,.*\)*\]\s*\n\z(--\+\)\s*$" end="^.*\n\zs\z1\s*$" keepend contains=CONTAINED,asciidoctorUrlDescription,asciidoctorTableCell,@asciidoctorInline
 
 " Source highlighting with programming languages
 if main_syntax ==# 'asciidoctor'
@@ -177,7 +177,7 @@ syn region asciidoctorPlantumlBlock matchgroup=asciidoctorBlock start="^\[plantu
 
 " Contents of literal blocks should not be highlighted
 " TODO: make [literal] works with paragraph
-syn region asciidoctorLiteralBlock matchgroup=asciidoctorBlock start="^\z(\.\.\.\.\+\)\s*$" end="^\z1\s*$" contains=CONTAINED,@Spell,asciidoctorComment,asciidoctorUrlDescription
+syn region asciidoctorLiteralBlock matchgroup=asciidoctorBlock start="^\z(\.\.\.\.\+\)\s*$" end="^\z1\s*$" contains=CONTAINED,@Spell,asciidoctorComment,asciidoctorUrlDescription,@asciidoctorInline
 
 " Admonition blocks
 " It would be way faster to just highlight block separators for some of them
