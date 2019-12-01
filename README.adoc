@@ -376,7 +376,7 @@ installed HTML conversion would be done in background.
 
 === Highlight group names
 
-Colorthemes can use following highlight groups to redefine default highlighting:
+Colorschemes can use following highlight groups to redefine default highlighting:
 
 [cols=".^1,.^1", options="header"]
 |===
