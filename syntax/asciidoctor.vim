@@ -107,7 +107,7 @@ syn match asciidoctorOrderedListMarker "^\s*\%(\d\+\|\a\)\.\%(\s\+\S\)\@="
 
 syn match asciidoctorDefList ".\{-}::\_s\%(\_^\n\)\?" contains=@Spell
 
-syn match asciidoctorUppercase  /^\ze\u/ nextgroup=asciidoctorAdmonition
+syn match asciidoctorUppercase  /^\ze\u\+:/ nextgroup=asciidoctorAdmonition
 syn match asciidoctorAdmonition /\C^\%(NOTE:\)\|\%(TIP:\)\|\%(IMPORTANT:\)\|\%(CAUTION:\)\|\%(WARNING:\)\s/ contained
 
 syn match asciidoctorCaption "^\.[^.[:space:]].*$" contains=@asciidoctorInline,@Spell
