@@ -73,38 +73,38 @@ syn match asciidoctorUrlDescription "\[.\{-}\]" contained containedin=asciidocto
 syn match asciidoctorUrl "\%(http\|ftp\)s\?://\S\+\ze\%(\[.\{-}\]\)" nextgroup=asciidoctorUrlDescription
 syn match asciidoctorUrl "<<.\{-}>>" 
 
-syn match asciidoctorBold /\%(^\|[[:punct:][:space:]]\@<=\)\*[^* ].\{-}\S\*\%([[:punct:][:space:]]\@=\|$\)/ contains=@Spell
-" single char *b* bold
-syn match asciidoctorBold /\%(^\|[[:punct:][:space:]]\@<=\)\*[^* ]\*\%([[:punct:][:space:]]\@=\|$\)/ contains=@Spell
-syn match asciidoctorBold /\*\*\S.\{-}\*\*/ contains=@Spell
-syn match asciidoctorItalic /\%(^\|[[:punct:][:space:]]\@<=\)_[^_ ].\{-}\S_\%([[:punct:][:space:]]\@=\|$\)/ contains=@Spell
-" single char _b_ italic
-syn match asciidoctorItalic /\%(^\|[[:punct:][:space:]]\@<=\)_[^_ ]_\%([[:punct:][:space:]]\@=\|$\)/ contains=@Spell
-syn match asciidoctorItalic /__\S.\{-}__/ contains=@Spell
-syn match asciidoctorBoldItalic /\%(^\|[[:punct:][:space:]]\@<=\)\*_[^*_ ].\{-}\S_\*\%([[:punct:][:space:]]\@=\|$\)/ contains=@Spell
-" single char *_b_* bold+italic
-syn match asciidoctorBoldItalic /\%(^\|[[:punct:][:space:]]\@<=\)\*_[^*_ ]_\*\%([[:punct:][:space:]]\@=\|$\)/ contains=@Spell
-syn match asciidoctorBoldItalic /\*\*_\S.\{-}_\*\*/ contains=@Spell
-syn match asciidoctorCode /\%(^\|[[:punct:][:space:]]\@<=\)`[^` ].\{-}\S`\%([[:punct:][:space:]]\@=\|$\)/
-" single char `c` code
-syn match asciidoctorCode /\%(^\|[[:punct:][:space:]]\@<=\)`[^` ]`\%([[:punct:][:space:]]\@=\|$\)/
-syn match asciidoctorCode /``.\{-}``/
-
 if get(g:, 'asciidoctor_syntax_conceal', 0)
-	syn match asciidoctorParagraph '^\([_`*]\+\)\?\k.*' contains=ALL
-	syn match asciidoctorList      "^\s*\%(\%(-\|[*.]\+\|\d\+\.\|\a\.\)\s\+\)\@=.*\(\n\s\+\S.*\)*" contains=ALL
+	syn region asciidoctorBold       matchgroup=Conceal start=/\m\*\*/ end=/\*\*/ contains=@Spell concealends oneline
+	syn region asciidoctorBold       matchgroup=Conceal start=/\m\%(^\|[[:punct:][:space:]]\@<=\)\*\ze[^* ].\{-}\S/ end=/\*\%([[:punct:][:space:]]\@=\|$\)/ contains=@Spell concealends oneline
 
-	syn region asciidoctorBold       matchgroup=Conceal start=/\m\*\*/ end=/\*\*/ contained contains=@Spell concealends oneline
-	syn region asciidoctorBold       matchgroup=Conceal start=/\m\%(^\|[[:punct:][:space:]]\@<=\)\*\ze[^* ].\{-}\S/ end=/\*\%([[:punct:][:space:]]\@=\|$\)/ contained contains=@Spell concealends oneline
+	syn region asciidoctorItalic     matchgroup=Conceal start=/\m__/ end=/__/ contains=@Spell concealends oneline
+	syn region asciidoctorItalic     matchgroup=Conceal start=/\m\%(^\|[[:punct:][:space:]]\@<=\)_\ze[^_ ].\{-}\S/ end=/_\%([[:punct:][:space:]]\@=\|$\)/ contains=@Spell concealends oneline
 
-	syn region asciidoctorItalic     matchgroup=Conceal start=/\m__/ end=/__/ contained contains=@Spell concealends oneline
-	syn region asciidoctorItalic     matchgroup=Conceal start=/\m\%(^\|[[:punct:][:space:]]\@<=\)_\ze[^_ ].\{-}\S/ end=/_\%([[:punct:][:space:]]\@=\|$\)/ contained contains=@Spell concealends oneline
+	syn region asciidoctorBoldItalic matchgroup=Conceal start=/\m\*\*_/ end=/_\*\*/ contains=@Spell concealends oneline
+	syn region asciidoctorBoldItalic matchgroup=Conceal start=/\m\%(^\|[[:punct:][:space:]]\@<=\)\*_\ze[^*_ ].\{-}\S/ end=/_\*\%([[:punct:][:space:]]\@=\|$\)/ contains=@Spell concealends oneline
 
-	syn region asciidoctorBoldItalic matchgroup=Conceal start=/\m\*\*_/ end=/_\*\*/ contained contains=@Spell concealends oneline
-	syn region asciidoctorBoldItalic matchgroup=Conceal start=/\m\%(^\|[[:punct:][:space:]]\@<=\)\*_\ze[^*_ ].\{-}\S/ end=/_\*\%([[:punct:][:space:]]\@=\|$\)/ contained contains=@Spell concealends oneline
+	syn region asciidoctorCode       matchgroup=Conceal start=/\m``/ end=/``/ contains=@Spell concealends oneline
+	syn region asciidoctorCode       matchgroup=Conceal start=/\m\%(^\|[[:punct:][:space:]]\@<=\)`\ze[^` ].\{-}\S/ end=/`\%([[:punct:][:space:]]\@=\|$\)/ contains=@Spell concealends oneline
+else
+	syn match asciidoctorBold /\%(^\|[[:punct:][:space:]]\@<=\)\*[^* ].\{-}\S\*\%([[:punct:][:space:]]\@=\|$\)/ contains=@Spell
+	" single char *b* bold
+	syn match asciidoctorBold /\%(^\|[[:punct:][:space:]]\@<=\)\*[^* ]\*\%([[:punct:][:space:]]\@=\|$\)/ contains=@Spell
+	syn match asciidoctorBold /\*\*\S.\{-}\*\*/ contains=@Spell
 
-	syn region asciidoctorCode       matchgroup=Conceal start=/\m``/ end=/``/ contained contains=@Spell concealends oneline
-	syn region asciidoctorCode       matchgroup=Conceal start=/\m\%(^\|[[:punct:][:space:]]\@<=\)`\ze[^` ].\{-}\S/ end=/`\%([[:punct:][:space:]]\@=\|$\)/ contained contains=@Spell concealends oneline
+	syn match asciidoctorItalic /\%(^\|[[:punct:][:space:]]\@<=\)_[^_ ].\{-}\S_\%([[:punct:][:space:]]\@=\|$\)/ contains=@Spell
+	" single char _b_ italic
+	syn match asciidoctorItalic /\%(^\|[[:punct:][:space:]]\@<=\)_[^_ ]_\%([[:punct:][:space:]]\@=\|$\)/ contains=@Spell
+	syn match asciidoctorItalic /__\S.\{-}__/ contains=@Spell
+
+	syn match asciidoctorBoldItalic /\%(^\|[[:punct:][:space:]]\@<=\)\*_[^*_ ].\{-}\S_\*\%([[:punct:][:space:]]\@=\|$\)/ contains=@Spell
+	" single char *_b_* bold+italic
+	syn match asciidoctorBoldItalic /\%(^\|[[:punct:][:space:]]\@<=\)\*_[^*_ ]_\*\%([[:punct:][:space:]]\@=\|$\)/ contains=@Spell
+	syn match asciidoctorBoldItalic /\*\*_\S.\{-}_\*\*/ contains=@Spell
+
+	syn match asciidoctorCode /\%(^\|[[:punct:][:space:]]\@<=\)`[^` ].\{-}\S`\%([[:punct:][:space:]]\@=\|$\)/
+	" single char `c` code
+	syn match asciidoctorCode /\%(^\|[[:punct:][:space:]]\@<=\)`[^` ]`\%([[:punct:][:space:]]\@=\|$\)/
+	syn match asciidoctorCode /``.\{-}``/
 endif
 
 syn match asciidoctorAdmonition /\C^\%(NOTE:\)\|\%(TIP:\)\|\%(IMPORTANT:\)\|\%(CAUTION:\)\|\%(WARNING:\)\s/

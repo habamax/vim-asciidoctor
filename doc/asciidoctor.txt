@@ -106,8 +106,8 @@ one needs settings to set.
 
 
 *g:asciidoctor_syntax_conceal*        Enable concealable syntax.
-                                    Currently it only works inside regular
-                                    paragraphs and lists.
+                                    Currently only bold, italic, bolditaclic
+                                    and code are concealed.
                                     Default: 0
   Example: 
 
