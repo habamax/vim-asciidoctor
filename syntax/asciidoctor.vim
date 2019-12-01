@@ -95,16 +95,16 @@ if get(g:, 'asciidoctor_syntax_conceal', 0)
 	syn match asciidoctorList      "^\s*\%(\%(-\|[*.]\+\|\d\+\.\|\a\.\)\s\+\)\@=.*\(\n\s\+\S.*\)*" contains=ALL
 
 	syn region asciidoctorBold       matchgroup=Conceal start=/\m\*\*/ end=/\*\*/ contained contains=@Spell concealends oneline
-	syn region asciidoctorBold       matchgroup=Conceal start=/\m\%(^\|[[:punct:][:space:]]\@<=\)\*/ end=/\*\%([[:punct:][:space:]]\@=\|$\)/ contained contains=@Spell concealends oneline
+	syn region asciidoctorBold       matchgroup=Conceal start=/\m\%(^\|[[:punct:][:space:]]\@<=\)\*\ze[^* ].\{-}\S/ end=/\*\%([[:punct:][:space:]]\@=\|$\)/ contained contains=@Spell concealends oneline
 
 	syn region asciidoctorItalic     matchgroup=Conceal start=/\m__/ end=/__/ contained contains=@Spell concealends oneline
-	syn region asciidoctorItalic     matchgroup=Conceal start=/\m\%(^\|[[:punct:][:space:]]\@<=\)_/ end=/_\%([[:punct:][:space:]]\@=\|$\)/ contained contains=@Spell concealends oneline
+	syn region asciidoctorItalic     matchgroup=Conceal start=/\m\%(^\|[[:punct:][:space:]]\@<=\)_\ze[^_ ].\{-}\S/ end=/_\%([[:punct:][:space:]]\@=\|$\)/ contained contains=@Spell concealends oneline
 
 	syn region asciidoctorBoldItalic matchgroup=Conceal start=/\m\*\*_/ end=/_\*\*/ contained contains=@Spell concealends oneline
-	syn region asciidoctorBoldItalic matchgroup=Conceal start=/\m\%(^\|[[:punct:][:space:]]\@<=\)\*_/ end=/_\*\%([[:punct:][:space:]]\@=\|$\)/ contained contains=@Spell concealends oneline
+	syn region asciidoctorBoldItalic matchgroup=Conceal start=/\m\%(^\|[[:punct:][:space:]]\@<=\)\*_\ze[^*_ ].\{-}\S/ end=/_\*\%([[:punct:][:space:]]\@=\|$\)/ contained contains=@Spell concealends oneline
 
 	syn region asciidoctorCode       matchgroup=Conceal start=/\m``/ end=/``/ contained contains=@Spell concealends oneline
-	syn region asciidoctorCode       matchgroup=Conceal start=/\m\%(^\|[[:punct:][:space:]]\@<=\)`/ end=/`\%([[:punct:][:space:]]\@=\|$\)/ contained contains=@Spell concealends oneline
+	syn region asciidoctorCode       matchgroup=Conceal start=/\m\%(^\|[[:punct:][:space:]]\@<=\)`\ze[^` ].\{-}\S/ end=/`\%([[:punct:][:space:]]\@=\|$\)/ contained contains=@Spell concealends oneline
 endif
 
 syn match asciidoctorAdmonition /\C^\%(NOTE:\)\|\%(TIP:\)\|\%(IMPORTANT:\)\|\%(CAUTION:\)\|\%(WARNING:\)\s/
