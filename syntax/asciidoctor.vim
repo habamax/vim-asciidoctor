@@ -182,13 +182,10 @@ syn region asciidoctorPlantumlBlock matchgroup=asciidoctorBlock start="^\[plantu
 " Contents of literal blocks should not be highlighted
 " TODO: make [literal] works with paragraph
 syn region asciidoctorLiteralBlock matchgroup=asciidoctorBlock start="^\z(\.\.\.\.\+\)\s*$" end="^\z1\s*$" contains=CONTAINED,@Spell,asciidoctorComment,asciidoctorUrlDescription,@asciidoctorInline
+syn region asciidoctorExampleBlock matchgroup=asciidoctorBlock start="^\z(====\+\)\s*$" end="^\z1\s*$" contains=CONTAINED,@Spell,asciidoctorComment,asciidoctorUrlDescription,@asciidoctorInline
+syn region asciidoctorSidebarBlock matchgroup=asciidoctorBlock start="^\z(\*\*\*\*\+\)\s*$" end="^\z1\s*$" contains=@asciidoctorInnerBlock,@asciidoctorInline,@Spell,asciidoctorComment
 
-" Admonition blocks
-" It would be way faster to just highlight block separators for some of them
-syn match asciidoctorBlock "^====\+\s*$"
-syn match asciidoctorBlock "^\*\*\*\*\+\s*$"
-" syn region asciidoctorAdmonitionBlock matchgroup=asciidoctorBlock start="\C^\(\[NOTE]\|\[TIP]\|\[IMPORTANT]\|\[CAUTION]\|\[WARNING]\|\[example]\)\s*\%(\n\.\S.\{-}\)\?\n====\+\s*$" end="^.*\n\zs====\s*$" contains=@asciidoctorInnerBlock,@asciidoctorInline,@Spell,asciidoctorComment
-
+syn region asciidoctorAdmonitionBlock matchgroup=asciidoctorBlock start="^\[\u\+\]\n====\+\s*$" end="^====\s*$" contains=@asciidoctorInnerBlock,@asciidoctorInline,@Spell,asciidoctorComment
 
 " Table blocks
 syn match asciidoctorTableCell "\(^\|\s\)\@<=[.+*<^>aehlmdsv[:digit:]]\+|\||" contained containedin=asciidoctorTableBlock
