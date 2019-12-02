@@ -507,3 +507,24 @@ This Header level 5
 +++++++++++++
 
 ----
+
+You can also use following mappings:
+
+[source,vim]
+--------
+" Underline current line
+func! s:underline(chars)
+	let nextnr = line('.') + 1
+	let underline = repeat(a:chars[0], strchars(getline('.')))
+	if index(a:chars, trim(getline(nextnr))[0]) != -1
+		call setline(nextnr, underline)
+	else
+		call append('.', underline)
+	endif
+endfunc
+nnoremap <leader>- :call <SID>underline(['-', '=', '~', '^', '+'])<CR>
+nnoremap <leader>= :call <SID>underline(['=', '-', '~', '^', '+'])<CR>
+nnoremap <leader>~ :call <SID>underline(['~', '=', '-', '^', '+'])<CR>
+nnoremap <leader>^ :call <SID>underline(['^', '=', '-', '~', '+'])<CR>
+nnoremap <leader>+ :call <SID>underline(['+', '=', '-', '~', '^'])<CR>
+--------
