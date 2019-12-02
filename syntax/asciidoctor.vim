@@ -114,7 +114,7 @@ syn match asciidoctorAdmonition /\C^\%(NOTE:\)\|\%(TIP:\)\|\%(IMPORTANT:\)\|\%(C
 
 syn match asciidoctorCaption "^\.[^.[:space:]].*$" contains=@asciidoctorInline,@Spell
 
-syn match asciidoctorBlock "^\[.\{-}\]\s*$"
+syn match asciidoctorBlockOptions "^\[.\{-}\]\s*$"
 
 if get(g:, 'asciidoctor_syntax_indented', 1)
 	syn match asciidoctorPlus      '^+\n\s' contained
@@ -227,6 +227,7 @@ hi def link asciidoctorAttribute             Identifier
 hi def link asciidoctorCode                  Constant
 hi def link asciidoctorOption                Identifier
 hi def link asciidoctorBlock                 Delimiter
+hi def link asciidoctorBlockOptions          Delimiter
 hi def link asciidoctorTableSep              Delimiter
 hi def link asciidoctorTableCell             Delimiter
 hi def link asciidoctorTableEmbed            Delimiter
