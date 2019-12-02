@@ -64,6 +64,34 @@ function! AsciidoctorFold() "{{{
 
 	" Regular headers
 	let depth = match(line, '\(^=\+\)\@<=\( .*$\)\@=')
+
+	" Setext style headings
+	if depth < 0
+		let prevline = getline(v:lnum - 1)
+		let nextline = getline(v:lnum + 1)
+
+		if (line =~ '^.\+$') && (nextline =~ '^=\+$') && (prevline =~ '^\s*$')
+			let depth = 2
+		endif
+
+		if (line =~ '^.\+$') && (nextline =~ '^-\+$') && (prevline =~ '^\s*$')
+			let depth = 3
+		endif
+
+		if (line =~ '^.\+$') && (nextline =~ '^\~\+$') && (prevline =~ '^\s*$')
+			let depth = 4
+		endif
+
+		if (line =~ '^.\+$') && (nextline =~ '^^\+$') && (prevline =~ '^\s*$')
+			let depth = 5
+		endif
+
+		if (line =~ '^.\+$') && (nextline =~ '^+\+$') && (prevline =~ '^\s*$')
+			let depth = 5
+		endif
+	endif
+
+
 	if depth > 0
 		if depth > 1
 			let depth -= 1
