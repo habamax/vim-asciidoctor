@@ -214,8 +214,8 @@ hi def link asciidoctorIndented              Comment
 hi def link asciidoctorPlus                  Delimiter
 hi def link asciidoctorPageBreak             Delimiter
 
-hi def link asciidoctorListingBlock          Comment
-hi def link asciidoctorLiteralBlock          Comment
+hi def link asciidoctorListingBlock          asciidoctorIndented
+hi def link asciidoctorLiteralBlock          asciidoctorIndented
 
 hi def link asciidoctorUrl                   Underlined
 hi def link asciidoctorUrlDescription        Constant
