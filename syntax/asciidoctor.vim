@@ -201,6 +201,7 @@ syn region asciidoctorTableBlock matchgroup=asciidoctorBlock start="^;===\s*$" e
 syn match asciidoctorComment "^//.*$" contains=@Spell
 
 hi def link asciidoctorTitle                 Title
+hi def link asciidoctorH                     Title
 hi def link asciidoctorH1                    Title
 hi def link asciidoctorH2                    Title
 hi def link asciidoctorH3                    Title
