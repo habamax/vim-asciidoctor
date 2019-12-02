@@ -384,6 +384,7 @@ Colorschemes can use following highlight groups to redefine default highlighting
 | Default Value
 
 |asciidoctorTitle                |Title
+|asciidoctorSetextHeader         |Title
 |asciidoctorH1                   |Title
 |asciidoctorH2                   |Title
 |asciidoctorH3                   |Title
