@@ -465,34 +465,45 @@ a| Asciidoctor cell
 |===
 --------
 
-=== No highlighting for underlined headers
+=== Setext-style headers highlighting
+
+Proper setext-style highlihgting should have equal numbers of underlined chars:
 
 ----
- This Header level 1 is not highlighted
- ======================================
+This Header level 1
+===================
 
- This Header level 2 is not highlighted
- --------------------------------------
+This Header level 2
+-------------------
 
-----
+This Header level 3
+~~~~~~~~~~~~~~~~~~~
 
-It is not a big deal to hightlight them and in fact they were highlighed at
-some point but then it clashed badly with all different blocks asciidoctor
-has:
+This Header level 4
+^^^^^^^^^^^^^^^^^^^
 
-----
-
- [example]
- =========
-
- =========
-
- [source,c]
- --------
-
- --------
-
- etc...
+This Header level 5
++++++++++++++++++++
 
 ----
 
+Vim can't do it so setext-style headers are highlighted no matter if there is
+matched underline or not.
+
+----
+This Header level 1
+======================
+
+This Header level 2
+-----
+
+This Header level 3
+~~~~~~~~~~~~~~~~
+
+This Header level 4
+^^^^^^^^^^^^^^^^^^^^
+
+This Header level 5
++++++++++++++
+
+----
