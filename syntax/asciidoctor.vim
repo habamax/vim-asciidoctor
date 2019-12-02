@@ -185,7 +185,7 @@ syn region asciidoctorLiteralBlock matchgroup=asciidoctorBlock start="^\z(\.\.\.
 syn region asciidoctorExampleBlock matchgroup=asciidoctorBlock start="^\z(====\+\)\s*$" end="^\z1\s*$" contains=CONTAINED,@Spell,asciidoctorComment,asciidoctorUrlDescription,@asciidoctorInline
 syn region asciidoctorSidebarBlock matchgroup=asciidoctorBlock start="^\z(\*\*\*\*\+\)\s*$" end="^\z1\s*$" contains=@asciidoctorInnerBlock,@asciidoctorInline,@Spell,asciidoctorComment
 
-syn region asciidoctorAdmonitionBlock matchgroup=asciidoctorBlock start="^\[\u\+\]\n====\+\s*$" end="^====\s*$" contains=@asciidoctorInnerBlock,@asciidoctorInline,@Spell,asciidoctorComment
+syn region asciidoctorAdmonitionBlock matchgroup=asciidoctorBlock start="^\[\u\+\]\n\z(====\+\)\s*$" end="^\z1\s*$" contains=@asciidoctorInnerBlock,@asciidoctorInline,@Spell,asciidoctorComment
 
 " Table blocks
 syn match asciidoctorTableCell "\(^\|\s\)\@<=[.+*<^>aehlmdsv[:digit:]]\+|\||" contained containedin=asciidoctorTableBlock
