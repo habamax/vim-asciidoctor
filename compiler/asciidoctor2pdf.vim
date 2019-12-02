@@ -10,13 +10,27 @@ let current_compiler = "Asciidoctor2PDF"
 let s:keepcpo= &cpo
 set cpo&vim
 
-if get(g:, 'asciidoctor_pdf_themes_path', '') == ''
+"" check first non-empty lines of the asciidoctor buffer if theme 
+"" is set up in file options
+"" if not, don't provide themes and styles path to compiler to avoid errors
+let s:use_pdf_paths = 0
+for line in getline(1, 50)
+	if line =~ "^\s*$"
+		break
+	endif
+	if line =~ "^:pdf-style:.*$"
+		let s:use_pdf_paths = 1
+		break
+	endif
+endfor
+
+if get(g:, 'asciidoctor_pdf_themes_path', '') == '' || !get(s:, 'use_pdf_paths', 0)
 	let s:pdf_themes_path = ""
 else
 	let s:pdf_themes_path = '-a pdf-stylesdir='.shellescape(expand(g:asciidoctor_pdf_themes_path))
 endif
 
-if get(g:, 'asciidoctor_pdf_fonts_path', '') == ''
+if get(g:, 'asciidoctor_pdf_fonts_path', '') == '' || !get(s:, 'use_pdf_paths', 0)
 	let s:pdf_fonts_path = ""
 else
 	let s:pdf_fonts_path = '-a pdf-fontsdir='.shellescape(expand(g:asciidoctor_pdf_fonts_path))
