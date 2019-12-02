@@ -53,7 +53,7 @@ syn region asciidoctorH4 start="^=====\s" end="$" oneline contains=@asciidoctorI
 syn region asciidoctorH5 start="^======\s" end="$" oneline contains=@asciidoctorInline,@Spell
 syn region asciidoctorH6 start="^=======\s" end="$" oneline contains=@asciidoctorInline,@Spell
 
-syn match asciidoctorSetextHeader '^\%(\n\|\%^\)\k.*\n\%(=\+\|\-\+\|\~\+\|\^\+\|+\+\)$'   contains=@Spell
+syn match asciidoctorSetextHeader '^\%(\n\|\%^\)\k.*\n\%(==\+\|\-\-\+\|\~\~\+\|\^\^\+\|++\+\)$'   contains=@Spell
 
 syn sync clear
 syn sync match syncH1 grouphere NONE "^==\s.*$"
