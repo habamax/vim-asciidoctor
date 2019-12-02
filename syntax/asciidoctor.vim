@@ -53,11 +53,7 @@ syn region asciidoctorH4 start="^=====\s" end="$" oneline contains=@asciidoctorI
 syn region asciidoctorH5 start="^======\s" end="$" oneline contains=@asciidoctorInline,@Spell
 syn region asciidoctorH6 start="^=======\s" end="$" oneline contains=@asciidoctorInline,@Spell
 
-syn match asciidoctorH1 '^\%(\n\|\%^\)\k\+.*\n==\+\n$'   contains=@Spell
-syn match asciidoctorH2 '^\%(\n\|\%^\)\k\+.*\n--\+\n$'   contains=@Spell
-syn match asciidoctorH3 '^\%(\n\|\%^\)\k\+.*\n\~\~\+\n$' contains=@Spell
-syn match asciidoctorH4 '^\%(\n\|\%^\)\k\+.*\n\^\^\+\n$' contains=@Spell
-syn match asciidoctorH5 '^\%(\n\|\%^\)\k\+.*\n++\+\n$'   contains=@Spell
+syn match asciidoctorSetextHeader '^\%(\n\|\%^\)\k.*\n\%(=\+\|\-\+\|\~\+\|\^\+\|+\+\)$'   contains=@Spell
 
 syn sync clear
 syn sync match syncH1 grouphere NONE "^==\s.*$"
@@ -205,6 +201,7 @@ syn region asciidoctorTableBlock matchgroup=asciidoctorBlock start="^;\z(===\+\)
 syn match asciidoctorComment "^//.*$" contains=@Spell
 
 hi def link asciidoctorTitle                 Title
+hi def link asciidoctorSetextHeader          Title
 hi def link asciidoctorH1                    Title
 hi def link asciidoctorH2                    Title
 hi def link asciidoctorH3                    Title
