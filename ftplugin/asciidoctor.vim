@@ -183,10 +183,16 @@ command! -buffer AsciidoctorPasteImage :call asciidoctor#pasteImage()
 
 
 "" Next/Previous section mappings
-nnoremap <silent><buffer> ]] :call search('^=\+\s\+\S\+')<CR>
-nnoremap <silent><buffer> [[ :call search('^=\+\s\+\S\+', 'b')<CR>
-xmap     <buffer>         ]] <esc>]]m>gv
-xmap     <buffer>         [[ <esc>[[m>gv
+fun! s:section(back, cnt)
+  for n in range(a:cnt)
+    call search('^=\+\s\+\S\+\|\_^\%(\n\|\%^\)\@<=\k.*\n\%(==\+\|\-\-\+\|\~\~\+\|\^\^\+\|++\+\)$', a:back ? 'bW' : 'W')
+  endfor
+endfun
+
+nnoremap <silent><buffer> ]] :<c-u>call <sid>section(0, v:count1)<CR>
+nnoremap <silent><buffer> [[ :<c-u>call <sid>section(1, v:count1)<CR>
+xmap     <buffer><expr>   ]] "\<esc>".v:count1.']]m>gv'
+xmap     <buffer><expr>   [[ "\<esc>".v:count1.'[[m>gv'
 
 "" Detect default source code language
 call asciidoctor#detect_source_language()
