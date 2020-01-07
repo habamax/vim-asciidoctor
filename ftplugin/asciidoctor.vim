@@ -42,7 +42,7 @@ setlocal commentstring=//\ %s
 " vim-commentary plugin setup
 let b:commentary_startofline = 1
 
-setlocal formatoptions=cqln
+setlocal formatoptions+=cqn
 setlocal formatlistpat=^\\s*
 setlocal formatlistpat+=[
 setlocal formatlistpat+=\\[({]\\?
