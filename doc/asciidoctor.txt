@@ -106,12 +106,14 @@ one needs settings to set.
 
 
 *g:asciidoctor_syntax_conceal*        Enable concealable syntax.
-                                    Currently only bold, italic, bolditaclic
-                                    and code are concealed.
+                                    Currently only bold, italic, bolditaclic,
+                                    code and links are concealed.
                                     Default: 0
   Example: 
 
   let g:asciidoctor_syntax_conceal = 1
+
+  NOTE: It doesn't automatically set conceallevel.
 
 
 *g:asciidoctor_fold_options*          Fold options (usually under the title).
