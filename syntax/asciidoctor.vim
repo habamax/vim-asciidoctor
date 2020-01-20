@@ -67,7 +67,8 @@ syn match asciidoctorMacro "\a\+::\?\(\S[[:alnum:][:blank:]./\\:-]\{-}\)\?\[.\{-
 syn match asciidoctorAttribute "{[[:alpha:]][[:alnum:]-_:]\{-}}" 
 
 if get(g:, 'asciidoctor_syntax_conceal', 0)
-	syn region asciidoctorUrl        matchgroup=Conceal start="\%(link\|xref\|image\)::\?.\{-}\[" end="\]" concealends oneline keepend skipwhite
+	syn region asciidoctorUrl        matchgroup=Conceal start="\%(link\|xref\|image\)::\?" end="\[\]" concealends oneline keepend skipwhite
+	syn region asciidoctorUrl        matchgroup=Conceal start="\%(link\|xref\|image\)::\?.*\[\ze[^]]" end="\]" concealends oneline keepend skipwhite
 	syn match asciidoctorUrlDescription "\[.\{-}\]" contained containedin=asciidoctorUrl
 	syn match asciidoctorUrl "\%(http\|ftp\)s\?://\S\+\ze\%(\[.\{-}\]\)" nextgroup=asciidoctorUrlDescription
 	syn region asciidoctorUrl        matchgroup=Conceal start="<<" end=">>" concealends oneline
