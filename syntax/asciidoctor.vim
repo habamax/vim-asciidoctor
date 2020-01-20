@@ -109,6 +109,10 @@ syn match asciidoctorOrderedListMarker "^\s*\%(\d\+\|\a\)\.\%(\s\+\S\)\@="
 
 syn match asciidoctorDefList ".\{-}::\_s\%(\_^\n\)\?" contains=@Spell
 
+
+syn match asciidoctorCallout "\s\+\zs<\%(\.\|\d\+\)>\ze\s*$" contained
+syn match asciidoctorCalloutDesc "^\s*\zs<\%(\.\|\d\+\)>\ze\s\+"
+
 syn match asciidoctorUppercase  /^\ze\u\+:/ nextgroup=asciidoctorAdmonition
 syn match asciidoctorAdmonition /\C^\%(NOTE:\)\|\%(TIP:\)\|\%(IMPORTANT:\)\|\%(CAUTION:\)\|\%(WARNING:\)\s/ contained
 
@@ -145,7 +149,7 @@ if main_syntax ==# 'asciidoctor'
 	" for i in ...
 	"
 	if get(b:, "asciidoctor_source_language", "NONE") != "NONE"
-		exe 'syn region asciidoctorSourceHighlightDefault'.b:asciidoctor_source_language.' matchgroup=asciidoctorBlock start="^\[source\]\s*$" end="^\s*$" keepend contains=@asciidoctorSourceHighlight'.b:asciidoctor_source_language
+		exe 'syn region asciidoctorSourceHighlightDefault'.b:asciidoctor_source_language.' matchgroup=asciidoctorBlock start="^\[source\]\s*$" end="^\s*$" keepend contains=asciidoctorCallout,@asciidoctorSourceHighlight'.b:asciidoctor_source_language
 	endif
 
 	" if :source-language: is set up
@@ -155,7 +159,7 @@ if main_syntax ==# 'asciidoctor'
 	" for i in ...
 	"----
 	if get(b:, "asciidoctor_source_language", "NONE") != "NONE"
-		exe 'syn region asciidoctorSourceHighlightDefault'.b:asciidoctor_source_language.' matchgroup=asciidoctorBlock start="^\[source\]\s*\n\z(--\+\)\s*$" end="^.*\n\zs\z1\s*$" keepend contains=@asciidoctorSourceHighlight'.b:asciidoctor_source_language
+		exe 'syn region asciidoctorSourceHighlightDefault'.b:asciidoctor_source_language.' matchgroup=asciidoctorBlock start="^\[source\]\s*\n\z(--\+\)\s*$" end="^.*\n\zs\z1\s*$" keepend contains=asciidoctorCallout,@asciidoctorSourceHighlight'.b:asciidoctor_source_language
 	endif
 
 	"" Other languages
@@ -163,13 +167,13 @@ if main_syntax ==# 'asciidoctor'
 		"[source,lang]
 		" for i in ...
 		"
-		exe 'syn region asciidoctorSourceHighlight'.s:type.' matchgroup=asciidoctorBlock start="^\[\%(source\)\?,\s*'.s:type.'\%(,.*\)*\]\s*$" end="^\s*$" keepend contains=@asciidoctorSourceHighlight'.s:type
+		exe 'syn region asciidoctorSourceHighlight'.s:type.' matchgroup=asciidoctorBlock start="^\[\%(source\)\?,\s*'.s:type.'\%(,.*\)*\]\s*$" end="^\s*$" keepend contains=asciidoctorCallout,@asciidoctorSourceHighlight'.s:type
 
 		"[source,lang]
 		"----
 		"for i in ...
 		"----
-		exe 'syn region asciidoctorSourceHighlight'.s:type.' matchgroup=asciidoctorBlock start="^\[\%(source\)\?,\s*'.s:type.'\%(,.*\)*\]\s*\n\z(--\+\)\s*$" end="^.*\n\zs\z1\s*$" keepend contains=@asciidoctorSourceHighlight'.s:type
+		exe 'syn region asciidoctorSourceHighlight'.s:type.' matchgroup=asciidoctorBlock start="^\[\%(source\)\?,\s*'.s:type.'\%(,.*\)*\]\s*\n\z(--\+\)\s*$" end="^.*\n\zs\z1\s*$" keepend contains=asciidoctorCallout,@asciidoctorSourceHighlight'.s:type
 
 
 	endfor
@@ -214,6 +218,8 @@ hi def link asciidoctorComment               Comment
 hi def link asciidoctorIndented              Comment
 hi def link asciidoctorPlus                  Delimiter
 hi def link asciidoctorPageBreak             Delimiter
+hi def link asciidoctorCallout               Delimiter
+hi def link asciidoctorCalloutDesc           Delimiter
 
 hi def link asciidoctorListingBlock          asciidoctorIndented
 hi def link asciidoctorLiteralBlock          asciidoctorIndented
