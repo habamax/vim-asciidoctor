@@ -66,14 +66,12 @@ syn sync match syncH6 grouphere NONE "^=======\s.*$"
 syn match asciidoctorMacro "\a\+::\?\(\S[[:alnum:][:blank:]./\\:-]\{-}\)\?\[.\{-}\]" 
 syn match asciidoctorAttribute "{[[:alpha:]][[:alnum:]-_:]\{-}}" 
 
-syn region asciidoctorUrl matchgroup=asciidoctorMacro start="\%(link\|xref\|image\)::\?" end="\[.\{-}\]" oneline keepend skipwhite
 syn match asciidoctorUrlDescription "\[.\{-}\]" contained containedin=asciidoctorUrl
 syn match asciidoctorUrl "\%(http\|ftp\)s\?://\S\+\ze\%(\[.\{-}\]\)" nextgroup=asciidoctorUrlDescription
 
 if get(g:, 'asciidoctor_syntax_conceal', 0)
-	syn region asciidoctorUrl        matchgroup=Conceal start="\%(link\|xref\|image\)::\?.*\[\ze[^]]" end="\]" concealends oneline keepend skipwhite
-	syn region asciidoctorUrl        matchgroup=Conceal start="<<" end=">>" concealends oneline
-	syn region asciidoctorUrl        matchgroup=Conceal start="<<.\{-},\s*" end=">>" concealends oneline
+	syn region asciidoctorUrl        matchgroup=Conceal start="\%(link\|xref\|image\)::\?\(.*\[\ze[^]]\)\?" end="\]\|\[]" concealends oneline keepend skipwhite
+	syn region asciidoctorUrl        matchgroup=Conceal start="<<\%(.\{-},\s*\)\?" end=">>" concealends oneline
 
 	syn region asciidoctorBold       matchgroup=Conceal start=/\m\*\*/ end=/\*\*/ contains=@Spell concealends oneline
 	syn region asciidoctorBold       matchgroup=Conceal start=/\m\%(^\|[[:punct:][:space:]]\@<=\)\*\ze[^* ].\{-}\S/ end=/\*\%([[:punct:][:space:]]\@=\|$\)/ contains=@Spell concealends oneline
@@ -87,6 +85,7 @@ if get(g:, 'asciidoctor_syntax_conceal', 0)
 	syn region asciidoctorCode       matchgroup=Conceal start=/\m``/ end=/``/ contains=@Spell concealends oneline
 	syn region asciidoctorCode       matchgroup=Conceal start=/\m\%(^\|[[:punct:][:space:]]\@<=\)`\ze[^` ].\{-}\S/ end=/`\%([[:punct:][:space:]]\@=\|$\)/ contains=@Spell concealends oneline
 else
+	syn region asciidoctorUrl matchgroup=asciidoctorMacro start="\%(link\|xref\|image\)::\?" end="\[.\{-}\]" oneline keepend skipwhite
 	syn match asciidoctorUrl "<<.\{-}>>" 
 
 	syn match asciidoctorBold /\%(^\|[[:punct:][:space:]]\@<=\)\*[^* ].\{-}\S\*\%([[:punct:][:space:]]\@=\|$\)/ contains=@Spell
