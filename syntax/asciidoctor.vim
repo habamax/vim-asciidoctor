@@ -63,27 +63,34 @@ syn sync match syncH4 grouphere NONE "^=====\s.*$"
 syn sync match syncH5 grouphere NONE "^======\s.*$"
 syn sync match syncH6 grouphere NONE "^=======\s.*$"
 
-" a Macro is a generic pattern that has no default highlight, but it could
-" contain a link/image/url/xref/mailto/etc, its syntax is
-" type::\?url[description], where description cannot be empty
-
-syn match asciidoctorFile  "\f\+" contained
-syn match asciidoctorMacro "\l\+::\?\S*\[.\{-}\]"  contains=asciidoctorUrl,asciidoctorLink
-syn match asciidoctorMacro "\s*\l\+://\S\+" contains=asciidoctorUrlAuto
 syn match asciidoctorAttribute "{[[:alpha:]][[:alnum:]-_:]\{-}}" 
 
+" a Macro is a generic pattern that has no default highlight, but it could contain a link/image/url/xref/mailto/etc, and naked URLs as well
+
+syn match asciidoctorMacro "\<\l\{-1,}://\S\+" contains=asciidoctorUrlAuto
+syn match asciidoctorMacro "\<\w.\{-}@\w\+\.\w\+" contains=asciidoctorEmailAuto
+syn match asciidoctorMacro "\<\l\{-1,}::\?\S*\[.\{-}\]"  contains=asciidoctorUrl,asciidoctorLink,asciidoctorEmail
+
+syn match asciidoctorFile           "\f\+" contained
 syn match asciidoctorUrlDescription "\[[^]]\{-}\]\%(\s\|$\)" contained containedin=asciidoctorLink
-syn match asciidoctorUrlAuto "\s*\zs\%(http\|ftp\)s\?://\S\+\%(\[.\{-}\]\)\?" contained contains=asciidoctorUrl
+syn match asciidoctorUrlAuto        "\%(http\|ftp\|irc\)s\?://\S\+\%(\[.\{-}\]\)\?" contained contains=asciidoctorUrl
+syn match asciidoctorEmailAuto      "[a-zA-Z0-9._%+-]\{-1,}@\w\+\.\w\+" contained
 
 if get(g:, 'asciidoctor_syntax_conceal', 0)
-	" the pattern \[\ze\%(\s*[^ ]\+\s*\)\+]\+ means: a brackets pair, inside of
-	" which at least one non-space character, possibly with spaces
-	syn region asciidoctorLink       matchgroup=Conceal start="\%(link\|xref\|mailto\):\ze[^:].*" end="\ze\[\s*\]" concealends oneline keepend skipwhite contained nextgroup=asciidoctorUrlDescription contains=asciidoctorUrl,asciidoctorFile
-	syn region asciidoctorLink       matchgroup=Conceal start="\%(video\|image\)::\?\ze.*" end="\ze\[.*\]" concealends oneline keepend skipwhite contained nextgroup=asciidoctorUrlDescription contains=asciidoctorFile
-	syn region asciidoctorLink       matchgroup=Conceal start="\%(link\|xref\|mailto\):[^:].*\[\ze\%(\s*[^ ]\+\s*\)\+]\+" end="\]" concealends oneline keepend skipwhite contained
-	" syn region asciidoctorLink       matchgroup=Conceal start="\%(video\|image\)::.*\[\ze\%(\s*[^ ]\+\s*\)\+]\+" end="\]" concealends oneline keepend skipwhite contained
+	" the pattern \[\ze\%(\s*[^ ]\+\s*\)\+]\+ means: a brackets pair, inside of which at least one non-space character, possibly with spaces
+	syn region asciidoctorLink       matchgroup=Conceal start="\%(link\|xref\|mailto\|irc\):\ze[^:].*" end="\ze\[\s*\]" concealends oneline keepend skipwhite contained nextgroup=asciidoctorUrlDescription contains=asciidoctorUrl,asciidoctorFile
+	syn region asciidoctorLink       matchgroup=Conceal start="\%(link\|xref\|mailto\|irc\):[^:].*\[\ze\%(\s*[^ ]\+\s*\)\+]\+" end="\]" concealends oneline keepend skipwhite contained
+
+	" conceal also the address of an image/video, if the description is not empty
+	if get(g:, 'asciidoctor_compact_media_links', 0)
+		syn region asciidoctorLink       matchgroup=Conceal start="\%(video\|image\)::\ze.*" end="\ze\[\s*\]" concealends oneline keepend skipwhite contained nextgroup=asciidoctorUrlDescription contains=asciidoctorUrl,asciidoctorFile
+		syn region asciidoctorLink       matchgroup=Conceal start="\%(video\|image\)::.*\[\ze\%(\s*[^ ]\+\s*\)\+]\+" end="\]" concealends oneline keepend skipwhite contained
+	else
+		syn region asciidoctorLink       matchgroup=Conceal start="\%(video\|image\)::\?\ze.*" end="\ze\[.*\]" concealends oneline keepend skipwhite contained nextgroup=asciidoctorUrlDescription contains=asciidoctorFile
+	endif
+
 	syn region asciidoctorAnchor     matchgroup=Conceal start="<<\%(.\{-},\s*\)\?" end=">>" concealends oneline
-	syn region asciidoctorUrl        matchgroup=Conceal start="\%(http\|ftp\)s\?://\S\+\[\ze\%(\s*[^ ]\+\s*\)\+]\+" end="\]" contained concealends oneline keepend skipwhite contained
+	syn region asciidoctorUrl        matchgroup=Conceal start="\%(http\|ftp\|irc\)s\?://\S\+\[\ze\%(\s*[^ ]\+\s*\)\+]\+" end="\]" contained concealends oneline keepend skipwhite contained
 
 	syn region asciidoctorBold       matchgroup=Conceal start=/\m\*\*/ end=/\*\*/ contains=@Spell concealends oneline
 	syn region asciidoctorBold       matchgroup=Conceal start=/\m\%(^\|[[:punct:][:space:]]\@<=\)\*\ze[^* ].\{-}\S/ end=/\*\%([[:punct:][:space:]]\@=\|$\)/ contains=@Spell concealends oneline
@@ -99,7 +106,7 @@ if get(g:, 'asciidoctor_syntax_conceal', 0)
 else
 	syn region asciidoctorLink       start="\%(link\|xref\|mailto\):[^:].*\ze\[" end="\[.\{-}\]" oneline keepend skipwhite contained
 	syn region asciidoctorLink       start="\%(video\|image\)::\?.*\ze\[" end="\[.\{-}\]" oneline keepend skipwhite contained
-	syn match asciidoctorUrl "\%(http\|ftp\)s\?://\S\+\ze\%(\[.\{-}\]\)" nextgroup=asciidoctorUrlDescription
+	syn match asciidoctorUrl "\%(http\|ftp\|irc\)s\?://\S\+\ze\%(\[.\{-}\]\)" nextgroup=asciidoctorUrlDescription
 	syn match asciidoctorAnchor "<<.\{-}>>"
 
 	syn match asciidoctorBold /\%(^\|[[:punct:][:space:]]\@<=\)\*[^* ].\{-}\S\*\%([[:punct:][:space:]]\@=\|$\)/ contains=@Spell
@@ -245,7 +252,9 @@ hi def link asciidoctorLiteralBlock          asciidoctorIndented
 
 hi def link asciidoctorFile                  Underlined
 hi def link asciidoctorUrl                   Underlined
+hi def link asciidoctorEmail                 Underlined
 hi def link asciidoctorUrlAuto               Underlined
+hi def link asciidoctorEmailAuto             Underlined
 hi def link asciidoctorUrlDescription        Constant
 
 hi def link asciidoctorLink                  Underlined
