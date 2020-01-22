@@ -135,7 +135,8 @@ let g:asciidoctor_fold_options = 1
 [source,vim]
 --------
 
-" Conceal *bold*, _italic_ and `code` in lists and paragraphs, default `0`.
+" Conceal *bold*, _italic_, `code` and urls in lists and paragraphs, default `0`.
+" See limitations in end of the README
 let g:asciidoctor_syntax_conceal = 1
 
 " Highlight indented text, default `1`.
@@ -529,3 +530,25 @@ nnoremap <leader>~ :call <SID>underline(['~', '=', '-', '^', '+'])<CR>
 nnoremap <leader>^ :call <SID>underline(['^', '=', '-', '~', '+'])<CR>
 nnoremap <leader>+ :call <SID>underline(['+', '=', '-', '~', '^'])<CR>
 --------
+
+
+=== URL Conceal
+
+Links with additional attributes are not concealed to description:
+
+	https://discuss.asciidoctor.org[Discuss Asciidoctor,role=external,window=_blank]
+	https://discuss.asciidoctor.org[Discuss Asciidoctor^]
+	https://example.org["Google, Yahoo, Bing^",role=teal]
+
+With `set conceallevel=3` looks like:
+
+	Discuss Asciidoctor,role=external,window=_blank
+	Discuss Asciidoctor^
+	"Google, Yahoo, Bing^",role=teal
+
+Although it should look like:
+
+	Discuss Asciidoctor
+	Discuss Asciidoctor
+	Google, Yahoo, Bing
+
