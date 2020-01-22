@@ -2,7 +2,7 @@
 " Language:   asciidoctor
 " Maintainer: Maxim Kim <habamax@gmail.com>
 " Filenames:  *.adoc
-" vim: set noet
+" vim: noet
 
 if exists("b:did_ftplugin")
 	finish
