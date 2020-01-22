@@ -75,7 +75,7 @@ syn match asciidoctorMacro "\<\l\{-1,}::\?\S*\[.\{-}\]"  contains=asciidoctorUrl
 syn match asciidoctorFile           "\f\+" contained
 syn match asciidoctorUrlDescription "\[[^]]\{-}\]\%(\s\|$\)" contained containedin=asciidoctorLink
 syn match asciidoctorUrlAuto        "\%(http\|ftp\|irc\)s\?://\S\+\%(\[.\{-}\]\)\?" contained contains=asciidoctorUrl
-syn match asciidoctorEmailAuto      "[a-zA-Z0-9._%+-]\{-1,}@\w\+\.\w\+" contained
+syn match asciidoctorEmailAuto      "[a-zA-Z0-9._%+-]\{-1,}@\w\+\%(\.\w\+\)\+" contained
 
 if get(g:, 'asciidoctor_syntax_conceal', 0)
 	" the pattern \[\ze\%(\s*[^ ]\+\s*\)\+]\+ means: a brackets pair, inside of which at least one non-space character, possibly with spaces
