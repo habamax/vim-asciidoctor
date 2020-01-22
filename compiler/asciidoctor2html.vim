@@ -1,7 +1,7 @@
 " Vim compiler file
 " Compiler: Asciidoctor2HTML
 " Maintainer: Maxim Kim (habamax@gmail.com)
-" vim: set noet
+" vim: noet
 
 if exists("current_compiler")
   finish

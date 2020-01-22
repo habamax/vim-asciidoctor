@@ -1,5 +1,5 @@
 " Maintainer: Maxim Kim (habamax@gmail.com)
-" vim: set noet
+" vim: noet
 
 if exists("g:loaded_asciidoctor_autoload")
     finish
