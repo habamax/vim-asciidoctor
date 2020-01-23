@@ -397,9 +397,17 @@ Colorschemes can use following highlight groups to redefine default highlighting
 |asciidoctorListContinuation     |Delimiter
 |asciidoctorComment              |Comment
 |asciidoctorIndented             |Comment
+|asciidoctorListingBlock         |asciidoctorIndented
+|asciidoctorLiteralBlock         |asciidoctorIndented
 |asciidoctorPlus                 |Delimiter
+|asciidoctorFile                 |Underlined
+|asciidoctorEmail                |Underlined
+|asciidoctorEmailAuto            |Underlined
 |asciidoctorUrl                  |Underlined
+|asciidoctorUrlAuto              |Underlined
 |asciidoctorUrlDescription       |Constant
+|asciidoctorLink                 |Underlined
+|asciidoctorAnchor               |Underlined
 |asciidoctorMacro                |PreProc
 |asciidoctorAttribute            |Identifier
 |asciidoctorCode                 |Constant
@@ -415,6 +423,8 @@ Colorschemes can use following highlight groups to redefine default highlighting
 |asciidoctorDefList              |asciidoctorBold
 |asciidoctorCaption              |Statement
 |asciidoctorAdmonition           |asciidoctorBold
+|asciidoctorCallout              |Delimiter
+|asciidoctorCalloutDesc          |Delimiter
 |===
 
 If you want to change highlight yourself for existing colorscheme without
