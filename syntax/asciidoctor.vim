@@ -86,14 +86,10 @@ if get(g:, 'asciidoctor_syntax_conceal', 0)
 
 	if get(g:, 'asciidoctor_compact_media_links', 0)
 		" conceal also the address of an image/video, if the description is not empty
-		syn region asciidoctorLink       matchgroup=Conceal start="\%(video\|image\)::\ze.*" end="\ze\[\s*\]" concealends oneline keepend skipwhite contained nextgroup=asciidoctorUrlDescription contains=asciidoctorUrl,asciidoctorFile
-		if get(g:, 'asciidoctor_conceal_attributes', 0)
-			syn region asciidoctorLink     matchgroup=Conceal start="\%(video\|image\)::.*\[\ze\%(\s*[^ ]\+\s*\)\+]\+" end="\%(,.*\)\?\]" concealends oneline keepend skipwhite contained
-		else
-			syn region asciidoctorLink     matchgroup=Conceal start="\%(video\|image\)::.*\[\ze\%(\s*[^ ]\+\s*\)\+]\+" end="\]" concealends oneline keepend skipwhite contained
-		endif
+		syn region asciidoctorLink    matchgroup=Conceal start="\%(video\|image\)::\ze.*" end="\ze\[\s*\]" concealends oneline keepend skipwhite contained nextgroup=asciidoctorUrlDescription contains=asciidoctorUrl,asciidoctorFile
+		syn region asciidoctorLink    matchgroup=Conceal start="\%(video\|image\)::.*\[\ze\%(\s*[^ ]\+\s*\)\+]\+" end="\]" concealends oneline keepend skipwhite contained
 	else
-		syn region asciidoctorLink       matchgroup=Conceal start="\%(video\|image\)::\?\ze.*" end="\ze\[.*\]" concealends oneline keepend skipwhite contained nextgroup=asciidoctorUrlDescription contains=asciidoctorFile
+		syn region asciidoctorLink    matchgroup=Conceal start="\%(video\|image\)::\?\ze.*" end="\ze\[.*\]" concealends oneline keepend skipwhite contained nextgroup=asciidoctorUrlDescription contains=asciidoctorFile
 	endif
 
 	syn region asciidoctorAnchor     matchgroup=Conceal start="<<\%(.\{-},\s*\)\?" end=">>" concealends oneline
