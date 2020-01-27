@@ -92,7 +92,7 @@ if get(g:, 'asciidoctor_syntax_conceal', 0)
 		syn region asciidoctorLink    matchgroup=Conceal start="\%(video\|image\)::\?\ze.*" end="\ze\[.*\]" concealends oneline keepend skipwhite contained nextgroup=asciidoctorUrlDescription contains=asciidoctorFile
 	endif
 
-	syn region asciidoctorAnchor     matchgroup=Conceal start="<<\%(.\{-},\s*\)\?" end=">>" concealends oneline
+	syn region asciidoctorAnchor     matchgroup=Conceal start="<<\%(.\{-},\s*\)\?\ze.\{-}>>" end=">>" concealends oneline
 
 	syn region asciidoctorBold       matchgroup=Conceal start=/\m\*\*/ end=/\*\*/ contains=@Spell concealends oneline
 	syn region asciidoctorBold       matchgroup=Conceal start=/\m\%(^\|[[:punct:][:space:]]\@<=\)\*\ze[^* ].\{-}\S/ end=/\*\%([[:punct:][:space:]]\@=\|$\)/ contains=@Spell concealends oneline
