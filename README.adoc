@@ -157,7 +157,7 @@ let g:asciidoctor_fenced_languages = ['python', 'c', 'javascript']
 [source,vim]
 --------
 
-" Function to create buffer local mappings
+" Function to create buffer local mappings and add default compiler
 fun! AsciidoctorMappings()
     nnoremap <buffer> <leader>oo :AsciidoctorOpenRAW<CR>
     nnoremap <buffer> <leader>op :AsciidoctorOpenPDF<CR>
@@ -166,6 +166,9 @@ fun! AsciidoctorMappings()
     nnoremap <buffer> <leader>ch :Asciidoctor2HTML<CR>
     nnoremap <buffer> <leader>cp :Asciidoctor2PDF<CR>
     nnoremap <buffer> <leader>cx :Asciidoctor2DOCX<CR>
+    nnoremap <buffer> <leader>p :AsciidoctorPasteImage<CR>
+    " :make will build pdfs
+    compiler asciidoctor2pdf
 endfun
 
 " Call AsciidoctorMappings for all `*.adoc` and `*.asciidoc` files
