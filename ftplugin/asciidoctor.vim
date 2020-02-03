@@ -15,8 +15,6 @@ else
 	let b:undo_ftplugin = "setl cms< com< fo< flp< inex< efm< cfu<"
 endif
 
-compiler asciidoctor2html
-
 " open files
 if get(g:, 'asciidoctor_opener', '') == ''
 	if has("win32") || has("win32unix")
