@@ -2,30 +2,30 @@
 " Language:     asciidoctor
 " Maintainer:   Maxim Kim <habamax@gmail.com>
 " Filenames:    *.adoc
-" vim: noet
+" vim: et sw=4
 
 if exists("b:current_syntax")
-	finish
+    finish
 endif
 
 syntax spell toplevel
 
 if !exists('main_syntax')
-	let main_syntax = 'asciidoctor'
+    let main_syntax = 'asciidoctor'
 endif
 
 if !exists('g:asciidoctor_fenced_languages')
-	let g:asciidoctor_fenced_languages = []
+    let g:asciidoctor_fenced_languages = []
 endif
 for s:type in g:asciidoctor_fenced_languages
-	exe 'syn include @asciidoctorSourceHighlight'.s:type.' syntax/'.s:type.'.vim'
-	unlet! b:current_syntax
+    exe 'syn include @asciidoctorSourceHighlight'.s:type.' syntax/'.s:type.'.vim'
+    unlet! b:current_syntax
 endfor
 unlet! s:type
 
 if globpath(&rtp, "syntax/plantuml.vim") != ''
-	syn include @asciidoctorPlantumlHighlight syntax/plantuml.vim
-	unlet! b:current_syntax
+    syn include @asciidoctorPlantumlHighlight syntax/plantuml.vim
+    unlet! b:current_syntax
 endif
 
 " Check :h syn-sync-fourth
@@ -78,58 +78,58 @@ syn match asciidoctorUrlAuto        "\%(http\|ftp\|irc\)s\?://\S\+\%(\[.\{-}\]\)
 syn match asciidoctorEmailAuto      "[a-zA-Z0-9._%+-]\{-1,}@\w\+\%(\.\w\+\)\+" contained
 
 if get(g:, 'asciidoctor_syntax_conceal', 0)
-	" the pattern \[\ze\%(\s*[^ ]\+\s*\)\+]\+ means: a brackets pair, inside of which at least one non-space character, possibly with spaces
-	syn region asciidoctorLink       matchgroup=Conceal start="\%(link\|xref\|mailto\|irc\):\ze[^:].*" end="\ze\[\s*\]" concealends oneline keepend skipwhite contained nextgroup=asciidoctorUrlDescription contains=asciidoctorUrl,asciidoctorFile
+    " the pattern \[\ze\%(\s*[^ ]\+\s*\)\+]\+ means: a brackets pair, inside of which at least one non-space character, possibly with spaces
+    syn region asciidoctorLink       matchgroup=Conceal start="\%(link\|xref\|mailto\|irc\):\ze[^:].*" end="\ze\[\s*\]" concealends oneline keepend skipwhite contained nextgroup=asciidoctorUrlDescription contains=asciidoctorUrl,asciidoctorFile
 
-	syn region asciidoctorLink     matchgroup=Conceal start="\%(link\|xref\|mailto\|irc\):[^:].*\[\ze\%(\s*[^ ]\+\s*\)\+]\+" end="\]" concealends oneline keepend skipwhite contained
-	syn region asciidoctorUrl      matchgroup=Conceal start="\%(http\|ftp\|irc\)s\?://\S\+\[\ze\%(\s*[^ ]\+\s*\)\+]\+" end="\]" contained concealends oneline keepend skipwhite contained
+    syn region asciidoctorLink     matchgroup=Conceal start="\%(link\|xref\|mailto\|irc\):[^:].*\[\ze\%(\s*[^ ]\+\s*\)\+]\+" end="\]" concealends oneline keepend skipwhite contained
+    syn region asciidoctorUrl      matchgroup=Conceal start="\%(http\|ftp\|irc\)s\?://\S\+\[\ze\%(\s*[^ ]\+\s*\)\+]\+" end="\]" contained concealends oneline keepend skipwhite contained
 
-	if get(g:, 'asciidoctor_compact_media_links', 0)
-		" conceal also the address of an image/video, if the description is not empty
-		syn region asciidoctorLink    matchgroup=Conceal start="\%(video\|image\)::\ze.*" end="\ze\[\s*\]" concealends oneline keepend skipwhite contained nextgroup=asciidoctorUrlDescription contains=asciidoctorUrl,asciidoctorFile
-		syn region asciidoctorLink    matchgroup=Conceal start="\%(video\|image\)::.*\[\ze\%(\s*[^ ]\+\s*\)\+]\+" end="\]" concealends oneline keepend skipwhite contained
-	else
-		syn region asciidoctorLink    matchgroup=Conceal start="\%(video\|image\)::\?\ze.*" end="\ze\[.*\]" concealends oneline keepend skipwhite contained nextgroup=asciidoctorUrlDescription contains=asciidoctorFile
-	endif
+    if get(g:, 'asciidoctor_compact_media_links', 0)
+        " conceal also the address of an image/video, if the description is not empty
+        syn region asciidoctorLink    matchgroup=Conceal start="\%(video\|image\)::\ze.*" end="\ze\[\s*\]" concealends oneline keepend skipwhite contained nextgroup=asciidoctorUrlDescription contains=asciidoctorUrl,asciidoctorFile
+        syn region asciidoctorLink    matchgroup=Conceal start="\%(video\|image\)::.*\[\ze\%(\s*[^ ]\+\s*\)\+]\+" end="\]" concealends oneline keepend skipwhite contained
+    else
+        syn region asciidoctorLink    matchgroup=Conceal start="\%(video\|image\)::\?\ze.*" end="\ze\[.*\]" concealends oneline keepend skipwhite contained nextgroup=asciidoctorUrlDescription contains=asciidoctorFile
+    endif
 
-	syn region asciidoctorAnchor     matchgroup=Conceal start="<<\%(.\{-},\s*\)\?\ze.\{-}>>" end=">>" concealends oneline
+    syn region asciidoctorAnchor     matchgroup=Conceal start="<<\%(.\{-},\s*\)\?\ze.\{-}>>" end=">>" concealends oneline
 
-	syn region asciidoctorBold       matchgroup=Conceal start=/\m\*\*/ end=/\*\*/ contains=@Spell concealends oneline
-	syn region asciidoctorBold       matchgroup=Conceal start=/\m\%(^\|[[:punct:][:space:]]\@<=\)\*\ze[^* ].\{-}\S/ end=/\*\%([[:punct:][:space:]]\@=\|$\)/ contains=@Spell concealends oneline
+    syn region asciidoctorBold       matchgroup=Conceal start=/\m\*\*/ end=/\*\*/ contains=@Spell concealends oneline
+    syn region asciidoctorBold       matchgroup=Conceal start=/\m\%(^\|[[:punct:][:space:]]\@<=\)\*\ze[^* ].\{-}\S/ end=/\*\%([[:punct:][:space:]]\@=\|$\)/ contains=@Spell concealends oneline
 
-	syn region asciidoctorItalic     matchgroup=Conceal start=/\m__/ end=/__/ contains=@Spell concealends oneline
-	syn region asciidoctorItalic     matchgroup=Conceal start=/\m\%(^\|[[:punct:][:space:]]\@<=\)_\ze[^_ ].\{-}\S/ end=/_\%([[:punct:][:space:]]\@=\|$\)/ contains=@Spell concealends oneline
+    syn region asciidoctorItalic     matchgroup=Conceal start=/\m__/ end=/__/ contains=@Spell concealends oneline
+    syn region asciidoctorItalic     matchgroup=Conceal start=/\m\%(^\|[[:punct:][:space:]]\@<=\)_\ze[^_ ].\{-}\S/ end=/_\%([[:punct:][:space:]]\@=\|$\)/ contains=@Spell concealends oneline
 
-	syn region asciidoctorBoldItalic matchgroup=Conceal start=/\m\*\*_/ end=/_\*\*/ contains=@Spell concealends oneline
-	syn region asciidoctorBoldItalic matchgroup=Conceal start=/\m\%(^\|[[:punct:][:space:]]\@<=\)\*_\ze[^*_ ].\{-}\S/ end=/_\*\%([[:punct:][:space:]]\@=\|$\)/ contains=@Spell concealends oneline
+    syn region asciidoctorBoldItalic matchgroup=Conceal start=/\m\*\*_/ end=/_\*\*/ contains=@Spell concealends oneline
+    syn region asciidoctorBoldItalic matchgroup=Conceal start=/\m\%(^\|[[:punct:][:space:]]\@<=\)\*_\ze[^*_ ].\{-}\S/ end=/_\*\%([[:punct:][:space:]]\@=\|$\)/ contains=@Spell concealends oneline
 
-	syn region asciidoctorCode       matchgroup=Conceal start=/\m``/ end=/``/ contains=@Spell concealends oneline
-	syn region asciidoctorCode       matchgroup=Conceal start=/\m\%(^\|[[:punct:][:space:]]\@<=\)`\ze[^` ].\{-}\S/ end=/`\%([[:punct:][:space:]]\@=\|$\)/ contains=@Spell concealends oneline
+    syn region asciidoctorCode       matchgroup=Conceal start=/\m``/ end=/``/ contains=@Spell concealends oneline
+    syn region asciidoctorCode       matchgroup=Conceal start=/\m\%(^\|[[:punct:][:space:]]\@<=\)`\ze[^` ].\{-}\S/ end=/`\%([[:punct:][:space:]]\@=\|$\)/ contains=@Spell concealends oneline
 else
-	syn region asciidoctorLink       start="\%(link\|xref\|mailto\):[^:].*\ze\[" end="\[.\{-}\]" oneline keepend skipwhite contained
-	syn region asciidoctorLink       start="\%(video\|image\)::\?.*\ze\[" end="\[.\{-}\]" oneline keepend skipwhite contained
-	syn match asciidoctorUrl "\%(http\|ftp\|irc\)s\?://\S\+\ze\%(\[.\{-}\]\)" nextgroup=asciidoctorUrlDescription
-	syn match asciidoctorAnchor "<<.\{-}>>"
+    syn region asciidoctorLink       start="\%(link\|xref\|mailto\):[^:].*\ze\[" end="\[.\{-}\]" oneline keepend skipwhite contained
+    syn region asciidoctorLink       start="\%(video\|image\)::\?.*\ze\[" end="\[.\{-}\]" oneline keepend skipwhite contained
+    syn match asciidoctorUrl "\%(http\|ftp\|irc\)s\?://\S\+\ze\%(\[.\{-}\]\)" nextgroup=asciidoctorUrlDescription
+    syn match asciidoctorAnchor "<<.\{-}>>"
 
-	syn match asciidoctorBold /\%(^\|[[:punct:][:space:]]\@<=\)\*[^* ].\{-}\S\*\%([[:punct:][:space:]]\@=\|$\)/ contains=@Spell
-	" single char *b* bold
-	syn match asciidoctorBold /\%(^\|[[:punct:][:space:]]\@<=\)\*[^* ]\*\%([[:punct:][:space:]]\@=\|$\)/ contains=@Spell
-	syn match asciidoctorBold /\*\*\S.\{-}\*\*/ contains=@Spell
+    syn match asciidoctorBold /\%(^\|[[:punct:][:space:]]\@<=\)\*[^* ].\{-}\S\*\%([[:punct:][:space:]]\@=\|$\)/ contains=@Spell
+    " single char *b* bold
+    syn match asciidoctorBold /\%(^\|[[:punct:][:space:]]\@<=\)\*[^* ]\*\%([[:punct:][:space:]]\@=\|$\)/ contains=@Spell
+    syn match asciidoctorBold /\*\*\S.\{-}\*\*/ contains=@Spell
 
-	syn match asciidoctorItalic /\%(^\|[[:punct:][:space:]]\@<=\)_[^_ ].\{-}\S_\%([[:punct:][:space:]]\@=\|$\)/ contains=@Spell
-	" single char _b_ italic
-	syn match asciidoctorItalic /\%(^\|[[:punct:][:space:]]\@<=\)_[^_ ]_\%([[:punct:][:space:]]\@=\|$\)/ contains=@Spell
-	syn match asciidoctorItalic /__\S.\{-}__/ contains=@Spell
+    syn match asciidoctorItalic /\%(^\|[[:punct:][:space:]]\@<=\)_[^_ ].\{-}\S_\%([[:punct:][:space:]]\@=\|$\)/ contains=@Spell
+    " single char _b_ italic
+    syn match asciidoctorItalic /\%(^\|[[:punct:][:space:]]\@<=\)_[^_ ]_\%([[:punct:][:space:]]\@=\|$\)/ contains=@Spell
+    syn match asciidoctorItalic /__\S.\{-}__/ contains=@Spell
 
-	syn match asciidoctorBoldItalic /\%(^\|[[:punct:][:space:]]\@<=\)\*_[^*_ ].\{-}\S_\*\%([[:punct:][:space:]]\@=\|$\)/ contains=@Spell
-	" single char *_b_* bold+italic
-	syn match asciidoctorBoldItalic /\%(^\|[[:punct:][:space:]]\@<=\)\*_[^*_ ]_\*\%([[:punct:][:space:]]\@=\|$\)/ contains=@Spell
-	syn match asciidoctorBoldItalic /\*\*_\S.\{-}_\*\*/ contains=@Spell
+    syn match asciidoctorBoldItalic /\%(^\|[[:punct:][:space:]]\@<=\)\*_[^*_ ].\{-}\S_\*\%([[:punct:][:space:]]\@=\|$\)/ contains=@Spell
+    " single char *_b_* bold+italic
+    syn match asciidoctorBoldItalic /\%(^\|[[:punct:][:space:]]\@<=\)\*_[^*_ ]_\*\%([[:punct:][:space:]]\@=\|$\)/ contains=@Spell
+    syn match asciidoctorBoldItalic /\*\*_\S.\{-}_\*\*/ contains=@Spell
 
-	syn match asciidoctorCode /\%(^\|[[:punct:][:space:]]\@<=\)`[^` ].\{-}\S`\%([[:punct:][:space:]]\@=\|$\)/
-	" single char `c` code
-	syn match asciidoctorCode /\%(^\|[[:punct:][:space:]]\@<=\)`[^` ]`\%([[:punct:][:space:]]\@=\|$\)/
-	syn match asciidoctorCode /``.\{-}``/
+    syn match asciidoctorCode /\%(^\|[[:punct:][:space:]]\@<=\)`[^` ].\{-}\S`\%([[:punct:][:space:]]\@=\|$\)/
+    " single char `c` code
+    syn match asciidoctorCode /\%(^\|[[:punct:][:space:]]\@<=\)`[^` ]`\%([[:punct:][:space:]]\@=\|$\)/
+    syn match asciidoctorCode /``.\{-}``/
 endif
 
 syn match asciidoctorListMarker "^\s*\(-\|\*\+\|\.\+\)\%(\s\+\[[Xx ]\]\+\s*\)\?\%(\s\+\S\)\@="
@@ -149,8 +149,8 @@ syn match asciidoctorCaption "^\.[^.[:space:]].*$" contains=@asciidoctorInline,@
 syn match asciidoctorBlockOptions "^\[.\{-}\]\s*$"
 
 if get(g:, 'asciidoctor_syntax_indented', 1)
-	syn match asciidoctorPlus      '^+\n\s' contained
-	syn match asciidoctorIndented  '^+\?\n\%(\s\+\(-\|[*.]\+\|\d\+\.\|\a\.\)\s\)\@!\(\s.*\n\)\+' contains=asciidoctorPlus
+    syn match asciidoctorPlus      '^+\n\s' contained
+    syn match asciidoctorIndented  '^+\?\n\%(\s\+\(-\|[*.]\+\|\d\+\.\|\a\.\)\s\)\@!\(\s.*\n\)\+' contains=asciidoctorPlus
 endif
 
 syn match asciidoctorInlineAnchor "\[\[.\{-}\]\]"
@@ -169,43 +169,43 @@ syn region asciidoctorSourceBlock matchgroup=asciidoctorBlock start="^\[source\%
 " Source highlighting with programming languages
 if main_syntax ==# 'asciidoctor'
 
-	"" Default :source-language: is set up
-	"" b:asciidoctor_source_language should be set up in ftplugin -- reading
-	"" first 20(?) rows of a file
-	" :source-language: python
-	"[source]
-	" for i in ...
-	"
-	if get(b:, "asciidoctor_source_language", "NONE") != "NONE"
-		exe 'syn region asciidoctorSourceHighlightDefault'.b:asciidoctor_source_language.' matchgroup=asciidoctorBlock start="^\[source\]\s*$" end="^\s*$" keepend contains=asciidoctorCallout,@asciidoctorSourceHighlight'.b:asciidoctor_source_language
-	endif
+    "" Default :source-language: is set up
+    "" b:asciidoctor_source_language should be set up in ftplugin -- reading
+    "" first 20(?) rows of a file
+    " :source-language: python
+    "[source]
+    " for i in ...
+    "
+    if get(b:, "asciidoctor_source_language", "NONE") != "NONE"
+        exe 'syn region asciidoctorSourceHighlightDefault'.b:asciidoctor_source_language.' matchgroup=asciidoctorBlock start="^\[source\]\s*$" end="^\s*$" keepend contains=asciidoctorCallout,@asciidoctorSourceHighlight'.b:asciidoctor_source_language
+    endif
 
-	" if :source-language: is set up
-	" :source-language: python
-	"[source]
-	"----
-	" for i in ...
-	"----
-	if get(b:, "asciidoctor_source_language", "NONE") != "NONE"
-		exe 'syn region asciidoctorSourceHighlightDefault'.b:asciidoctor_source_language.' matchgroup=asciidoctorBlock start="^\[source\]\s*\n\z(--\+\)\s*$" end="^.*\n\zs\z1\s*$" keepend contains=asciidoctorCallout,@asciidoctorSourceHighlight'.b:asciidoctor_source_language
-	endif
+    " if :source-language: is set up
+    " :source-language: python
+    "[source]
+    "----
+    " for i in ...
+    "----
+    if get(b:, "asciidoctor_source_language", "NONE") != "NONE"
+        exe 'syn region asciidoctorSourceHighlightDefault'.b:asciidoctor_source_language.' matchgroup=asciidoctorBlock start="^\[source\]\s*\n\z(--\+\)\s*$" end="^.*\n\zs\z1\s*$" keepend contains=asciidoctorCallout,@asciidoctorSourceHighlight'.b:asciidoctor_source_language
+    endif
 
-	"" Other languages
-	for s:type in g:asciidoctor_fenced_languages
-		"[source,lang]
-		" for i in ...
-		"
-		exe 'syn region asciidoctorSourceHighlight'.s:type.' matchgroup=asciidoctorBlock start="^\[\%(source\)\?,\s*'.s:type.'\%(,.*\)*\]\s*$" end="^\s*$" keepend contains=asciidoctorCallout,@asciidoctorSourceHighlight'.s:type
+    "" Other languages
+    for s:type in g:asciidoctor_fenced_languages
+        "[source,lang]
+        " for i in ...
+        "
+        exe 'syn region asciidoctorSourceHighlight'.s:type.' matchgroup=asciidoctorBlock start="^\[\%(source\)\?,\s*'.s:type.'\%(,.*\)*\]\s*$" end="^\s*$" keepend contains=asciidoctorCallout,@asciidoctorSourceHighlight'.s:type
 
-		"[source,lang]
-		"----
-		"for i in ...
-		"----
-		exe 'syn region asciidoctorSourceHighlight'.s:type.' matchgroup=asciidoctorBlock start="^\[\%(source\)\?,\s*'.s:type.'\%(,.*\)*\]\s*\n\z(--\+\)\s*$" end="^.*\n\zs\z1\s*$" keepend contains=asciidoctorCallout,@asciidoctorSourceHighlight'.s:type
+        "[source,lang]
+        "----
+        "for i in ...
+        "----
+        exe 'syn region asciidoctorSourceHighlight'.s:type.' matchgroup=asciidoctorBlock start="^\[\%(source\)\?,\s*'.s:type.'\%(,.*\)*\]\s*\n\z(--\+\)\s*$" end="^.*\n\zs\z1\s*$" keepend contains=asciidoctorCallout,@asciidoctorSourceHighlight'.s:type
 
 
-	endfor
-	unlet! s:type
+    endfor
+    unlet! s:type
 endif
 
 " Contents of plantuml blocks should be highlighted with plantuml syntax...
@@ -275,10 +275,10 @@ hi asciidoctorBold                           gui=bold cterm=bold
 hi asciidoctorItalic                         gui=italic cterm=italic
 hi asciidoctorBoldItalic                     gui=bold,italic cterm=bold,italic
 augroup asciidoctor_highlight_create
-	au!
-	autocmd ColorScheme * :hi asciidoctorBold gui=bold cterm=bold
-	autocmd ColorScheme * :hi asciidoctorItalic gui=italic cterm=italic
-	autocmd ColorScheme * :hi asciidoctorBoldItalic gui=bold,italic cterm=bold,italic
+    au!
+    autocmd ColorScheme * :hi asciidoctorBold gui=bold cterm=bold
+    autocmd ColorScheme * :hi asciidoctorItalic gui=italic cterm=italic
+    autocmd ColorScheme * :hi asciidoctorBoldItalic gui=bold,italic cterm=bold,italic
 augroup end
 hi def link asciidoctorDefList               asciidoctorBold
 hi def link asciidoctorCaption               Statement
@@ -289,5 +289,5 @@ hi def link asciidoctorAdmonition            asciidoctorBold
 
 let b:current_syntax = "asciidoctor"
 if main_syntax ==# 'asciidoctor'
-	unlet main_syntax
+    unlet main_syntax
 endif

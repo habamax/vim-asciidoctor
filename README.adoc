@@ -159,19 +159,19 @@ let g:asciidoctor_fenced_languages = ['python', 'c', 'javascript']
 
 " Function to create buffer local mappings
 fun! AsciidoctorMappings()
-	nnoremap <buffer> <leader>oo :AsciidoctorOpenRAW<CR>
-	nnoremap <buffer> <leader>op :AsciidoctorOpenPDF<CR>
-	nnoremap <buffer> <leader>oh :AsciidoctorOpenHTML<CR>
-	nnoremap <buffer> <leader>ox :AsciidoctorOpenDOCX<CR>
-	nnoremap <buffer> <leader>ch :Asciidoctor2HTML<CR>
-	nnoremap <buffer> <leader>cp :Asciidoctor2PDF<CR>
-	nnoremap <buffer> <leader>cx :Asciidoctor2DOCX<CR>
+    nnoremap <buffer> <leader>oo :AsciidoctorOpenRAW<CR>
+    nnoremap <buffer> <leader>op :AsciidoctorOpenPDF<CR>
+    nnoremap <buffer> <leader>oh :AsciidoctorOpenHTML<CR>
+    nnoremap <buffer> <leader>ox :AsciidoctorOpenDOCX<CR>
+    nnoremap <buffer> <leader>ch :Asciidoctor2HTML<CR>
+    nnoremap <buffer> <leader>cp :Asciidoctor2PDF<CR>
+    nnoremap <buffer> <leader>cx :Asciidoctor2DOCX<CR>
 endfun
 
 " Call AsciidoctorMappings for all `*.adoc` and `*.asciidoc` files
 augroup asciidoctor
-	au!
-	au BufEnter *.adoc,*.asciidoc call AsciidoctorMappings()
+    au!
+    au BufEnter *.adoc,*.asciidoc call AsciidoctorMappings()
 augroup END
 
 --------
@@ -348,7 +348,7 @@ Add following snippet to your vim config to generate an HTML file upon saving:
 [source,vim]
 --------
 augroup ON_ASCIIDOCTOR_SAVE | au!
-	au BufWritePost *.adoc :Asciidoctor2HTML
+    au BufWritePost *.adoc :Asciidoctor2HTML
 augroup end
 --------
 
@@ -357,18 +357,18 @@ If you want to add text files to the mix you can have something similar to:
 [source,vim]
 --------
 func! ConvertAsciidoctorToHTML()
-	" Text file with asciidoctor contents?
-	if &filetype == 'text' && getline(1) =~ '^= .*$'
-		" text files have no asciidoctor commands
-		set filetype=asciidoctor
-		Asciidoctor2HTML
-		set filetype=text
-	elseif &filetype == 'asciidoctor'
-		Asciidoctor2HTML
-	endif
+    " Text file with asciidoctor contents?
+    if &filetype == 'text' && getline(1) =~ '^= .*$'
+        " text files have no asciidoctor commands
+        set filetype=asciidoctor
+        Asciidoctor2HTML
+        set filetype=text
+    elseif &filetype == 'asciidoctor'
+        Asciidoctor2HTML
+    endif
 endfunc
 augroup ON_ASCIIDOCTOR_SAVE | au!
-	au BufWritePost *.adoc,*.txt call ConvertAsciidoctorToHTML()
+    au BufWritePost *.adoc,*.txt call ConvertAsciidoctorToHTML()
 augroup end
 --------
 
@@ -433,19 +433,19 @@ touching it, add the following to you vimrc:
 [source,vim]
 --------
 func! AsciidoctorHighlight()
-	" Highlight asciidoctor syntax with colors you like.
-	" For solarized8 colorscheme
-	if get(g:, "colors_name", "default") == "solarized8"
-		hi asciidoctorTitle guifg=#ff0000 gui=bold ctermfg=red cterm=bold
-		hi asciidoctorOption guifg=#00ff00 ctermfg=green
-		hi link asciidoctorH1 Directory
-	elseif get(g:, "colors_name", "default") == "default"
-		hi link asciidoctorIndented PreProc
-	endif
+    " Highlight asciidoctor syntax with colors you like.
+    " For solarized8 colorscheme
+    if get(g:, "colors_name", "default") == "solarized8"
+        hi asciidoctorTitle guifg=#ff0000 gui=bold ctermfg=red cterm=bold
+        hi asciidoctorOption guifg=#00ff00 ctermfg=green
+        hi link asciidoctorH1 Directory
+    elseif get(g:, "colors_name", "default") == "default"
+        hi link asciidoctorIndented PreProc
+    endif
 endfunc
 augroup ASCIIDOCTOR_COLORS | au!
-	au Colorscheme * call AsciidoctorHighlight()
-	au BufNew,BufRead *.adoc call AsciidoctorHighlight()
+    au Colorscheme * call AsciidoctorHighlight()
+    au BufNew,BufRead *.adoc call AsciidoctorHighlight()
 augroup end
 --------
 
@@ -526,13 +526,13 @@ You can also use following mappings:
 --------
 " Underline current line
 func! s:underline(chars)
-	let nextnr = line('.') + 1
-	let underline = repeat(a:chars[0], strchars(getline('.')))
-	if index(a:chars, trim(getline(nextnr))[0]) != -1
-		call setline(nextnr, underline)
-	else
-		call append('.', underline)
-	endif
+    let nextnr = line('.') + 1
+    let underline = repeat(a:chars[0], strchars(getline('.')))
+    if index(a:chars, trim(getline(nextnr))[0]) != -1
+        call setline(nextnr, underline)
+    else
+        call append('.', underline)
+    endif
 endfunc
 nnoremap <leader>- :call <SID>underline(['-', '=', '~', '^', '+'])<CR>
 nnoremap <leader>= :call <SID>underline(['=', '-', '~', '^', '+'])<CR>
@@ -546,19 +546,19 @@ nnoremap <leader>+ :call <SID>underline(['+', '=', '-', '~', '^'])<CR>
 
 Links with additional attributes are not concealed to description:
 
-	https://discuss.asciidoctor.org[Discuss Asciidoctor,role=external,window=_blank]
-	https://discuss.asciidoctor.org[Discuss Asciidoctor^]
-	https://example.org["Google, Yahoo, Bing^",role=teal]
+    https://discuss.asciidoctor.org[Discuss Asciidoctor,role=external,window=_blank]
+    https://discuss.asciidoctor.org[Discuss Asciidoctor^]
+    https://example.org["Google, Yahoo, Bing^",role=teal]
 
 With `set conceallevel=3` looks like:
 
-	Discuss Asciidoctor,role=external,window=_blank
-	Discuss Asciidoctor^
-	"Google, Yahoo, Bing^",role=teal
+    Discuss Asciidoctor,role=external,window=_blank
+    Discuss Asciidoctor^
+    "Google, Yahoo, Bing^",role=teal
 
 Although it should look like:
 
-	Discuss Asciidoctor
-	Discuss Asciidoctor
-	Google, Yahoo, Bing
+    Discuss Asciidoctor
+    Discuss Asciidoctor
+    Google, Yahoo, Bing
 
