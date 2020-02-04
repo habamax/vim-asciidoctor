@@ -249,8 +249,8 @@ hi def link asciidoctorPageBreak             Delimiter
 hi def link asciidoctorCallout               Delimiter
 hi def link asciidoctorCalloutDesc           Delimiter
 
-hi def link asciidoctorListingBlock          asciidoctorIndented
-hi def link asciidoctorLiteralBlock          asciidoctorIndented
+hi def link asciidoctorListingBlock          Comment
+hi def link asciidoctorLiteralBlock          Comment
 
 hi def link asciidoctorFile                  Underlined
 hi def link asciidoctorUrl                   Underlined
