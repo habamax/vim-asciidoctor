@@ -24,20 +24,19 @@ if get(g:, 'asciidoctor_pandoc_executable', '') == ''
     let g:asciidoctor_pandoc_executable = "pandoc"
 endif
 
-let s:make_docbook = g:asciidoctor_executable." ".s:extensions.
-            \" -a docdate=".strftime("%Y-%m-%d").
-            \" -a doctime=".strftime("%T").
-            \" -b docbook".
-            \" ".shellescape(expand("%:p"))
+let s:make_docbook = g:asciidoctor_executable." ".s:extensions
+            \. " -a docdate=".strftime("%Y-%m-%d")
+            \. " -a doctime=".strftime("%T")
+            \. " -b docbook"
+            \. " ".shellescape(expand("%:p"))
 
-let s:make_docx = g:asciidoctor_pandoc_executable.
-            \" -f docbook -t docx".
-            \" -o ".expand("%:p:r").".docx".
-            \" ".expand("%:p:r").".xml"
+let s:make_docx = g:asciidoctor_pandoc_executable
+            \. " -f docbook -t docx"
+            \. " -o " . shellescape(expand("%:p:r").".docx")
+            \. " " . shellescape(expand("%:p:r").".xml")
 
 let s:cd = "cd ".expand("%:p:h")
 let &l:makeprg = s:make_docbook . " && " . s:cd ." && ". s:make_docx
 
 let &cpo = s:keepcpo
 unlet s:keepcpo
-

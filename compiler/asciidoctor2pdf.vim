@@ -55,4 +55,3 @@ let &l:makeprg = g:asciidoctor_pdf_executable . " " . s:extensions
 
 let &cpo = s:keepcpo
 unlet s:keepcpo
-
