@@ -35,7 +35,7 @@ let s:make_docx = g:asciidoctor_pandoc_executable
             \. " -o " . shellescape(expand("%:p:r").".docx")
             \. " " . shellescape(expand("%:p:r").".xml")
 
-let s:cd = "cd ".expand("%:p:h")
+let s:cd = "cd ".shellescape(expand("%:p:h"))
 let &l:makeprg = s:make_docbook . " && " . s:cd ." && ". s:make_docx
 
 let &cpo = s:keepcpo
