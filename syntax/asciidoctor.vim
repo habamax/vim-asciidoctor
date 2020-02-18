@@ -29,7 +29,7 @@ if globpath(&rtp, "syntax/plantuml.vim") != ''
 endif
 
 " Check :h syn-sync-fourth
-syn sync minlines=100
+syn sync maxlines=100
 
 syn case ignore
 
