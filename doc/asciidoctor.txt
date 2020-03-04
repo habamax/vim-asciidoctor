@@ -91,6 +91,29 @@ one needs settings to set.
   let g:asciidoctor_pandoc_executable = '~/bin/pandoc'
 
 
+*g:asciidoctor_pandoc_data_dir*       Set --data-dir for pandoc.
+                                    Default: ''
+  Example: 
+
+  let g:asciidoctor_pandoc_data_dir = '~/docs/.pandoc'
+
+
+*g:asciidoctor_pandoc_reference_doc*  Set --reference-doc for pandoc.
+                                    What docx file to use as a reference
+                                    document (use styles defined there)
+                                    Default: ''
+  Example: 
+
+  let g:asciidoctor_pandoc_referenc_doc = 'custom-reference.docx'
+
+
+*g:asciidoctor_pandoc_other_params*   Set additional parameteres for pandoc.
+                                    Default: ''
+  Example: 
+
+  let g:asciidoctor_pandoc_other_params = '--toc'
+
+
 *g:asciidoctor_folding*               Fold sections (headers).
                                     Default: 0
   Example: 

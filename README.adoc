@@ -117,6 +117,20 @@ let g:asciidoctor_pdf_fonts_path = '~/docs/AsciiDocThemes/fonts'
 " using `pandoc`.
 let g:asciidoctor_pandoc_executable = 'pandoc'
 
+"" --data-dir
+let g:asciidoctor_pandoc_data_dir = '~/docs/.pandoc'
+
+" Other parameters you want to feed pandoc
+let g:asciidoctor_pandoc_other_params = '--toc'
+
+" Reference document to reuse styles
+" If not set up asciidoctor looks for the theme name
+" :pdf-style: mytheme
+" in the first 30 lines and generate reference-doc filename:
+" g:asciidoctor_pandoc_data_dir + mytheme + '-reference.docx'
+" for example: ~/docs/.pandoc/mytheme-reference.docx
+let g:asciidoctor_pandoc_reference_doc = 'custom-reference.docx'
+
 --------
 
 .folding

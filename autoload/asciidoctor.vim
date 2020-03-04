@@ -168,3 +168,20 @@ func! s:read_all_bibtex()
     endfor
     return citations
 endfunc
+
+
+
+"" Check header (30 lines) of the file for theme name
+" return theme name
+func! asciidoctor#detect_pdf_theme()
+    let result = ''
+    for line in getline(1, 30)
+        let m = matchlist(line, '^:pdf-style: \(.*\)$')
+        if !empty(m)
+            let  result = trim(m[1])
+            if result != ''
+                return result
+            endif
+        endif
+    endfor
+endfunc
