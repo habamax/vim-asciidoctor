@@ -155,12 +155,19 @@ endif
 
 syn match asciidoctorInlineAnchor "\[\[.\{-}\]\]"
 
+" Open block
+" --
+" Should be highlighted as usual asciidoctor
+" Except (at least) headings
+" --
+syn region asciidoctorOpenBlock matchgroup=asciidoctorBlock start="^--\s*$" end="^--\s*$" contains=@asciidoctorInnerBlock,@asciidoctorInline,@Spell,asciidoctorComment,asciidoctorIndented
+
 " Listing block
 " --
 " block that will not be
 " highlighted
 " --
-syn region asciidoctorListingBlock matchgroup=asciidoctorBlock start="^\z(--\+\)\s*$" end="^\z1\s*$" contains=CONTAINED,asciidoctorTableCell,@asciidoctorInline,@asciidoctorUrls
+syn region asciidoctorListingBlock matchgroup=asciidoctorBlock start="^----\+\s*$" end="^----\s*$" contains=CONTAINED,asciidoctorTableCell,@asciidoctorInline,@asciidoctorUrls
 
 " General [source] block
 syn region asciidoctorSourceBlock matchgroup=asciidoctorBlock start="^\[source\%(,.*\)*\]\s*$" end="^\s*$" keepend contains=CONTAINED,asciidoctorTableCell,@asciidoctorInline,@asciidoctorUrls
