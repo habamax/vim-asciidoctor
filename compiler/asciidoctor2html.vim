@@ -16,9 +16,7 @@ else
     let s:extensions = "-r ".join(g:asciidoctor_extensions, ' -r ')
 endif
 
-if get(g:, 'asciidoctor_executable', '') == ''
-    let g:asciidoctor_executable = "asciidoctor"
-endif
+let g:asciidoctor_executable = get(g:, 'asciidoctor_executable', 'asciidoctor')
 
 if get(g:, 'asciidoctor_css_path', '') == ''
     let s:css_path = ""
@@ -32,7 +30,12 @@ else
     let s:css_name = '-a stylesheet='.shellescape(expand(g:asciidoctor_css))
 endif
 
-let &l:makeprg = g:asciidoctor_executable." ".s:extensions." -a docdate=".strftime("%Y-%m-%d")." -a doctime=".strftime("%T")." ".s:css_path." ".s:css_name." ".shellescape(expand("%:p"))
+let &l:makeprg = g:asciidoctor_executable . " " . s:extensions
+            \. " -a docdate=".strftime("%Y-%m-%d")
+            \. " -a doctime=".strftime("%T") . " "
+            \. s:css_path . " "
+            \. s:css_name . " "
+            \. shellescape(expand("%:p"))
 
 let &cpo = s:keepcpo
 unlet s:keepcpo
