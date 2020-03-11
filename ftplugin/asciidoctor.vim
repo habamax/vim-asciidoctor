@@ -56,6 +56,8 @@ setlocal formatlistpat+=\\\|
 setlocal formatlistpat+=^\\s*-\\s\\+
 setlocal formatlistpat+=\\\|
 setlocal formatlistpat+=^\\s*[*]\\+\\s\\+
+setlocal formatlistpat+=\\\|
+setlocal formatlistpat+=^\\s*[.]\\+\\s\\+
 
 function! AsciidoctorFold() "{{{
     let line = getline(v:lnum)
