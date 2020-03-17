@@ -105,13 +105,14 @@ function! AsciidoctorFold() "{{{
 
     " Fold options
     if s:asciidoctor_fold_options
-        if (line =~ '^:[[:alnum:]-!]\{-}:.*$')
+        let opt_regex = '^:[[:alnum:]-!]\{-}:.*$'
+        if (line =~ opt_regex)
             let prevline = getline(v:lnum - 1)
-            if (prevline !~ '^:[[:alnum:]-!]\{-}:.*$')
+            let nextline = getline(v:lnum + 1)
+            if (prevline !~ opt_regex) && (nextline =~ opt_regex)
                 return "a1"
             endif
-            let nextline = getline(v:lnum + 1)
-            if (nextline !~ '^:[[:alnum:]-!]\{-}:.*$')
+            if (nextline !~ opt_regex) && (prevline =~ opt_regex)
                 return "s1"
             endif
         endif
