@@ -68,9 +68,9 @@ syn match asciidoctorAttribute "{[[:alpha:]][[:alnum:]-_:]\{-}}"
 
 " a Macro is a generic pattern that has no default highlight, but it could contain a link/image/url/xref/mailto/etc, and naked URLs as well
 
-syn match asciidoctorMacro "\<\l\{-1,}://\S\+" contains=asciidoctorUrlAuto
-syn match asciidoctorMacro "\<\w.\{-}@\w\+\.\w\+" contains=asciidoctorEmailAuto
-syn match asciidoctorMacro "\<\l\{-1,}::\?\S*\[.\{-}\]"  contains=asciidoctorUrl,asciidoctorLink,asciidoctorEmail
+syn match asciidoctorMacro "\<\l\{-1,}://\S\+" contains=asciidoctorUrlAuto,asciidoctorCode
+syn match asciidoctorMacro "\<\w\S\{-}@\w\+\.\w\+" contains=asciidoctorEmailAuto,asciidoctorCode
+syn match asciidoctorMacro "\<\l\{-1,}::\?\S*\[.\{-}\]" contains=asciidoctorUrl,asciidoctorLink,asciidoctorEmail,asciidoctorCode
 
 syn match asciidoctorFile "\f\+" contained
 syn match asciidoctorUrlDescription "\[[^]]\{-}\]\%(\s\|$\)" contained containedin=asciidoctorLink
