@@ -42,10 +42,6 @@ syn cluster asciidoctorInnerBlock contains=asciidoctorBlockquote,asciidoctorList
 syn cluster asciidoctorInline contains=asciidoctorItalic,asciidoctorBold,asciidoctorCode,asciidoctorBoldItalic,asciidoctorUrl,asciidoctorUrlAuto,asciidoctorLink,asciidoctorAnchor,asciidoctorMacro,asciidoctorAttribute,asciidoctorInlineAnchor
 syn cluster asciidoctorUrls contains=asciidoctorUrlDescription,asciidoctorFile,asciidoctorUrlAuto,asciidoctorEmailAuto
 
-" really hard to use them together with all the rest 'blocks'
-" syn match asciidoctorMarkdownH1 "^\s*[[:alpha:]].\+\n=\+$" contains=@asciidoctorInline
-" syn match asciidoctorMarkdownH2 "^\s*[[:alpha:]].\+\n-\+$" contains=@asciidoctorInline
-
 syn match asciidoctorTitle "^=\s.*$" contains=@asciidoctorInline,@Spell
 syn region asciidoctorH1 start="^==\s" end="$" oneline keepend contains=@asciidoctorInline,@Spell
 syn region asciidoctorH2 start="^===\s" end="$" oneline keepend contains=@asciidoctorInline,@Spell
