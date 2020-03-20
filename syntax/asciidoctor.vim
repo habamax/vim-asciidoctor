@@ -47,14 +47,14 @@ syn cluster asciidoctorUrls contains=asciidoctorUrlDescription,asciidoctorFile,a
 " syn match asciidoctorMarkdownH2 "^\s*[[:alpha:]].\+\n-\+$" contains=@asciidoctorInline
 
 syn match asciidoctorTitle "^=\s.*$" contains=@asciidoctorInline,@Spell
-syn region asciidoctorH1 start="^==\s" end="$" oneline contains=@asciidoctorInline,@Spell
-syn region asciidoctorH2 start="^===\s" end="$" oneline contains=@asciidoctorInline,@Spell
-syn region asciidoctorH3 start="^====\s" end="$" oneline contains=@asciidoctorInline,@Spell
-syn region asciidoctorH4 start="^=====\s" end="$" oneline contains=@asciidoctorInline,@Spell
-syn region asciidoctorH5 start="^======\s" end="$" oneline contains=@asciidoctorInline,@Spell
-syn region asciidoctorH6 start="^=======\s" end="$" oneline contains=@asciidoctorInline,@Spell
+syn region asciidoctorH1 start="^==\s" end="$" oneline keepend contains=@asciidoctorInline,@Spell
+syn region asciidoctorH2 start="^===\s" end="$" oneline keepend contains=@asciidoctorInline,@Spell
+syn region asciidoctorH3 start="^====\s" end="$" oneline keepend contains=@asciidoctorInline,@Spell
+syn region asciidoctorH4 start="^=====\s" end="$" oneline keepend contains=@asciidoctorInline,@Spell
+syn region asciidoctorH5 start="^======\s" end="$" oneline keepend contains=@asciidoctorInline,@Spell
+syn region asciidoctorH6 start="^=======\s" end="$" oneline keepend contains=@asciidoctorInline,@Spell
 
-syn match asciidoctorSetextHeader '^\%(\n\|\%^\)\k.*\n\%(==\+\|\-\-\+\|\~\~\+\|\^\^\+\|++\+\)$'   contains=@Spell
+syn match asciidoctorSetextHeader '^\%(\n\|\%^\)\k.*\n\%(==\+\|\-\-\+\|\~\~\+\|\^\^\+\|++\+\)$' contains=@Spell
 
 syn sync clear
 syn sync match syncH1 grouphere NONE "^==\s.*$"
