@@ -7,6 +7,13 @@ endif
 let g:loaded_asciidoctor_autoload = 1
 
 
+"" Trim string
+" Unfortunately built-in trim is not widely available yet
+" return trimmed string
+func! s:trim(str) abort
+    return substitute(value, '^\s*\|\s*$', '', 'g')
+endfunc
+
 "" Return name of an image directory.
 "
 " It is either 
@@ -88,7 +95,7 @@ func! asciidoctor#pasteImage() abort
 
     let res = system(cmd)
     if v:shell_error
-        echohl Error | echomsg asciidoctor#trim(res) | echohl None
+        echohl Error | echomsg s:trim(res) | echohl None
         return
     endif
 
@@ -104,9 +111,9 @@ func! asciidoctor#detect_source_language()
     for line in getline(1, 20)
         let m = matchlist(line, '^:source-language: \(.*\)$')
         if !empty(m)
-            let src_lang = asciidoctor#trim(m[1])
+            let src_lang = s:trim(m[1])
             if src_lang != ''
-                let b:asciidoctor_source_language = asciidoctor#trim(m[1])
+                let b:asciidoctor_source_language = s:trim(m[1])
                 break
             endif
         endif
@@ -178,17 +185,10 @@ func! asciidoctor#detect_pdf_theme()
     for line in getline(1, 30)
         let m = matchlist(line, '^:pdf-style: \(.*\)$')
         if !empty(m)
-            let  result = asciidoctor#trim(m[1])
+            let  result = s:trim(m[1])
             if result != ''
                 return result
             endif
         endif
     endfor
-endfunc
-
-"" Trim string
-" Unfortunately built-in trim is not widely available yet
-" return trimmed string
-func! asciidoctor#trim(str) abort
-    return substitute(value, '^\s*\|\s*$', '', 'g')
 endfunc
