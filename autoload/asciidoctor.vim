@@ -11,7 +11,7 @@ let g:loaded_asciidoctor_autoload = 1
 " Unfortunately built-in trim is not widely available yet
 " return trimmed string
 func! s:trim(str) abort
-    return substitute(value, '^\s*\|\s*$', '', 'g')
+    return substitute(a:str, '^\s*\|\s*$', '', 'g')
 endfunc
 
 "" Return name of an image directory.
