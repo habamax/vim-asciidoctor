@@ -15,6 +15,17 @@ else
     let b:undo_ftplugin = "setl cms< com< fo< flp< inex< efm< cfu<"
 endif
 
+"" Return true if vim is in WSL environment
+func! s:is_in_wsl() abort
+    if has('unix')
+        let lines = readfile("/proc/version")
+        if lines[0] =~ "Microsoft"
+            return 1
+        endif
+    endif
+    return 0
+endfunc
+
 " open files
 if get(g:, 'asciidoctor_opener', '') == ''
     if has("win32") || has("win32unix")
@@ -25,6 +36,8 @@ if get(g:, 'asciidoctor_opener', '') == ''
         endif
     elseif has("osx")
         let g:asciidoctor_opener = ":!open"
+	elseif s:is_in_wsl()
+		let g:asciidoctor_opener = ":!cmd.exe /C start"
     else
         let g:asciidoctor_opener = ":!xdg-open"
     endif
@@ -135,9 +148,9 @@ exe 'command! -buffer Asciidoctor2DOCX :compiler asciidoctor2docx | ' . s:make
 func! s:get_fname(...)
     let ext = get(a:, 1, '')
     if ext == ''
-        return expand("%:p")
+        return expand("%")
     else
-        return expand("%:p:r").ext
+        return expand("%:r").ext
     endif
 endfunc
 
