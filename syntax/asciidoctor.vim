@@ -33,6 +33,7 @@ syn sync maxlines=100
 
 syn case ignore
 
+syn match asciidoctorParagraph /^\%(\S.*\n\)\+\ze\n\|\%$/ contains=@asciidoctorMultiline
 syn match asciidoctorOption "^:[[:alnum:]!-]\{-}:"
 syn match asciidoctorListContinuation "^+\s*$"
 syn match asciidoctorPageBreak "^<<<\+\s*$"
@@ -41,6 +42,7 @@ syn cluster asciidoctorBlock contains=asciidoctorTitle,asciidoctorH1,asciidoctor
 syn cluster asciidoctorInnerBlock contains=asciidoctorBlockquote,asciidoctorListMarker,asciidoctorOrderedListMarker,asciidoctorCodeBlock,asciidoctorDefList,asciidoctorAdmonition,asciidoctorAdmonitionBlock
 syn cluster asciidoctorInline contains=asciidoctorItalic,asciidoctorBold,asciidoctorCode,asciidoctorBoldItalic,asciidoctorUrl,asciidoctorUrlAuto,asciidoctorLink,asciidoctorAnchor,asciidoctorMacro,asciidoctorAttribute,asciidoctorInlineAnchor
 syn cluster asciidoctorUrls contains=asciidoctorUrlDescription,asciidoctorFile,asciidoctorUrlAuto,asciidoctorEmailAuto
+syn cluster asciidoctorMultiline contains=asciidoctorItalicML,asciidoctorBoldML,asciidoctorBoldItalicML
 
 syn match asciidoctorTitle "^=\s.*$" contains=@asciidoctorInline,@Spell
 syn region asciidoctorH1 start="^==\s" end="$" oneline keepend contains=@asciidoctorInline,@Spell
@@ -99,6 +101,15 @@ if get(g:, 'asciidoctor_syntax_conceal', 0)
     syn region asciidoctorBoldItalic matchgroup=Conceal start=/\m\*\*_/ end=/_\*\*/ contains=@Spell concealends oneline
     syn region asciidoctorBoldItalic matchgroup=Conceal start=/\m\%(^\|[[:punct:][:space:]]\@<=\)\*_\ze[^*_ ].\{-}\S/ end=/_\*\%([[:punct:][:space:]]\@=\|$\)/ contains=@Spell concealends oneline
 
+    syn region asciidoctorBoldML matchgroup=Conceal start=/\m\*\*/ end=/\*\*\|\n\n/ contains=@Spell concealends contained
+    syn region asciidoctorBoldML matchgroup=Conceal start=/\m\%(^\|[[:punct:][:space:]]\@<=\)\*\ze[^* ].\{-}\S/ end=/\*\%([[:punct:][:space:]]\@=\|$\)\|\n\n/ contains=@Spell concealends contained
+
+    syn region asciidoctorItalicML matchgroup=Conceal start=/\m__/ end=/__\|\n\n/ contains=@Spell concealends contained
+    syn region asciidoctorItalicML matchgroup=Conceal start=/\m\%(^\|[[:punct:][:space:]]\@<=\)_\ze[^_ ].\{-}\S/ end=/_\%([[:punct:][:space:]]\@=\|$\)\|\n\n/ contains=@Spell concealends contained
+
+    syn region asciidoctorBoldItalicML matchgroup=Conceal start=/\m\*\*_/ end=/_\*\*\|\n\n/ contains=@Spell concealends contained
+    syn region asciidoctorBoldItalicML matchgroup=Conceal start=/\m\%(^\|[[:punct:][:space:]]\@<=\)\*_\ze[^*_ ].\{-}\S/ end=/_\*\%([[:punct:][:space:]]\@=\|$\)\|\n\n/ contains=@Spell concealends contained
+
     syn region asciidoctorCode matchgroup=Conceal start=/\m``/ end=/``/ contains=@Spell concealends oneline
     syn region asciidoctorCode matchgroup=Conceal start=/\m\%(^\|[[:punct:][:space:]]\@<=\)`\ze[^` ].\{-}\S/ end=/`\%([[:punct:][:space:]]\@=\|$\)/ contains=@Spell concealends oneline
 else
@@ -128,8 +139,9 @@ else
     syn match asciidoctorCode /``.\{-}``/
 endif
 
-syn match asciidoctorListMarker "^\s*\(-\|\*\+\|\.\+\)\%(\s\+\[[Xx ]\]\+\s*\)\?\%(\s\+\S\)\@="
-syn match asciidoctorOrderedListMarker "^\s*\%(\d\+\|\a\)\.\%(\s\+\S\)\@="
+syn match asciidoctorListMarker "^\s*\(-\|\*\+\|\.\+\)\%(\s\+\[[Xx ]\]\+\s*\)\?\%(\s\+\S\)\@=" nextgroup=asciidoctorListEntry
+syn match asciidoctorOrderedListMarker "^\s*\%(\d\+\|\a\)\.\%(\s\+\S\)\@=" nextgroup=asciidoctorListEntry
+syn match asciidoctorListEntry '.*' contained contains=@asciidoctorInline
 
 syn match asciidoctorDefList ".\{-}::\_s\%(\_^\n\)\?" contains=@Spell
 
@@ -278,6 +290,9 @@ hi def link asciidoctorInlineAnchor          PreProc
 hi asciidoctorBold                           gui=bold cterm=bold
 hi asciidoctorItalic                         gui=italic cterm=italic
 hi asciidoctorBoldItalic                     gui=bold,italic cterm=bold,italic
+hi link asciidoctorBoldML                    asciidoctorBold
+hi link asciidoctorItalicML                  asciidoctorItalic
+hi link asciidoctorBoldItalicML              asciidoctorBoldItalic
 augroup asciidoctor_highlight_create
     au!
     autocmd ColorScheme * :hi asciidoctorBold gui=bold cterm=bold
