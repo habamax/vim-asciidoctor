@@ -33,7 +33,7 @@ syn sync maxlines=100
 
 syn case ignore
 
-syn region asciidoctorParagraph start=/^\S/ end=/\ze\%(\n\n\|\%$\)/ contains=@asciidoctorMultiline
+syn region asciidoctorParagraph start=/^\S/ end=/\ze\%(\n\n\|\%$\)/ contains=@asciidoctorMultiline,@asciidoctorInline,@Spell
 syn match asciidoctorOption "^:[[:alnum:]!-]\{-}:"
 syn match asciidoctorListContinuation "^+\s*$"
 syn match asciidoctorPageBreak "^<<<\+\s*$"
