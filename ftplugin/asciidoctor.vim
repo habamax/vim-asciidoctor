@@ -16,7 +16,7 @@ else
 endif
 
 "" Return true if vim is in WSL environment
-func! s:is_in_wsl() abort
+func! s:is_wsl() abort
     if has('unix')
         let lines = readfile("/proc/version")
         if lines[0] =~ "Microsoft"
@@ -24,6 +24,24 @@ func! s:is_in_wsl() abort
         endif
     endif
     return 0
+endfunc
+
+"" Return Windows path from WSL
+func! s:wsl_to_windows_path(path) abort
+    if !s:is_wsl()
+        return a:path
+    endif
+
+    if !executable('wslpath')
+        return a:path
+    endif
+
+    let res = systemlist('wslpath -w ' . a:path)
+    if !empty(res)
+        return res[0]
+    else
+        return a:path
+    endif
 endfunc
 
 " open files
@@ -36,7 +54,7 @@ if get(g:, 'asciidoctor_opener', '') == ''
         endif
     elseif has("osx")
         let g:asciidoctor_opener = ":!open"
-	elseif s:is_in_wsl()
+	elseif s:is_wsl()
 		let g:asciidoctor_opener = ":!cmd.exe /C start"
     else
         let g:asciidoctor_opener = ":!xdg-open"
@@ -156,7 +174,12 @@ endfunc
 
 func! s:open_file(filename)
     if filereadable(a:filename)
-        exe g:asciidoctor_opener . ' ' . shellescape(a:filename)
+        if s:is_wsl()
+            exe g:asciidoctor_opener . ' '
+                        \ . shellescape(s:wsl_to_windows_path(a:filename))
+        else
+            exe g:asciidoctor_opener . ' ' . shellescape(a:filename)
+        endif
     else
         echom a:filename . " doesn't exist!"
     endif
