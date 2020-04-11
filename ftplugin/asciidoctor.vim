@@ -17,13 +17,7 @@ endif
 
 "" Return true if vim is in WSL environment
 func! s:is_wsl() abort
-    if has('unix')
-        let lines = readfile("/proc/version")
-        if lines[0] =~ "Microsoft"
-            return 1
-        endif
-    endif
-    return 0
+    return exists("$WSLENV")
 endfunc
 
 "" Return Windows path from WSL
