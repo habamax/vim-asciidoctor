@@ -208,7 +208,7 @@ func! asciidoctor#force_default_colors() abort
     hi! link asciidoctorH4                    Title
     hi! link asciidoctorH5                    Title
     hi! link asciidoctorH6                    Title
-    hi! link asciidoctorListMarker            Preproc
+    hi! link asciidoctorListMarker            Statement
     hi! link asciidoctorOrderedListMarker     asciidoctorListMarker
     hi! link asciidoctorListContinuation      Preproc
     hi! link asciidoctorComment               Comment
