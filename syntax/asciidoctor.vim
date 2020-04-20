@@ -243,15 +243,15 @@ hi def link asciidoctorH3                    Title
 hi def link asciidoctorH4                    Title
 hi def link asciidoctorH5                    Title
 hi def link asciidoctorH6                    Title
-hi def link asciidoctorListMarker            Delimiter
+hi def link asciidoctorListMarker            Special
 hi def link asciidoctorOrderedListMarker     asciidoctorListMarker
-hi def link asciidoctorListContinuation      Delimiter
+hi def link asciidoctorListContinuation      Special
 hi def link asciidoctorComment               Comment
 hi def link asciidoctorIndented              Comment
-hi def link asciidoctorPlus                  Delimiter
-hi def link asciidoctorPageBreak             Delimiter
-hi def link asciidoctorCallout               Delimiter
-hi def link asciidoctorCalloutDesc           Delimiter
+hi def link asciidoctorPlus                  Special
+hi def link asciidoctorPageBreak             Special
+hi def link asciidoctorCallout               Special
+hi def link asciidoctorCalloutDesc           Special
 
 hi def link asciidoctorListingBlock          Comment
 hi def link asciidoctorLiteralBlock          Comment
@@ -268,12 +268,12 @@ hi def link asciidoctorAnchor                Underlined
 hi def link asciidoctorAttribute             Identifier
 hi def link asciidoctorCode                  Constant
 hi def link asciidoctorOption                Identifier
-hi def link asciidoctorBlock                 Delimiter
-hi def link asciidoctorBlockOptions          Delimiter
-hi def link asciidoctorTableSep              Delimiter
-hi def link asciidoctorTableCell             Delimiter
-hi def link asciidoctorTableEmbed            Delimiter
-hi def link asciidoctorInlineAnchor          Delimiter
+hi def link asciidoctorBlock                 Special
+hi def link asciidoctorBlockOptions          Special
+hi def link asciidoctorTableSep              Special
+hi def link asciidoctorTableCell             Special
+hi def link asciidoctorTableEmbed            Special
+hi def link asciidoctorInlineAnchor          Special
 
 hi asciidoctorBold                           gui=bold cterm=bold
 hi asciidoctorItalic                         gui=italic cterm=italic

@@ -208,15 +208,15 @@ func! asciidoctor#force_default_colors() abort
     hi link asciidoctorH4                    Title
     hi link asciidoctorH5                    Title
     hi link asciidoctorH6                    Title
-    hi link asciidoctorListMarker            Delimiter
+    hi link asciidoctorListMarker            Special
     hi link asciidoctorOrderedListMarker     asciidoctorListMarker
-    hi link asciidoctorListContinuation      Delimiter
+    hi link asciidoctorListContinuation      Special
     hi link asciidoctorComment               Comment
     hi link asciidoctorIndented              Comment
-    hi link asciidoctorPlus                  Delimiter
-    hi link asciidoctorPageBreak             Delimiter
-    hi link asciidoctorCallout               Delimiter
-    hi link asciidoctorCalloutDesc           Delimiter
+    hi link asciidoctorPlus                  Special
+    hi link asciidoctorPageBreak             Special
+    hi link asciidoctorCallout               Special
+    hi link asciidoctorCalloutDesc           Special
 
     hi link asciidoctorListingBlock          Comment
     hi link asciidoctorLiteralBlock          Comment
@@ -233,12 +233,12 @@ func! asciidoctor#force_default_colors() abort
     hi link asciidoctorAttribute             Identifier
     hi link asciidoctorCode                  Constant
     hi link asciidoctorOption                Identifier
-    hi link asciidoctorBlock                 Delimiter
-    hi link asciidoctorBlockOptions          Delimiter
-    hi link asciidoctorTableSep              Delimiter
-    hi link asciidoctorTableCell             Delimiter
-    hi link asciidoctorTableEmbed            Delimiter
-    hi link asciidoctorInlineAnchor          Delimiter
+    hi link asciidoctorBlock                 Special
+    hi link asciidoctorBlockOptions          Special
+    hi link asciidoctorTableSep              Special
+    hi link asciidoctorTableCell             Special
+    hi link asciidoctorTableEmbed            Special
+    hi link asciidoctorInlineAnchor          Special
 
     hi link asciidoctorDefList               asciidoctorBold
     hi link asciidoctorCaption               Statement
