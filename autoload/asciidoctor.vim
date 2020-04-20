@@ -208,15 +208,15 @@ func! asciidoctor#force_default_colors() abort
     hi! link asciidoctorH4                    Title
     hi! link asciidoctorH5                    Title
     hi! link asciidoctorH6                    Title
-    hi! link asciidoctorListMarker            Special
+    hi! link asciidoctorListMarker            Preproc
     hi! link asciidoctorOrderedListMarker     asciidoctorListMarker
-    hi! link asciidoctorListContinuation      Special
+    hi! link asciidoctorListContinuation      Preproc
     hi! link asciidoctorComment               Comment
     hi! link asciidoctorIndented              Comment
-    hi! link asciidoctorPlus                  Special
-    hi! link asciidoctorPageBreak             Special
-    hi! link asciidoctorCallout               Special
-    hi! link asciidoctorCalloutDesc           Special
+    hi! link asciidoctorPlus                  Preproc
+    hi! link asciidoctorPageBreak             Preproc
+    hi! link asciidoctorCallout               Float
+    hi! link asciidoctorCalloutDesc           String
 
     hi! link asciidoctorListingBlock          Comment
     hi! link asciidoctorLiteralBlock          Comment
@@ -226,19 +226,19 @@ func! asciidoctor#force_default_colors() abort
     hi! link asciidoctorEmail                 Underlined
     hi! link asciidoctorUrlAuto               Underlined
     hi! link asciidoctorEmailAuto             Underlined
-    hi! link asciidoctorUrlDescription        Constant
+    hi! link asciidoctorUrlDescription        String
 
     hi! link asciidoctorLink                  Underlined
     hi! link asciidoctorAnchor                Underlined
-    hi! link asciidoctorAttribute             Special
+    hi! link asciidoctorAttribute             Identifier 
     hi! link asciidoctorCode                  Constant
-    hi! link asciidoctorOption                Special
-    hi! link asciidoctorBlock                 Special
-    hi! link asciidoctorBlockOptions          Special
-    hi! link asciidoctorTableSep              Special
-    hi! link asciidoctorTableCell             Special
-    hi! link asciidoctorTableEmbed            Special
-    hi! link asciidoctorInlineAnchor          Special
+    hi! link asciidoctorOption                Identifier
+    hi! link asciidoctorBlock                 Preproc
+    hi! link asciidoctorBlockOptions          Preproc
+    hi! link asciidoctorTableSep              Preproc
+    hi! link asciidoctorTableCell             Preproc
+    hi! link asciidoctorTableEmbed            Preproc
+    hi! link asciidoctorInlineAnchor          Preproc
 
     hi! link asciidoctorDefList               asciidoctorBold
     hi! link asciidoctorCaption               Statement

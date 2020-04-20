@@ -243,15 +243,15 @@ hi def link asciidoctorH3                    Title
 hi def link asciidoctorH4                    Title
 hi def link asciidoctorH5                    Title
 hi def link asciidoctorH6                    Title
-hi def link asciidoctorListMarker            Special
+hi def link asciidoctorListMarker            Statement
 hi def link asciidoctorOrderedListMarker     asciidoctorListMarker
-hi def link asciidoctorListContinuation      Special
+hi def link asciidoctorListContinuation      PreProc
 hi def link asciidoctorComment               Comment
 hi def link asciidoctorIndented              Comment
-hi def link asciidoctorPlus                  Special
-hi def link asciidoctorPageBreak             Special
-hi def link asciidoctorCallout               Special
-hi def link asciidoctorCalloutDesc           Special
+hi def link asciidoctorPlus                  PreProc
+hi def link asciidoctorPageBreak             PreProc
+hi def link asciidoctorCallout               Float
+hi def link asciidoctorCalloutDesc           String
 
 hi def link asciidoctorListingBlock          Comment
 hi def link asciidoctorLiteralBlock          Comment
@@ -261,19 +261,19 @@ hi def link asciidoctorUrl                   Underlined
 hi def link asciidoctorEmail                 Underlined
 hi def link asciidoctorUrlAuto               Underlined
 hi def link asciidoctorEmailAuto             Underlined
-hi def link asciidoctorUrlDescription        Constant
+hi def link asciidoctorUrlDescription        String
 
 hi def link asciidoctorLink                  Underlined
 hi def link asciidoctorAnchor                Underlined
-hi def link asciidoctorAttribute             Special
+hi def link asciidoctorAttribute             Identifier
 hi def link asciidoctorCode                  Constant
-hi def link asciidoctorOption                Special
-hi def link asciidoctorBlock                 Special
-hi def link asciidoctorBlockOptions          Special
-hi def link asciidoctorTableSep              Special
-hi def link asciidoctorTableCell             Special
-hi def link asciidoctorTableEmbed            Special
-hi def link asciidoctorInlineAnchor          Special
+hi def link asciidoctorOption                Identifier
+hi def link asciidoctorBlock                 PreProc
+hi def link asciidoctorBlockOptions          PreProc
+hi def link asciidoctorTableSep              PreProc
+hi def link asciidoctorTableCell             PreProc
+hi def link asciidoctorTableEmbed            PreProc
+hi def link asciidoctorInlineAnchor          PreProc
 
 hi asciidoctorBold                           gui=bold cterm=bold
 hi asciidoctorItalic                         gui=italic cterm=italic
