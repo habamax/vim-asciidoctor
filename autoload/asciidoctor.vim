@@ -230,9 +230,9 @@ func! asciidoctor#force_default_colors() abort
 
     hi! link asciidoctorLink                  Underlined
     hi! link asciidoctorAnchor                Underlined
-    hi! link asciidoctorAttribute             Identifier
+    hi! link asciidoctorAttribute             Special
     hi! link asciidoctorCode                  Constant
-    hi! link asciidoctorOption                Identifier
+    hi! link asciidoctorOption                Special
     hi! link asciidoctorBlock                 Special
     hi! link asciidoctorBlockOptions          Special
     hi! link asciidoctorTableSep              Special

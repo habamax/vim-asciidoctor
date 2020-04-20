@@ -265,9 +265,9 @@ hi def link asciidoctorUrlDescription        Constant
 
 hi def link asciidoctorLink                  Underlined
 hi def link asciidoctorAnchor                Underlined
-hi def link asciidoctorAttribute             Identifier
+hi def link asciidoctorAttribute             Special
 hi def link asciidoctorCode                  Constant
-hi def link asciidoctorOption                Identifier
+hi def link asciidoctorOption                Special
 hi def link asciidoctorBlock                 Special
 hi def link asciidoctorBlockOptions          Special
 hi def link asciidoctorTableSep              Special
