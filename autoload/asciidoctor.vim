@@ -200,47 +200,47 @@ endfunc
 " anything you end up having non-default colors.
 " Call it when there is a need to do it.
 func! asciidoctor#force_default_colors() abort
-    hi link asciidoctorTitle                 Title
-    hi link asciidoctorSetextHeader          Title
-    hi link asciidoctorH1                    Title
-    hi link asciidoctorH2                    Title
-    hi link asciidoctorH3                    Title
-    hi link asciidoctorH4                    Title
-    hi link asciidoctorH5                    Title
-    hi link asciidoctorH6                    Title
-    hi link asciidoctorListMarker            Special
-    hi link asciidoctorOrderedListMarker     asciidoctorListMarker
-    hi link asciidoctorListContinuation      Special
-    hi link asciidoctorComment               Comment
-    hi link asciidoctorIndented              Comment
-    hi link asciidoctorPlus                  Special
-    hi link asciidoctorPageBreak             Special
-    hi link asciidoctorCallout               Special
-    hi link asciidoctorCalloutDesc           Special
+    hi! link asciidoctorTitle                 Title
+    hi! link asciidoctorSetextHeader          Title
+    hi! link asciidoctorH1                    Title
+    hi! link asciidoctorH2                    Title
+    hi! link asciidoctorH3                    Title
+    hi! link asciidoctorH4                    Title
+    hi! link asciidoctorH5                    Title
+    hi! link asciidoctorH6                    Title
+    hi! link asciidoctorListMarker            Special
+    hi! link asciidoctorOrderedListMarker     asciidoctorListMarker
+    hi! link asciidoctorListContinuation      Special
+    hi! link asciidoctorComment               Comment
+    hi! link asciidoctorIndented              Comment
+    hi! link asciidoctorPlus                  Special
+    hi! link asciidoctorPageBreak             Special
+    hi! link asciidoctorCallout               Special
+    hi! link asciidoctorCalloutDesc           Special
 
-    hi link asciidoctorListingBlock          Comment
-    hi link asciidoctorLiteralBlock          Comment
+    hi! link asciidoctorListingBlock          Comment
+    hi! link asciidoctorLiteralBlock          Comment
 
-    hi link asciidoctorFile                  Underlined
-    hi link asciidoctorUrl                   Underlined
-    hi link asciidoctorEmail                 Underlined
-    hi link asciidoctorUrlAuto               Underlined
-    hi link asciidoctorEmailAuto             Underlined
-    hi link asciidoctorUrlDescription        Constant
+    hi! link asciidoctorFile                  Underlined
+    hi! link asciidoctorUrl                   Underlined
+    hi! link asciidoctorEmail                 Underlined
+    hi! link asciidoctorUrlAuto               Underlined
+    hi! link asciidoctorEmailAuto             Underlined
+    hi! link asciidoctorUrlDescription        Constant
 
-    hi link asciidoctorLink                  Underlined
-    hi link asciidoctorAnchor                Underlined
-    hi link asciidoctorAttribute             Identifier
-    hi link asciidoctorCode                  Constant
-    hi link asciidoctorOption                Identifier
-    hi link asciidoctorBlock                 Special
-    hi link asciidoctorBlockOptions          Special
-    hi link asciidoctorTableSep              Special
-    hi link asciidoctorTableCell             Special
-    hi link asciidoctorTableEmbed            Special
-    hi link asciidoctorInlineAnchor          Special
+    hi! link asciidoctorLink                  Underlined
+    hi! link asciidoctorAnchor                Underlined
+    hi! link asciidoctorAttribute             Identifier
+    hi! link asciidoctorCode                  Constant
+    hi! link asciidoctorOption                Identifier
+    hi! link asciidoctorBlock                 Special
+    hi! link asciidoctorBlockOptions          Special
+    hi! link asciidoctorTableSep              Special
+    hi! link asciidoctorTableCell             Special
+    hi! link asciidoctorTableEmbed            Special
+    hi! link asciidoctorInlineAnchor          Special
 
-    hi link asciidoctorDefList               asciidoctorBold
-    hi link asciidoctorCaption               Statement
-    hi link asciidoctorAdmonition            asciidoctorBold
+    hi! link asciidoctorDefList               asciidoctorBold
+    hi! link asciidoctorCaption               Statement
+    hi! link asciidoctorAdmonition            asciidoctorBold
 endfunc
