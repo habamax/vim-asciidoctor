@@ -233,6 +233,7 @@ syn region asciidoctorTableBlock matchgroup=asciidoctorBlock start="^,\z(===\+\)
 syn region asciidoctorTableBlock matchgroup=asciidoctorBlock start="^;\z(===\+\)\s*$" end="^;\z1\s*$" keepend
 
 syn match asciidoctorComment "^//.*$" contains=@Spell
+syn region asciidoctorComment start="^////.*$" end="^////.*$" contains=@Spell
 
 hi def link asciidoctorTitle                 Title
 hi def link asciidoctorSetextHeader          Title
