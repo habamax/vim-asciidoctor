@@ -175,11 +175,11 @@ syn region asciidoctorOpenBlock matchgroup=asciidoctorBlock start="^--\s*$" end=
 " block that will not be
 " highlighted
 " --
-syn region asciidoctorListingBlock matchgroup=asciidoctorBlock start="^----\+\s*$" end="^----\s*$" contains=CONTAINED,asciidoctorTableCell,@asciidoctorInline,@asciidoctorUrls
+syn region asciidoctorListingBlock matchgroup=asciidoctorBlock start="^----\+\s*$" end="^----\s*$" contains=CONTAINED,asciidoctorTableCell,@asciidoctorInline,@asciidoctorUrls,@asciidoctorMultiline,asciidoctorListEntry
 
 " General [source] block
-syn region asciidoctorSourceBlock matchgroup=asciidoctorBlock start="^\[source\%(,.*\)*\]\s*$" end="^\s*$" keepend contains=CONTAINED,asciidoctorTableCell,@asciidoctorInline,@asciidoctorUrls
-syn region asciidoctorSourceBlock matchgroup=asciidoctorBlock start="^\[source\%(,.*\)*\]\s*\n\z(--\+\)\s*$" end="^.*\n\zs\z1\s*$" keepend contains=CONTAINED,asciidoctorTableCell,@asciidoctorInline,@asciidoctorUrls
+syn region asciidoctorSourceBlock matchgroup=asciidoctorBlock start="^\[source\%(,.*\)*\]\s*$" end="^\s*$" keepend contains=CONTAINED,asciidoctorTableCell,@asciidoctorInline,@asciidoctorUrls,@asciidoctorMultiline,asciidoctorListEntry
+syn region asciidoctorSourceBlock matchgroup=asciidoctorBlock start="^\[source\%(,.*\)*\]\s*\n\z(--\+\)\s*$" end="^.*\n\zs\z1\s*$" keepend contains=CONTAINED,asciidoctorTableCell,@asciidoctorInline,@asciidoctorUrls,@asciidoctorMultiline,asciidoctorListEntry
 
 " Source highlighting with programming languages
 if main_syntax ==# 'asciidoctor'
@@ -231,7 +231,7 @@ syn region asciidoctorPlantumlBlock matchgroup=asciidoctorBlock start="^\[plantu
 
 " Contents of literal blocks should not be highlighted
 " TODO: make [literal] works with paragraph
-syn region asciidoctorLiteralBlock matchgroup=asciidoctorBlock start="^\z(\.\.\.\.\+\)\s*$" end="^\z1\s*$" contains=CONTAINED,@Spell,asciidoctorComment,@asciidoctorInline,@asciidoctorUrls
+syn region asciidoctorLiteralBlock matchgroup=asciidoctorBlock start="^\z(\.\.\.\.\+\)\s*$" end="^\z1\s*$" contains=CONTAINED,@Spell,asciidoctorComment,@asciidoctorInline,@asciidoctorUrls,@asciidoctorMultiline,asciidoctorListEntry
 syn region asciidoctorExampleBlock matchgroup=asciidoctorBlock start="^\z(====\+\)\s*$" end="^\z1\s*$" contains=@asciidoctorInnerBlock,@asciidoctorInline,@Spell,asciidoctorComment,asciidoctorIndented
 syn region asciidoctorSidebarBlock matchgroup=asciidoctorBlock start="^\z(\*\*\*\*\+\)\s*$" end="^\z1\s*$" contains=@asciidoctorInnerBlock,@asciidoctorInline,@Spell,asciidoctorComment,asciidoctorIndented
 syn region asciidoctorQuoteBlock   matchgroup=asciidoctorBlock start="^\z(____\+\)\s*$" end="^\z1\s*$" contains=@asciidoctorInnerBlock,@asciidoctorInline,@Spell,asciidoctorComment,asciidoctorIndented
