@@ -208,7 +208,7 @@ func! asciidoctor#force_default_colors() abort
     hi! link asciidoctorH4                    Title
     hi! link asciidoctorH5                    Title
     hi! link asciidoctorH6                    Title
-    hi! link asciidoctorListMarker            Statement
+    hi! link asciidoctorListMarker            Special
     hi! link asciidoctorOrderedListMarker     asciidoctorListMarker
     hi! link asciidoctorListContinuation      Preproc
     hi! link asciidoctorComment               Comment
@@ -239,6 +239,7 @@ func! asciidoctor#force_default_colors() abort
     hi! link asciidoctorTableCell             Preproc
     hi! link asciidoctorTableEmbed            Preproc
     hi! link asciidoctorInlineAnchor          Preproc
+    hi! link asciidoctorMacro                 Macro
 
     hi! link asciidoctorDefList               asciidoctorBold
     hi! link asciidoctorCaption               Statement

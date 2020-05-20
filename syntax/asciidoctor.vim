@@ -243,7 +243,7 @@ hi def link asciidoctorH3                    Title
 hi def link asciidoctorH4                    Title
 hi def link asciidoctorH5                    Title
 hi def link asciidoctorH6                    Title
-hi def link asciidoctorListMarker            Statement
+hi def link asciidoctorListMarker            Special
 hi def link asciidoctorOrderedListMarker     asciidoctorListMarker
 hi def link asciidoctorListContinuation      PreProc
 hi def link asciidoctorComment               Comment
@@ -274,6 +274,7 @@ hi def link asciidoctorTableSep              PreProc
 hi def link asciidoctorTableCell             PreProc
 hi def link asciidoctorTableEmbed            PreProc
 hi def link asciidoctorInlineAnchor          PreProc
+hi def link asciidoctorMacro                 Macro
 
 hi asciidoctorBold                           gui=bold cterm=bold
 hi asciidoctorItalic                         gui=italic cterm=italic
