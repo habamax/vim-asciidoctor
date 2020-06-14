@@ -22,7 +22,7 @@ let g:asciidoctor_pandoc_executable = get(g:, 'asciidoctor_pandoc_executable', '
 
 let g:asciidoctor_pandoc_data_dir = get(g:, 'asciidoctor_pandoc_data_dir', '')
 if g:asciidoctor_pandoc_data_dir != ''
-    let data_dir_param = " --data-dir=" . shellescape(expand(g:asciidoctor_pandoc_data_dir))
+    let data_dir_param = " --data-dir=" . shellescape(fnamemodify(g:asciidoctor_pandoc_data_dir, ':p:h'))
 else
     let data_dir_param = ''
 endif

@@ -27,13 +27,13 @@ endfor
 if get(g:, 'asciidoctor_pdf_themes_path', '') == '' || !get(s:, 'use_pdf_paths', 0)
     let s:pdf_themes_path = ""
 else
-    let s:pdf_themes_path = '-a pdf-stylesdir='.shellescape(expand(g:asciidoctor_pdf_themes_path))
+    let s:pdf_themes_path = '-a pdf-stylesdir='.shellescape(fnamemodify(g:asciidoctor_pdf_themes_path, ':p:h'))
 endif
 
 if get(g:, 'asciidoctor_pdf_fonts_path', '') == '' || !get(s:, 'use_pdf_paths', 0)
     let s:pdf_fonts_path = ""
 else
-    let s:pdf_fonts_path = '-a pdf-fontsdir='.shellescape(expand(g:asciidoctor_pdf_fonts_path))
+    let s:pdf_fonts_path = '-a pdf-fontsdir='.shellescape(fnamemodify(g:asciidoctor_pdf_fonts_path, ':p:h'))
 endif
 
 if get(g:, 'asciidoctor_pdf_extensions', []) == []

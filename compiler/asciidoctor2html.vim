@@ -21,13 +21,13 @@ let g:asciidoctor_executable = get(g:, 'asciidoctor_executable', 'asciidoctor')
 if get(g:, 'asciidoctor_css_path', '') == ''
     let s:css_path = ""
 else
-    let s:css_path = '-a stylesdir='.shellescape(expand(g:asciidoctor_css_path))
+    let s:css_path = '-a stylesdir='.shellescape(fnamemodify(g:asciidoctor_css_path, ":p:h"))
 endif
 
 if get(g:, 'asciidoctor_css', '') == ''
     let s:css_name = ""
 else
-    let s:css_name = '-a stylesheet='.shellescape(expand(g:asciidoctor_css))
+    let s:css_name = '-a stylesheet='.shellescape(fnamemodify(g:asciidoctor_css, ":p"))
 endif
 
 let &l:makeprg = g:asciidoctor_executable . " " . s:extensions
