@@ -27,7 +27,7 @@ endif
 if get(g:, 'asciidoctor_css', '') == ''
     let s:css_name = ""
 else
-    let s:css_name = '-a stylesheet='.shellescape(fnamemodify(g:asciidoctor_css, ":p"))
+    let s:css_name = '-a stylesheet='.shellescape(g:asciidoctor_css)
 endif
 
 let &l:makeprg = g:asciidoctor_executable . " " . s:extensions
