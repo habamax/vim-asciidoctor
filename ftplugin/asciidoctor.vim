@@ -186,16 +186,16 @@ func! s:open_url(word) abort
     " TODO: come up with better "word" supplied to the func
     " Now it is cut on spaces thus it is tricky to check for a proper
     " asciidoctor URL, like http://bla-bla.com[some desc]
-    let aURL = matchstr(a:word, '\%(http\|ftp\|irc\)s\?://\S\+\ze\[')
+    let aURL = matchstr(a:word, '\%(file\|http\|ftp\|irc\)s\?://\S\+\ze\[')
     if aURL != ""
-        exe g:asciidoctor_opener . ' ' . aURL
+        exe g:asciidoctor_opener . ' ' . escape(aURL, '#%!')
         return
     endif
 
     " Check asciidoc URL http://bla-bla.com
-    let URL = matchstr(a:word, '\%(http\|ftp\|irc\)s\?://\S\+')
+    let URL = matchstr(a:word, '\%(file\|http\|ftp\|irc\)s\?://\S\+')
     if URL != ""
-        exe g:asciidoctor_opener . ' ' . URL
+        exe g:asciidoctor_opener . ' ' . escape(URL, '#%!')
         return
     endif
 
