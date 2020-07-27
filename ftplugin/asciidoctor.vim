@@ -179,6 +179,37 @@ func! s:open_file(filename)
     endif
 endfunc
 
+"" to open URLs with gx mapping
+func! s:open_url(word) abort
+
+    " Check asciidoc URL http://bla-bla.com[desc
+    " TODO: come up with better "word" supplied to the func
+    " Now it is cut on spaces thus it is tricky to check for a proper
+    " asciidoctor URL, like http://bla-bla.com[some desc]
+    let aURL = matchstr(a:word, '\%(http\|ftp\|irc\)s\?://\S\+\ze\[')
+    if aURL != ""
+        exe g:asciidoctor_opener . ' ' . aURL
+        return
+    endif
+
+    " Check asciidoc URL http://bla-bla.com
+    let URL = matchstr(a:word, '\%(http\|ftp\|irc\)s\?://\S\+')
+    if URL != ""
+        exe g:asciidoctor_opener . ' ' . URL
+        return
+    endif
+
+    " probably path?
+    if a:word =~ '^[~.$].*'
+        exe g:asciidoctor_opener . ' ' . expand(a:word)
+        return
+    endif
+endfunc
+
+" nnoremap <silent><buffer> gx :<c-u>call <sid>open_url(expand('cWORD'))<CR>
+nnoremap <buffer> gx :<c-u>call <sid>open_url(expand('<cWORD>'))<CR>
+
+
 command! -buffer AsciidoctorOpenRAW  call s:open_file(s:get_fname())
 command! -buffer AsciidoctorOpenPDF  call s:open_file(s:get_fname(".pdf"))
 command! -buffer AsciidoctorOpenHTML call s:open_file(s:get_fname(".html"))
@@ -232,6 +263,7 @@ augroup asciidoctor_source_language
     au!
     au bufwrite *.adoc,*.asciidoc call asciidoctor#refresh_source_language_hl()
 augroup END
+
 
 "" Set completefunc
 setl completefunc=asciidoctor#complete_bibliography
