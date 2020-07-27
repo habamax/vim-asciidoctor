@@ -48,8 +48,8 @@ if get(g:, 'asciidoctor_opener', '') == ''
         endif
     elseif has("osx")
         let g:asciidoctor_opener = ":!open"
-	elseif s:is_wsl()
-		let g:asciidoctor_opener = ":silent !cmd.exe /C start"
+    elseif s:is_wsl()
+        let g:asciidoctor_opener = ":silent !cmd.exe /C start"
     else
         let g:asciidoctor_opener = ":!xdg-open"
     endif
