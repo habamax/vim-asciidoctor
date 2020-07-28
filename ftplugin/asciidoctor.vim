@@ -186,14 +186,20 @@ func! s:open_url(word) abort
     " TODO: come up with better "word" supplied to the func
     " Now it is cut on spaces thus it is tricky to check for a proper
     " asciidoctor URL, like http://bla-bla.com[some desc]
-    let aURL = matchstr(a:word, '\%(file\|http\|ftp\|irc\)s\?://\S\+\ze\[')
+    let aURL = matchstr(a:word, '\%(\%(http\|ftp\|irc\)s\?\)\|\%(file\)://\S\+\ze\[')
     if aURL != ""
         exe g:asciidoctor_opener . ' ' . escape(aURL, '#%!')
         return
     endif
 
+    let aLNK = matchstr(a:word, 'link:/*\zs\S\+\ze\[')
+    if aLNK != ""
+        exe g:asciidoctor_opener . ' ' . escape(aLNK, '#%!')
+        return
+    endif
+
     " Check asciidoc URL http://bla-bla.com
-    let URL = matchstr(a:word, '\%(file\|http\|ftp\|irc\)s\?://\S\+')
+    let URL = matchstr(a:word, '\%(\%(http\|ftp\|irc\)s\?\)\|\%(file\)://\S\+')
     if URL != ""
         exe g:asciidoctor_opener . ' ' . escape(URL, '#%!')
         return
@@ -206,8 +212,7 @@ func! s:open_url(word) abort
     endif
 endfunc
 
-" nnoremap <silent><buffer> gx :<c-u>call <sid>open_url(expand('cWORD'))<CR>
-nnoremap <buffer> gx :<c-u>call <sid>open_url(expand('<cWORD>'))<CR>
+nnoremap <silent><buffer> gx :<c-u>call <sid>open_url(expand('<cWORD>'))<CR>
 
 
 command! -buffer AsciidoctorOpenRAW  call s:open_file(s:get_fname())
