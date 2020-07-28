@@ -70,7 +70,7 @@ syn match asciidoctorMacro "\<\l\{-1,}::\?\S*\[.\{-}\]" contains=asciidoctorUrl,
 
 syn match asciidoctorFile "\f\+" contained
 syn match asciidoctorUrlDescription "\[[^]]\{-}\]\%(\s\|$\)" contained containedin=asciidoctorLink
-syn match asciidoctorUrlAuto "\%(http\|ftp\|irc\)s\?://\S\+\%(\[.\{-}\]\)\?" contained contains=asciidoctorUrl
+syn match asciidoctorUrlAuto "\%(file\|http\|ftp\|irc\)s\?://\S\+\%(\[.\{-}\]\)\?" contained contains=asciidoctorUrl
 syn match asciidoctorEmailAuto "[a-zA-Z0-9._%+-]\{-1,}@\w\+\%(\.\w\+\)\+" contained
 
 if get(g:, 'asciidoctor_syntax_conceal', 0)
@@ -78,7 +78,7 @@ if get(g:, 'asciidoctor_syntax_conceal', 0)
     syn region asciidoctorLink matchgroup=Conceal start="\%(link\|xref\|mailto\|irc\):\ze[^:].*" end="\ze\[\s*\]" concealends oneline keepend skipwhite contained nextgroup=asciidoctorUrlDescription contains=asciidoctorUrl,asciidoctorFile
 
     syn region asciidoctorLink matchgroup=Conceal start="\%(link\|xref\|mailto\|irc\):[^:].*\[\ze\%(\s*[^ ]\+\s*\)\+]\+" end="\]" concealends oneline keepend skipwhite contained
-    syn region asciidoctorUrl matchgroup=Conceal start="\%(http\|ftp\|irc\)s\?://\S\+\[\ze\%(\s*[^ ]\+\s*\)\+]\+" end="\]" concealends oneline keepend skipwhite contained
+    syn region asciidoctorUrl matchgroup=Conceal start="\%(file\|http\|ftp\|irc\)s\?://\S\+\[\ze\%(\s*[^ ]\+\s*\)\+]\+" end="\]" concealends oneline keepend skipwhite contained
 
     if get(g:, 'asciidoctor_compact_media_links', 0)
         " conceal also the address of an image/video, if the description is not empty
@@ -104,7 +104,7 @@ if get(g:, 'asciidoctor_syntax_conceal', 0)
 else
     syn region asciidoctorLink start="\%(link\|xref\|mailto\):[^:].*\ze\[" end="\[.\{-}\]" oneline keepend skipwhite contained
     syn region asciidoctorLink start="\%(video\|image\)::\?.*\ze\[" end="\[.\{-}\]" oneline keepend skipwhite contained
-    syn match asciidoctorUrl "\%(http\|ftp\|irc\)s\?://\S\+\ze\%(\[.\{-}\]\)" nextgroup=asciidoctorUrlDescription
+    syn match asciidoctorUrl "\%(file\|http\|ftp\|irc\)s\?://\S\+\ze\%(\[.\{-}\]\)" nextgroup=asciidoctorUrlDescription
     syn match asciidoctorAnchor "<<.\{-}>>"
 
     syn match asciidoctorBold /\%(^\|[[:punct:][:space:]]\@<=\)\*[^* ].\{-}\S\*\%([[:punct:][:space:]]\@=\|$\)/ contains=@Spell
