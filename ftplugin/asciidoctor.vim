@@ -180,39 +180,49 @@ func! s:open_file(filename)
 endfunc
 
 "" to open URLs with gx mapping
-func! s:open_url(word) abort
+func! s:open_url()
+
+    " by default check WORD under cursor
+    let word = expand("<cWORD>")
+
+    " But if cursor is surrounded by [   ], like for http://ya.ru[yandex search]
+    " take a cWORD from first char before [
+    let save_cursor = getcurpos()
+    let line = getline('.')
+    if searchpair('\[', '', '\]', 'b', '', line('.')) 
+        let word = expand("<cWORD>")
+    endif
+    call setpos('.', save_cursor)
 
     " Check asciidoc URL http://bla-bla.com[desc
-    " TODO: come up with better "word" supplied to the func
-    " Now it is cut on spaces thus it is tricky to check for a proper
-    " asciidoctor URL, like http://bla-bla.com[some desc]
-    let aURL = matchstr(a:word, '\%(\%(http\|ftp\|irc\)s\?\)\|\%(file\)://\S\+\ze\[')
+    let aURL = matchstr(word, '\%(\%(http\|ftp\|irc\)s\?\|file\)://\S\+\ze\[')
     if aURL != ""
         exe g:asciidoctor_opener . ' ' . escape(aURL, '#%!')
         return
     endif
 
-    let aLNK = matchstr(a:word, 'link:/*\zs\S\+\ze\[')
+    " Check asciidoc link link:http://bla-bla.com[desc
+    let aLNK = matchstr(word, 'link:/*\zs\S\+\ze\[')
     if aLNK != ""
         exe g:asciidoctor_opener . ' ' . escape(aLNK, '#%!')
         return
     endif
 
     " Check asciidoc URL http://bla-bla.com
-    let URL = matchstr(a:word, '\%(\%(http\|ftp\|irc\)s\?\)\|\%(file\)://\S\+')
+    let URL = matchstr(word, '\%(\%(http\|ftp\|irc\)s\?\|file\)://\S\+')
     if URL != ""
         exe g:asciidoctor_opener . ' ' . escape(URL, '#%!')
         return
     endif
 
     " probably path?
-    if a:word =~ '^[~.$].*'
-        exe g:asciidoctor_opener . ' ' . expand(a:word)
+    if word =~ '^[~.$].*'
+        exe g:asciidoctor_opener . ' ' . expand(word)
         return
     endif
 endfunc
 
-nnoremap <silent><buffer> gx :<c-u>call <sid>open_url(expand('<cWORD>'))<CR>
+nnoremap <silent><buffer> gx :<c-u>call <sid>open_url()<CR>
 
 
 command! -buffer AsciidoctorOpenRAW  call s:open_file(s:get_fname())
