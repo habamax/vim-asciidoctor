@@ -201,10 +201,12 @@ func! s:open_url()
         return
     endif
 
-    " Check asciidoc link link:http://bla-bla.com[desc
+    " Check asciidoc link link:file.txt[desc
     let aLNK = matchstr(word, 'link:/*\zs\S\+\ze\[')
     if aLNK != ""
-        exe g:asciidoctor_opener . ' ' . escape(aLNK, '#%!')
+        execute "lcd ". expand("%:p:h")
+        exe g:asciidoctor_opener . ' ' . fnameescape(fnamemodify(aLNK, ":p"))
+        lcd -
         return
     endif
 
