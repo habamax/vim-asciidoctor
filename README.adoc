@@ -425,7 +425,8 @@ Colorschemes can use following highlight groups to redefine default highlighting
 |asciidoctorUrlDescription       |Constant
 |asciidoctorLink                 |Underlined
 |asciidoctorAnchor               |Underlined
-|asciidoctorMacro                |PreProc
+|asciidoctorMacro                |Macro
+|asciidoctorIndexTerm            |Macro
 |asciidoctorAttribute            |Identifier
 |asciidoctorCode                 |Constant
 |asciidoctorOption               |Identifier

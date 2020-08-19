@@ -151,6 +151,9 @@ endif
 
 syn match asciidoctorInlineAnchor "\[\[.\{-}\]\]"
 
+syn match asciidoctorIndexTerm "((.\{-}))"
+syn match asciidoctorIndexTerm "(((.\{-})))"
+
 " Open block
 " --
 " Should be highlighted as usual asciidoctor
@@ -275,6 +278,7 @@ hi def link asciidoctorTableCell             PreProc
 hi def link asciidoctorTableEmbed            PreProc
 hi def link asciidoctorInlineAnchor          PreProc
 hi def link asciidoctorMacro                 Macro
+hi def link asciidoctorIndexTerm             Macro
 
 hi asciidoctorBold                           gui=bold cterm=bold
 hi asciidoctorItalic                         gui=italic cterm=italic
