@@ -120,6 +120,22 @@ one needs settings to set.
 
   let g:asciidoctor_folding = 1
 
+if enabled all sections would be foldable. Title has the same fold level as
+sections level 1, higher level sections would have higher fold level (folded
+under section level-1):
+
+ = Title
+ == Section 1
+ === Section 2
+ === Section 2
+ == Section 1
+
+When folded:
+
+ = Title -----------------------------------
+ == Section 1 ------------------------------
+ == Section 1 ------------------------------
+
 
 *g:asciidoctor_syntax_indented*       Enable highlight for indented blocks.
                                     Default: 1
@@ -144,6 +160,26 @@ one needs settings to set.
   Example: 
 
   let g:asciidoctor_fold_options = 1
+
+if enabled asciidoctor options would be foldable:
+
+    = Title
+    :author: Maxim Kim
+    :experimental:
+    :toc: left
+    :toclevels: 3
+    :icons: font
+    :autofit-option:
+    :source-highlighter: rouge
+    :rouge-style: github
+    :source-linenums-option:
+    :revdate: 2018-11-19
+    :imagesdir: images
+
+When folded:
+
+    = Title
+    :author: Maxim Kim ------------------------
 
 
 *g:asciidoctor_fenced_languages*      Highlight syntax of source blocks
