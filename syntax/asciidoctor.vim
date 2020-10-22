@@ -101,9 +101,10 @@ if get(g:, 'asciidoctor_syntax_conceal', 0)
     syn region asciidoctorCode matchgroup=Conceal start=/\m``/ end=/``/ contains=@Spell concealends oneline
     syn region asciidoctorCode matchgroup=Conceal start=/\m\%(^\|[[:punct:][:space:]]\@<=\)`\ze[^` ].\{-}\S/ end=/`\%([[:punct:][:space:]]\@=\|$\)/ contains=@Spell concealends oneline
 else
-    syn region asciidoctorLink start="\%(link\|xref\|mailto\):[^:].*\ze\[" end="\[.\{-}\]" oneline keepend skipwhite contained
-    syn region asciidoctorLink start="\%(video\|image\)::\?.*\ze\[" end="\[.\{-}\]" oneline keepend skipwhite contained
+    syn region asciidoctorLink start="\%(link\|xref\|mailto\):\zs[^:].\{-}\ze\[" end="\[.\{-}\]" oneline keepend skipwhite contained
+    syn region asciidoctorLink start="\%(video\|image\)::\?\zs.\{-}\ze\[" end="\[.\{-}\]" oneline keepend skipwhite contained
     syn match asciidoctorUrl "\%(file\|http\|ftp\|irc\)s\?://\S\+\ze\%(\[.\{-}\]\)" nextgroup=asciidoctorUrlDescription
+
     syn match asciidoctorAnchor "<<.\{-}>>"
 
     syn match asciidoctorBold /\%(^\|[[:punct:][:space:]]\@<=\)\*[^* ].\{-}\S\*\%([[:punct:][:space:]]\@=\|$\)/ contains=@Spell
