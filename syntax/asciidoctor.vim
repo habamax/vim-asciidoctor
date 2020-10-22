@@ -69,7 +69,7 @@ syn match asciidoctorMacro "\<\w\S\{-}@\w\+\.\w\+" contains=asciidoctorEmailAuto
 syn match asciidoctorMacro "\<\l\{-1,}::\?\S*\[.\{-}\]" contains=asciidoctorUrl,asciidoctorLink,asciidoctorEmail,asciidoctorCode
 
 syn match asciidoctorFile "\f\+" contained
-syn match asciidoctorUrlDescription "\[[^]]\{-}\]\%(\s\|$\)" contained containedin=asciidoctorLink
+syn match asciidoctorUrlDescription "\[[^]]\{-}\]" contained containedin=asciidoctorLink
 syn match asciidoctorUrlAuto "\%(file\|http\|ftp\|irc\)s\?://\S\+\%(\[.\{-}\]\)\?" contained contains=asciidoctorUrl
 syn match asciidoctorEmailAuto "[a-zA-Z0-9._%+-]\{-1,}@\w\+\%(\.\w\+\)\+" contained
 
