@@ -66,7 +66,7 @@ syn match asciidoctorAttribute "{[[:alpha:]][[:alnum:]-_:]\{-}}"
 
 syn match asciidoctorMacro "\<\l\{-1,}://\S\+" contains=asciidoctorUrlAuto,asciidoctorCode
 syn match asciidoctorMacro "\<\w\S\{-}@\w\+\.\w\+" contains=asciidoctorEmailAuto,asciidoctorCode
-syn match asciidoctorMacro "\<\l\{-1,}::\?\S*\[.\{-}\]" contains=asciidoctorUrl,asciidoctorLink,asciidoctorEmail,asciidoctorCode
+syn match asciidoctorMacro "\<\l\{-1,}::\?\S*\[.\{-}\]" keepend contains=asciidoctorUrl,asciidoctorLink,asciidoctorEmail,asciidoctorCode
 
 syn match asciidoctorFile "\f\+" contained
 syn match asciidoctorUrlDescription "\[[^]]\{-}\]" contained containedin=asciidoctorLink
