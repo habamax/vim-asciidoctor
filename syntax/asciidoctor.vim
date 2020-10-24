@@ -75,8 +75,9 @@ syn match asciidoctorEmailAuto "[a-zA-Z0-9._%+-]\{-1,}@\w\+\%(\.\w\+\)\+" contai
 
 if get(g:, 'asciidoctor_syntax_conceal', 0)
     " the pattern \[\ze\%(\s*[^ ]\+\s*\)\+]\+ means: a brackets pair, inside of which at least one non-space character, possibly with spaces
-    syn region asciidoctorLink matchgroup=Conceal start="\%(link\|xref\|mailto\|irc\):[^:].\{-}\[\ze\%(\s*[^ ]\+\s*\)\+]\+" end="\]" concealends oneline keepend skipwhite contained
-    syn region asciidoctorLink matchgroup=Conceal start="\%(link\|xref\|mailto\|irc\):\ze[^:].\{-}" end="\ze\[\s*\]" concealends oneline keepend skipwhite contained nextgroup=asciidoctorUrlDescription contains=asciidoctorUrl,asciidoctorFile
+    syn region asciidoctorLink matchgroup=Conceal start="\%(link\|xref\|mailto\|irc\):[^:][^\[]\{-}\[\ze\%(\s*[^ \]]\+\s*\)\+\]\+" end="\]" concealends oneline keepend skipwhite contained
+    syn region asciidoctorLink matchgroup=Conceal start="\%(link\|xref\|mailto\|irc\):\ze[^:][^\[]\{-}\[\s*\]" end="\ze\[\s*\]" concealends oneline keepend skipwhite contained nextgroup=asciidoctorUrlDescription contains=asciidoctorUrl,asciidoctorFile
+
     syn region asciidoctorUrl matchgroup=Conceal start="\%(file\|http\|ftp\|irc\)s\?://\S\+\[\ze\%(\s*[^ ]\+\s*\)\+]\+" end="\]" concealends oneline keepend skipwhite contained
 
     if get(g:, 'asciidoctor_compact_media_links', 0)
