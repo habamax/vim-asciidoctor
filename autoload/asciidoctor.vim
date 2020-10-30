@@ -192,3 +192,20 @@ func! asciidoctor#detect_pdf_theme()
         endif
     endfor
 endfunc
+
+
+"" asciidoctor header text object
+func! asciidoctor#header_textobj(inner) abort
+    if search('^=\+\s\+[^[:space:]=]', "bcW")
+        let lvlheader = matchstr(getline('.'), '^=\+')
+        if a:inner
+            normal! j
+        endif
+        normal! V
+        if search('^=\{1,'..len(lvlheader)..'}\s', "W")
+            normal! k
+        else
+            call search('\%$', 'W')
+        endif
+    endif
+endfunc

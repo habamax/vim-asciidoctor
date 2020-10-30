@@ -273,6 +273,12 @@ nnoremap <silent><buffer> [[ :<c-u>call <sid>section(1, v:count1)<CR>
 xmap     <buffer><expr>   ]] "\<esc>".v:count1.']]m>gv'
 xmap     <buffer><expr>   [[ "\<esc>".v:count1.'[[m>gv'
 
+"" header textobject
+onoremap <silent>ih :<C-u>call asciidoctor#header_textobj(v:true)<CR>
+onoremap <silent>ah :<C-u>call asciidoctor#header_textobj(v:false)<CR>
+xnoremap <silent>ih :<C-u>call asciidoctor#header_textobj(v:true)<CR>
+xnoremap <silent>ah :<C-u>call asciidoctor#header_textobj(v:false)<CR>
+
 "" Detect default source code language
 call asciidoctor#detect_source_language()
 
