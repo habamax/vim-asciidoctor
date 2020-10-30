@@ -195,6 +195,12 @@ endfunc
 
 
 "" asciidoctor header text object
+" * inner object is the text between prev section header(excluded) and the next
+"   section of the same level(excluded) or end of file.
+"   Except for `= Title`: text between title(excluded) and first `== Section`(excluded) or end of file.
+" * an object is the text between prev section header(included) and the next section of the same
+"   level(excluded) or end of file.
+"   Except for `= Title`: text between title(included) and first `== Section`(excluded) or end of file.
 func! asciidoctor#header_textobj(inner) abort
     if search('^=\+\s\+[^[:space:]=]', "bcW")
         let lvlheader = matchstr(getline('.'), '^=\+')
@@ -202,7 +208,7 @@ func! asciidoctor#header_textobj(inner) abort
             normal! j
         endif
         normal! V
-        if search('^=\{1,'..len(lvlheader)..'}\s', "W")
+        if search('^=\{2,'..len(lvlheader)..'}\s', "W")
             normal! k
         else
             call search('\%$', 'W')
