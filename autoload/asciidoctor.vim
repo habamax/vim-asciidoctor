@@ -206,6 +206,14 @@ func! asciidoctor#header_textobj(inner) abort
         let lvlheader = matchstr(getline('.'), '^=\+')
         if a:inner
             normal! j
+            " headers are followed one by one
+            " == header 1
+            " == header 2
+            " Do not select inner anything as there is not inner part of it.
+            if getline('.') =~ '^=\+\s\+[^[:space:]=]'
+                normal! k
+                return
+            endif
         endif
         normal! V
         if search('^=\{2,'..len(lvlheader)..'}\s', "W")
