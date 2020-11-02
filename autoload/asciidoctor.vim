@@ -202,24 +202,21 @@ endfunc
 "   level(excluded) or end of file.
 "   Except for `= Title`: text between title(included) and first `== Section`(excluded) or end of file.
 func! asciidoctor#header_textobj(inner) abort
-    if search('^=\+\s\+[^[:space:]=]', "bcW")
-        let lvlheader = matchstr(getline('.'), '^=\+')
-        if a:inner
-            normal! j
-            " headers are followed one by one
-            " == header 1
-            " == header 2
-            " Do not select inner anything as there is not inner part of it.
-            if getline('.') =~ '^=\+\s\+[^[:space:]=]'
-                normal! k
-                return
-            endif
-        endif
-        normal! V
-        if search('^=\{2,'..len(lvlheader)..'}\s', "W")
-            normal! k
+    let lnum_start = search('^=\+\s\+[^[:space:]=]', "ncbW")
+    if lnum_start
+        let lvlheader = matchstr(getline(lnum_start), '^=\+')
+        let lnum_end = search('^=\{2,'..len(lvlheader)..'}\s', "nW")
+        if !lnum_end
+            let lnum_end = search('\%$', 'nW')
         else
-            call search('\%$', 'W')
+            let lnum_end -= 1
+        endif
+        if a:inner && getline(lnum_start + 1) !~ '^=\+\s\+[^[:space:]=]'
+            let lnum_start += 1
         endif
     endif
+
+    exe lnum_end
+    normal! V
+    exe lnum_start
 endfunc
