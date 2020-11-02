@@ -220,3 +220,25 @@ func! asciidoctor#header_textobj(inner) abort
         exe lnum_start
     endif
 endfunc
+
+
+
+"" asciidoctor delimited block text object
+" * inner object is the text between delimiters
+" * an object is the text between between delimiters plus delimiters included.
+func! asciidoctor#delimited_block_textobj(inner) abort
+    let lnum_start = search('^\(-\+\)\|\(=\{4,}\)\|\(_\{4,}\)\|\(\*\{4,}\)\|\(\.\{4,}\)\s*$', "ncbW")
+    if lnum_start
+        let delim = getline(lnum_start)
+        let lnum_end = search('^'..delim[0]..'\{'..len(delim)..'}\s*$', "nW")
+        if lnum_end
+            if a:inner
+                let lnum_start += 1
+                let lnum_end -= 1
+            endif
+            exe lnum_end
+            normal! V
+            exe lnum_start
+        endif
+    endif
+endfunc

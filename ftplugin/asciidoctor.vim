@@ -279,6 +279,12 @@ onoremap <silent>ah :<C-u>call asciidoctor#header_textobj(v:false)<CR>
 xnoremap <silent>ih :<C-u>call asciidoctor#header_textobj(v:true)<CR>
 xnoremap <silent>ah :<C-u>call asciidoctor#header_textobj(v:false)<CR>
 
+"" delimited bLock textobject
+onoremap <silent>il :<C-u>call asciidoctor#delimited_block_textobj(v:true)<CR>
+onoremap <silent>al :<C-u>call asciidoctor#delimited_block_textobj(v:false)<CR>
+xnoremap <silent>il :<C-u>call asciidoctor#delimited_block_textobj(v:true)<CR>
+xnoremap <silent>al :<C-u>call asciidoctor#delimited_block_textobj(v:false)<CR>
+
 "" Detect default source code language
 call asciidoctor#detect_source_language()
 
