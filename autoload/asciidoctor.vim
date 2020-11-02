@@ -214,9 +214,9 @@ func! asciidoctor#header_textobj(inner) abort
         if a:inner && getline(lnum_start + 1) !~ '^=\+\s\+[^[:space:]=]'
             let lnum_start += 1
         endif
-    endif
 
-    exe lnum_end
-    normal! V
-    exe lnum_start
+        exe lnum_end
+        normal! V
+        exe lnum_start
+    endif
 endfunc
