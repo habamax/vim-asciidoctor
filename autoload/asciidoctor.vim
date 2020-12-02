@@ -75,7 +75,6 @@ func! s:asciidoctorGenerateImageName(path)
     let index = max(map(s:asciidoctorListImages(a:path), 
                 \{k,v -> s:asciidoctorExtractIndex(v)})) + 1
     return printf(g:asciidoctor_img_paste_pattern, expand('%:t:r'), index)
-    
 endfunc
 
 "" Paste image from the clipboard.
