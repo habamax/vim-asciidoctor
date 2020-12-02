@@ -18,7 +18,7 @@ for line in getline(1, 50)
     if line =~ "^\s*$"
         break
     endif
-    if line =~ "^:pdf-style:.*$"
+    if line =~ "^:pdf-theme:.*$"
         let s:use_pdf_paths = 1
         break
     endif
@@ -27,7 +27,7 @@ endfor
 if get(g:, 'asciidoctor_pdf_themes_path', '') == '' || !get(s:, 'use_pdf_paths', 0)
     let s:pdf_themes_path = ""
 else
-    let s:pdf_themes_path = '-a pdf-stylesdir='.shellescape(fnamemodify(g:asciidoctor_pdf_themes_path, ':p:h'))
+    let s:pdf_themes_path = '-a pdf-themesdir='.shellescape(fnamemodify(g:asciidoctor_pdf_themes_path, ':p:h'))
 endif
 
 if get(g:, 'asciidoctor_pdf_fonts_path', '') == '' || !get(s:, 'use_pdf_paths', 0)
