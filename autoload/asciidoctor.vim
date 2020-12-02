@@ -183,7 +183,7 @@ endfunc
 func! asciidoctor#detect_pdf_theme()
     let result = ''
     for line in getline(1, 30)
-        let m = matchlist(line, '^:pdf-style: \(.*\)$')
+        let m = matchlist(line, '^:pdf-theme: \(.*\)$')
         if !empty(m)
             let  result = s:trim(m[1])
             if result != ''
