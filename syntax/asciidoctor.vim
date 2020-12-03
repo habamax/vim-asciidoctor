@@ -129,17 +129,16 @@ else
     syn match asciidoctorCode /``.\{-}``/
 endif
 
+syn match asciidoctorUppercase /^\ze\u\+:/ nextgroup=asciidoctorAdmonition
+syn match asciidoctorAdmonition /\C^\%(NOTE:\)\|\%(TIP:\)\|\%(IMPORTANT:\)\|\%(CAUTION:\)\|\%(WARNING:\)\s/ contained
+
 syn match asciidoctorListMarker "^\s*\(-\|\*\+\|\.\+\)\%(\s\+\[[Xx ]\]\+\s*\)\?\%(\s\+\S\)\@="
 syn match asciidoctorOrderedListMarker "^\s*\%(\d\+\|\a\)\.\%(\s\+\S\)\@="
-
-syn match asciidoctorDefList ".\{-}::\_s\%(\_^\n\)\?" contains=@Spell
-
+syn match asciidoctorDefList "^.\{-}::\%(\s\|$\)" contains=@Spell
 
 syn match asciidoctorCallout "\s\+\zs<\%(\.\|\d\+\)>\ze\s*$" contained
 syn match asciidoctorCalloutDesc "^\s*\zs<\%(\.\|\d\+\)>\ze\s\+"
 
-syn match asciidoctorUppercase /^\ze\u\+:/ nextgroup=asciidoctorAdmonition
-syn match asciidoctorAdmonition /\C^\%(NOTE:\)\|\%(TIP:\)\|\%(IMPORTANT:\)\|\%(CAUTION:\)\|\%(WARNING:\)\s/ contained
 
 syn match asciidoctorCaption "^\.[^.[:space:]].*$" contains=@asciidoctorInline,@Spell
 
