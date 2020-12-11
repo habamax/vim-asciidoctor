@@ -285,9 +285,9 @@ hi asciidoctorItalic                         gui=italic cterm=italic
 hi asciidoctorBoldItalic                     gui=bold,italic cterm=bold,italic
 augroup asciidoctor_highlight_create
     au!
-    autocmd ColorScheme * :hi asciidoctorBold gui=bold cterm=bold
-    autocmd ColorScheme * :hi asciidoctorItalic gui=italic cterm=italic
-    autocmd ColorScheme * :hi asciidoctorBoldItalic gui=bold,italic cterm=bold,italic
+    autocmd ColorScheme * :hi def asciidoctorBold gui=bold cterm=bold
+    autocmd ColorScheme * :hi def asciidoctorItalic gui=italic cterm=italic
+    autocmd ColorScheme * :hi def asciidoctorBoldItalic gui=bold,italic cterm=bold,italic
 augroup end
 hi def link asciidoctorDefList               asciidoctorBold
 hi def link asciidoctorCaption               Statement
