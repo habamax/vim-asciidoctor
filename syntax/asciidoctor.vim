@@ -280,15 +280,10 @@ hi def link asciidoctorInlineAnchor          PreProc
 hi def link asciidoctorMacro                 Macro
 hi def link asciidoctorIndexTerm             Macro
 
-hi asciidoctorBold                           gui=bold cterm=bold
-hi asciidoctorItalic                         gui=italic cterm=italic
-hi asciidoctorBoldItalic                     gui=bold,italic cterm=bold,italic
-augroup asciidoctor_highlight_create
-    au!
-    autocmd ColorScheme * :hi def asciidoctorBold gui=bold cterm=bold
-    autocmd ColorScheme * :hi def asciidoctorItalic gui=italic cterm=italic
-    autocmd ColorScheme * :hi def asciidoctorBoldItalic gui=bold,italic cterm=bold,italic
-augroup end
+hi def asciidoctorBold                       gui=bold cterm=bold
+hi def asciidoctorItalic                     gui=italic cterm=italic
+hi def asciidoctorBoldItalic                 gui=bold,italic cterm=bold,italic
+
 hi def link asciidoctorDefList               asciidoctorBold
 hi def link asciidoctorCaption               Statement
 hi def link asciidoctorAdmonition            asciidoctorBold
