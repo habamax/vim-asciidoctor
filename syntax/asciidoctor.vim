@@ -270,7 +270,7 @@ hi def link asciidoctorLink                  Underlined
 hi def link asciidoctorAnchor                Underlined
 hi def link asciidoctorAttribute             Identifier
 hi def link asciidoctorCode                  Constant
-hi def link asciidoctorOption                Identifier
+hi def link asciidoctorOption                PreProc
 hi def link asciidoctorBlock                 PreProc
 hi def link asciidoctorBlockOptions          PreProc
 hi def link asciidoctorTableSep              PreProc
