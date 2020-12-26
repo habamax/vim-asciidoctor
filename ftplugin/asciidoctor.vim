@@ -119,10 +119,10 @@ endif
 if has("folding") && get(g:, 'asciidoctor_folding', 0)
     function! AsciidoctorFold() "{{{
         let line = getline(v:lnum)
-        
-        if (v:lnum == 1) && (line =~ '^----*$')                            
-           return ">1"                                                     
-        endif             
+
+        if (v:lnum == 1) && (line =~ '^----*$')
+           return ">1"
+        endif
 
         " Regular headers
         let depth = match(line, '\(^=\+\)\@<=\( .*$\)\@=')
