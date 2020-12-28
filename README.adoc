@@ -25,6 +25,7 @@ This plugin:
     - has folding;
     - has commands to compile documents (html, pdf, docx).
 
+
 == Installation
 
 === Vim8 built in packages
@@ -54,6 +55,7 @@ call minpac#add('habamax/vim-asciidoctor')
 
 --------
 
+
 === vim-plug
 
 .Add to your .vimrc next to your other plugs
@@ -64,7 +66,9 @@ Plug 'habamax/vim-asciidoctor'
 
 --------
 
+
 == Setup
+
 NOTE: To use basic asciidoctor with vim you don't have to setup anything in vim. At
 least this was the intention. :)
 
@@ -193,6 +197,7 @@ augroup END
 
 --------
 
+
 == Commands
 
 All commands are buffer local -- available only for asciidoctor files (`set filetype=asciidoctor`)
@@ -210,11 +215,11 @@ All commands are buffer local -- available only for asciidoctor files (`set file
 [NOTE]
 ======
 Commands: `Asciidoctor2HTML`, `Asciidoctor2PDF` should convert files
-if link:https://asciidoctor.org/docs/user-manual/#installing-the-asciidoctor-ruby-gem[asciidoctor] 
-and link:https://github.com/asciidoctor/asciidoctor-pdf#getting-started[asciidoctor-pdf] are installed.
+if link:https://asciidoctor.org/docs/user-manual/#installing-the-asciidoctor-ruby-gem[asciidoctor] and link:https://github.com/asciidoctor/asciidoctor-pdf#getting-started[asciidoctor-pdf] are installed.
 
 Command `Asciidoctor2DOCX` should also have link:https://pandoc.org/installing.html[pandoc] installed.
 ======
+
 
 == Usage
 
@@ -259,13 +264,16 @@ Text of section 2
 
 // pics
 
+
 === HTML output
 That should look something like this:
 
 .HTML output
 image::test_html.png[]
 
+
 === DOCX output
+
 If you use `:Asciidoctor2DOCX` and `:AsciidoctorOpenDOCX` commands instead, you
 should see something like this (provided you have `pandoc` and `MSWord`
 installed:)
@@ -273,7 +281,9 @@ installed:)
 .DOCX output
 image::test_docx.png[]
 
+
 === PDF output
+
 And if you use `:Asciidoctor2PDF` and `:AsciidoctorOpenPDF` commands, you
 should see something like this (I have my own default theme and fonts, so you
 probably see it a bit different) :
@@ -285,6 +295,7 @@ image::test_pdf1.png[]
 image::test_pdf2.png[]
 
 // add some short youtube videos
+
 
 == Paste images from clipboard
 
@@ -325,7 +336,9 @@ The name of the image is generated according to the pattern. By default it is
 
  img_ + document_base_name + next_image_number + .png
 
+
 == Bibliography completion
+
 There is initial support for bibliograpy completion. Works with `*.bib` files
 placed to the same folder as file being edited.
 
@@ -356,6 +369,7 @@ let g:asciidoctor_extensions = ['asciidoctor-bibtex']
 let g:asciidoctor_pdf_extensions = ['asciidoctor-bibtex']
 
 ======
+
 
 == Misc
 
@@ -391,6 +405,7 @@ augroup end
 
 NOTE: if you have link:https://github.com/tpope/vim-dispatch[vim-dispatch]
 installed HTML conversion would be done in background.
+
 
 === Highlight group names
 
@@ -497,10 +512,10 @@ a| Asciidoctor cell
 
     Indented text is highlighted as indented
     which is correct
- 
 
 |===
 --------
+
 
 === Setext-style headers highlighting
 
