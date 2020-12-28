@@ -401,56 +401,55 @@ Colorschemes can use following highlight groups to redefine default highlighting
 | Highlight Group Name
 | Default Value
 
-|asciidoctorTitle                |Title
-|asciidoctorSetextHeader         |Title
-|asciidoctorH1                   |Title
-|asciidoctorH2                   |Title
-|asciidoctorH3                   |Title
-|asciidoctorH4                   |Title
-|asciidoctorH5                   |Title
-|asciidoctorH6                   |Title
-|asciidoctorTitleDelimiter       |Type
-|asciidoctorH1Delimiter          |Type
-|asciidoctorH2Delimiter          |Type
-|asciidoctorH3Delimiter          |Type
-|asciidoctorH4Delimiter          |Type
-|asciidoctorH5Delimiter          |Type
-|asciidoctorH6Delimiter          |Type
-|asciidoctorSetextHeaderDelimiter|Type
-|asciidoctorListMarker           |Delimiter
-|asciidoctorOrderedListMarker    |asciidoctorListMarker
-|asciidoctorListContinuation     |Delimiter
-|asciidoctorComment              |Comment
-|asciidoctorIndented             |Comment
-|asciidoctorListingBlock         |asciidoctorIndented
-|asciidoctorLiteralBlock         |asciidoctorIndented
-|asciidoctorPlus                 |Delimiter
-|asciidoctorFile                 |Underlined
-|asciidoctorEmail                |Underlined
-|asciidoctorEmailAuto            |Underlined
-|asciidoctorUrl                  |Underlined
-|asciidoctorUrlAuto              |Underlined
-|asciidoctorUrlDescription       |Constant
-|asciidoctorLink                 |Underlined
-|asciidoctorAnchor               |Underlined
-|asciidoctorMacro                |Macro
-|asciidoctorIndexTerm            |Macro
-|asciidoctorAttribute            |Identifier
-|asciidoctorCode                 |Constant
-|asciidoctorOption               |Identifier
-|asciidoctorBlock                |Delimiter
-|asciidoctorTableSep             |Delimiter
-|asciidoctorTableCell            |Delimiter
-|asciidoctorTableEmbed           |Delimiter
-|asciidoctorInlineAnchor         |Delimiter
-|asciidoctorBold                 |gui=bold cterm=bold
-|asciidoctorItalic               |gui=italic cterm=italic
-|asciidoctorBoldItalic           |gui=bold,italic cterm=bold,italic
-|asciidoctorDefList              |asciidoctorBold
-|asciidoctorCaption              |Statement
-|asciidoctorAdmonition           |asciidoctorBold
-|asciidoctorCallout              |Delimiter
-|asciidoctorCalloutDesc          |Delimiter
+|asciidoctorTitle                 |Title
+|asciidoctorSetextHeader          |Title
+|asciidoctorH1                    |Title
+|asciidoctorH2                    |Title
+|asciidoctorH3                    |Title
+|asciidoctorH4                    |Title
+|asciidoctorH5                    |Title
+|asciidoctorH6                    |Title
+|asciidoctorTitleDelimiter        |Type
+|asciidoctorH1Delimiter           |Type
+|asciidoctorH2Delimiter           |Type
+|asciidoctorH3Delimiter           |Type
+|asciidoctorH4Delimiter           |Type
+|asciidoctorH5Delimiter           |Type
+|asciidoctorH6Delimiter           |Type
+|asciidoctorSetextHeaderDelimiter |Type
+|asciidoctorListMarker            |Delimiter
+|asciidoctorOrderedListMarker     |asciidoctorListMarker
+|asciidoctorListContinuation      |PreProc
+|asciidoctorComment               |Comment
+|asciidoctorIndented              |Comment
+|asciidoctorPlus                  |PreProc
+|asciidoctorPageBreak             |PreProc
+|asciidoctorCallout               |Float
+|asciidoctorCalloutDesc           |String
+|asciidoctorListingBlock          |Comment
+|asciidoctorLiteralBlock          |Comment
+|asciidoctorFile                  |Underlined
+|asciidoctorUrl                   |Underlined
+|asciidoctorEmail                 |Underlined
+|asciidoctorUrlAuto               |Underlined
+|asciidoctorEmailAuto             |Underlined
+|asciidoctorUrlDescription        |String
+|asciidoctorLink                  |Underlined
+|asciidoctorAnchor                |Underlined
+|asciidoctorAttribute             |Identifier
+|asciidoctorCode                  |Constant
+|asciidoctorOption                |PreProc
+|asciidoctorBlock                 |PreProc
+|asciidoctorBlockOptions          |PreProc
+|asciidoctorTableSep              |PreProc
+|asciidoctorTableCell             |PreProc
+|asciidoctorTableEmbed            |PreProc
+|asciidoctorInlineAnchor          |PreProc
+|asciidoctorMacro                 |Macro
+|asciidoctorIndexTerm             |Macro
+|asciidoctorBold                  |gui=bold cterm=bold
+|asciidoctorItalic                |gui=italic cterm=italic
+|asciidoctorBoldItalic            |gui=bold,italic cterm=bold,italic
 |===
 
 If you want to change highlight yourself for existing colorscheme without

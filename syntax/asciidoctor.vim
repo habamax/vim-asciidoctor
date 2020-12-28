@@ -255,7 +255,7 @@ hi def link asciidoctorH4Delimiter           Type
 hi def link asciidoctorH5Delimiter           Type
 hi def link asciidoctorH6Delimiter           Type
 hi def link asciidoctorSetextHeaderDelimiter Type
-hi def link asciidoctorListMarker            Special
+hi def link asciidoctorListMarker            Delimiter
 hi def link asciidoctorOrderedListMarker     asciidoctorListMarker
 hi def link asciidoctorListContinuation      PreProc
 hi def link asciidoctorComment               Comment
