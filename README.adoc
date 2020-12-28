@@ -409,6 +409,14 @@ Colorschemes can use following highlight groups to redefine default highlighting
 |asciidoctorH4                   |Title
 |asciidoctorH5                   |Title
 |asciidoctorH6                   |Title
+|asciidoctorTitleDelimiter       |Type
+|asciidoctorH1Delimiter          |Type
+|asciidoctorH2Delimiter          |Type
+|asciidoctorH3Delimiter          |Type
+|asciidoctorH4Delimiter          |Type
+|asciidoctorH5Delimiter          |Type
+|asciidoctorH6Delimiter          |Type
+|asciidoctorSetextHeaderDelimiter|Type
 |asciidoctorListMarker           |Delimiter
 |asciidoctorOrderedListMarker    |asciidoctorListMarker
 |asciidoctorListContinuation     |Delimiter
@@ -579,4 +587,3 @@ Although it should look like:
     Discuss Asciidoctor
     Discuss Asciidoctor
     Google, Yahoo, Bing
-

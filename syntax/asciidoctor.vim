@@ -42,15 +42,16 @@ syn cluster asciidoctorInnerBlock contains=asciidoctorBlockquote,asciidoctorList
 syn cluster asciidoctorInline contains=asciidoctorItalic,asciidoctorBold,asciidoctorCode,asciidoctorBoldItalic,asciidoctorUrl,asciidoctorUrlAuto,asciidoctorLink,asciidoctorAnchor,asciidoctorMacro,asciidoctorAttribute,asciidoctorInlineAnchor
 syn cluster asciidoctorUrls contains=asciidoctorUrlDescription,asciidoctorFile,asciidoctorUrlAuto,asciidoctorEmailAuto
 
-syn match asciidoctorTitle "^=\s.*$" contains=@asciidoctorInline,@Spell
-syn region asciidoctorH1 start="^==\s" end="$" oneline keepend contains=@asciidoctorInline,@Spell
-syn region asciidoctorH2 start="^===\s" end="$" oneline keepend contains=@asciidoctorInline,@Spell
-syn region asciidoctorH3 start="^====\s" end="$" oneline keepend contains=@asciidoctorInline,@Spell
-syn region asciidoctorH4 start="^=====\s" end="$" oneline keepend contains=@asciidoctorInline,@Spell
-syn region asciidoctorH5 start="^======\s" end="$" oneline keepend contains=@asciidoctorInline,@Spell
-syn region asciidoctorH6 start="^=======\s" end="$" oneline keepend contains=@asciidoctorInline,@Spell
+syn region asciidoctorTitle matchgroup=asciidoctorTitleDelimiter start="^=\s" end="$" oneline keepend contains=@asciidoctorInline,@Spell
+syn region asciidoctorH1 matchgroup=asciidoctorH1Delimiter start="^==\s" end="$" oneline keepend contains=@asciidoctorInline,@Spell
+syn region asciidoctorH2 matchgroup=asciidoctorH2Delimiter start="^===\s" end="$" oneline keepend contains=@asciidoctorInline,@Spell
+syn region asciidoctorH3 matchgroup=asciidoctorH3Delimiter start="^====\s" end="$" oneline keepend contains=@asciidoctorInline,@Spell
+syn region asciidoctorH4 matchgroup=asciidoctorH4Delimiter start="^=====\s" end="$" oneline keepend contains=@asciidoctorInline,@Spell
+syn region asciidoctorH5 matchgroup=asciidoctorH5Delimiter start="^======\s" end="$" oneline keepend contains=@asciidoctorInline,@Spell
+syn region asciidoctorH6 matchgroup=asciidoctorH6Delimiter start="^=======\s" end="$" oneline keepend contains=@asciidoctorInline,@Spell
 
-syn match asciidoctorSetextHeader '^\%(\n\|\%^\)\k.*\n\%(==\+\|\-\-\+\|\~\~\+\|\^\^\+\|++\+\)$' contains=@Spell
+syn match asciidoctorSetextHeader '^\%(\n\|\%^\)\k.*\n\%(==\+\|\-\-\+\|\~\~\+\|\^\^\+\|++\+\)$' contains=@Spell,asciidoctorSetextHeaderDelimiter
+syn match asciidoctorSetextHeaderDelimiter "^==\+\|\-\-\+\|\~\~\+\|\^\^\+\|++\+$" contained
 
 syn sync clear
 syn sync match syncH1 grouphere NONE "^==\s.*$"
@@ -246,6 +247,14 @@ hi def link asciidoctorH3                    Title
 hi def link asciidoctorH4                    Title
 hi def link asciidoctorH5                    Title
 hi def link asciidoctorH6                    Title
+hi def link asciidoctorTitleDelimiter        Type
+hi def link asciidoctorH1Delimiter           Type
+hi def link asciidoctorH2Delimiter           Type
+hi def link asciidoctorH3Delimiter           Type
+hi def link asciidoctorH4Delimiter           Type
+hi def link asciidoctorH5Delimiter           Type
+hi def link asciidoctorH6Delimiter           Type
+hi def link asciidoctorSetextHeaderDelimiter Type
 hi def link asciidoctorListMarker            Special
 hi def link asciidoctorOrderedListMarker     asciidoctorListMarker
 hi def link asciidoctorListContinuation      PreProc
