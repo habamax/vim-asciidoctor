@@ -42,9 +42,9 @@ else
     let s:extensions = "-r ".join(g:asciidoctor_pdf_extensions, ' -r ')
 endif
 
-let g:asciidoctor_pdf_executable = get(g:, 'asciidoctor_pdf_executable', 'asciidoctor-pdf')
+let s:asciidoctor_pdf_executable = get(g:, 'asciidoctor_pdf_executable', 'asciidoctor-pdf')
 
-let &l:makeprg = g:asciidoctor_pdf_executable . " " . s:extensions
+let &l:makeprg = s:asciidoctor_pdf_executable . " " . s:extensions
             \. " -a docdate=" . strftime("%Y-%m-%d")
             \. " -a doctime=" . strftime("%H:%M:%S") . " "
             \. s:pdf_themes_path . " "
