@@ -25,58 +25,75 @@ It should work out of the box (at least it was the intention). But sometimes
 one needs settings to set.
 
 
-*g:asciidoctor_executable*            What to use for HTML. 
+*g:asciidoctor_executable*            What to use for HTML.
                                     Default: asciidoctor
-  Example: 
+  Example: >
 
   let g:asciidoctor_executable = '~/projects/asciidoctor/bin/asciidoctor'
 
 
-*g:asciidoctor_extensions*            What extensions to use with HTML. 
+*g:asciidoctor_extensions*            What extensions to use with HTML.
                                     Default: []
-  Example: 
+  Example: >
 
   let g:asciidoctor_extensions = ['asciidoctor-diagram', 'asciidoctor-rouge']
 
 
 *g:asciidoctor_css_path*              Path to custom CSS to use with HTML.
                                     Default: ''
-  Example: 
+  Example: >
 
   let g:asciidoctor_css_path = '~/docs/ascidoctor-themes/'
 
 
 *g:asciidoctor_css*                   Custom CSS file name to use with HTML.
                                     Default: ''
-  Example: 
+  Example: >
 
   let g:asciidoctor_css = 'mytheme.css'
 
 
-*g:asciidoctor_pdf_executable*        What to use for PDF. 
+*g:asciidoctor_pdf_executable*        What to use for PDF.
                                     Default: asciidoctor-pdf
-  Example: 
+  Example: >
 
   let g:asciidoctor_pdf_executable = '~/asciidoctor-pdf/bin/asciidoctor-pdf'
 
 
-*g:asciidoctor_pdf_extensions*        What extensions to use with PDF. 
+*g:asciidoctor_use_fullpath*          Use full path when pass a file for a
+                                    compilation.
+                                    Default: v:true
+  Example: >
+
+  let g:asciidoctor_use_fullpath = v:false
+
+Might be useful if for some reason file passed for a compilation should not
+have full path. For example asciidoctor-pdf in docker might use the following
+setup to be able to create PDFs: >
+
+  let g:asciidoctor_pdf_executable = 'docker run --rm -v $(pwd):/documents/ asciidoctor/docker-asciidoctor asciidoctor-pdf'
+
+Note that you might need to have proper current working directory.
+Available for |:Asciidoctor2HTML| and |:Asciidoctor2PDF| commands only.
+
+
+*g:asciidoctor_pdf_extensions*        What extensions to use with PDF.
                                     Default: []
-  Example: 
+  Example: >
 
   let g:asciidoctor_pdf_extensions = ['asciidoctor-diagram']
 
 
 *g:asciidoctor_pdf_themes_path*       Path to custom themes.
                                     Default: ''
-  Example: 
+  Example: >
 
   let g:asciidoctor_pdf_themes_path = '~/docs/ascidoctor-themes/'
 
 
 *g:asciidoctor_pdf_fonts_path*        Path to fonts used in themes.
                                     Default: ''
-  Example: 
+  Example: >
 
   let g:asciidoctor_pdf_fonts_path = '~/docs/fonts/'
 
@@ -86,14 +103,14 @@ one needs settings to set.
                                     |g:asciidoctor_executable| and then
                                     DOCBOOK to DOCX with pandoc.
                                     Default: 'pandoc'
-  Example: 
+  Example: >
 
   let g:asciidoctor_pandoc_executable = '~/bin/pandoc'
 
 
 *g:asciidoctor_pandoc_data_dir*       Set --data-dir for pandoc.
                                     Default: ''
-  Example: 
+  Example: >
 
   let g:asciidoctor_pandoc_data_dir = '~/docs/.pandoc'
 
@@ -102,27 +119,27 @@ one needs settings to set.
                                     What docx file to use as a reference
                                     document (use styles defined there)
                                     Default: ''
-  Example: 
+  Example: >
 
   let g:asciidoctor_pandoc_referenc_doc = 'custom-reference.docx'
 
 
 *g:asciidoctor_pandoc_other_params*   Set additional parameteres for pandoc.
                                     Default: ''
-  Example: 
+  Example: >
 
   let g:asciidoctor_pandoc_other_params = '--toc'
 
 
 *g:asciidoctor_folding*               Fold sections (headers).
                                     Default: 0
-  Example: 
+  Example: >
 
   let g:asciidoctor_folding = 1
 
 if enabled all sections would be foldable. Title has the same fold level as
 sections level 1, higher level sections would have higher fold level (folded
-under section level-1):
+under section level-1): >
 
  = Title
  == Section 1
@@ -130,7 +147,7 @@ under section level-1):
  === Section 2
  == Section 1
 
-When folded:
+When folded: >
 
  = Title -----------------------------------
  == Section 1 ------------------------------
@@ -139,7 +156,7 @@ When folded:
 
 *g:asciidoctor_syntax_indented*       Enable highlight for indented blocks.
                                     Default: 1
-  Example: 
+  Example: >
 
   let g:asciidoctor_syntax_indented = 0
 
@@ -148,20 +165,20 @@ When folded:
                                     Currently only bold, italic, bolditaclic,
                                     code and links are concealed.
                                     Default: 0
-  Example: 
+  Example: >
 
   let g:asciidoctor_syntax_conceal = 1
 
-  NOTE: It doesn't automatically set conceallevel.
+NOTE: It doesn't automatically set conceallevel.
 
 
 *g:asciidoctor_fold_options*          Fold options (usually under the title).
                                     Default: 0
-  Example: 
+  Example: >
 
   let g:asciidoctor_fold_options = 1
 
-if enabled asciidoctor options would be foldable:
+if enabled asciidoctor options would be foldable: >
 
     = Title
     :author: Maxim Kim
@@ -176,7 +193,7 @@ if enabled asciidoctor options would be foldable:
     :revdate: 2018-11-19
     :imagesdir: images
 
-When folded:
+When folded: >
 
     = Title
     :author: Maxim Kim ------------------------
@@ -184,11 +201,11 @@ When folded:
 
 *g:asciidoctor_fenced_languages*      Highlight syntax of source blocks
                                     Default: []
-  Example: 
+  Example: >
 
   let g:asciidoctor_fenced_languages = ['python', 'c', 'javascript']
 
-  Then in your asciidoctor document:
+Then in your asciidoctor document: >
 
   [source,python]
   ----
@@ -196,7 +213,7 @@ When folded:
       print("hello world")
   ----
 
-  should be highlighted with python syntax.
+should be highlighted with python syntax.
 
 
 *g:asciidoctor_img_paste_command*     Command to save clipboard image to a
@@ -204,7 +221,7 @@ When folded:
                                     Default: 'gm convert clipboard: %s%s'
                                     Where first %s is a path, second %s is an
                                     image file name.
-  Example: 
+  Example: >
 
   " for OSX
   let g:asciidoctor_img_paste_command = 'pngpaste %s%s'
@@ -217,13 +234,13 @@ When folded:
                                     Default: 'img_%s_%s.png'
                                     Where first %s is a document base name,
                                     second %s is an image number.
-  Example: 
+  Example: >
 
   let g:asciidoctor_img_paste_pattern = '%s_img_%s.png'
 
-  So if you edit 'README.adoc` document and paste a clipboard image there it
-  would have name 'README_img_1.png'. Next one would have name
-  'README_img_2.png' etc.
+So if you edit 'README.adoc` document and paste a clipboard image there it
+would have name 'README_img_1.png'. Next one would have name
+'README_img_2.png' etc.
 
 
 *g:asciidoctor_opener*                Shell command to open asciidoctor files.
@@ -234,7 +251,7 @@ When folded:
                                     Default Windows: ':!start'
                                     Default Linux:   ':!xdg-open'
                                     Default OSX:     ':!open'
-  Example: 
+  Example: >
 
   let g:asciidoctor_opener = ':!firefox'
 
@@ -247,7 +264,7 @@ These commands are local to the asciidoctor buffers.
 
 
                                                            *:Asciidoctor2HTML*
-:Asciidoctor2HTML          Convert current file to HTML. 
+:Asciidoctor2HTML          Convert current file to HTML.
                            Uses |g:asciidoctor_executable|.
 
 
@@ -303,7 +320,7 @@ These commands are local to the asciidoctor buffers.
 
 MAPPINGS                                                *asciidoctor-mappings*
 
-There are no default mappings. You can setup yours with:
+There are no default mappings. You can setup yours with: >
 
 
     " Function to create buffer local mappings
@@ -331,10 +348,10 @@ There is initial support for bibtex citation added.
 Usage:
 
 Place your bibtex files next to your asciidoctor file (to the same path). Then
-completion would be available for:
+completion would be available for: >
 
-cite:[cit<C-X><C-U>
-citenp:[cit<C-X><C-U>
+  cite:[cit<C-X><C-U>
+  citenp:[cit<C-X><C-U>
 
 
  vim:tw=78:et:ft=help:norl:

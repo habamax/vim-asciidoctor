@@ -30,12 +30,14 @@ endif
 
 let s:asciidoctor_executable = get(g:, 'asciidoctor_executable', 'asciidoctor')
 
+let s:filename = shellescape(get(g:, 'asciidoctor_use_fullpath', v:true) ? expand("%:p") : expand("%:t"))
+
 let &l:makeprg = s:asciidoctor_executable . " " . s:extensions
             \. " -a docdate=".strftime("%Y-%m-%d")
             \. " -a doctime=".strftime("%T") . " "
             \. s:css_path . " "
             \. s:css_name . " "
-            \. shellescape(expand("%:p"))
+            \. s:filename
 
 let &cpo = s:keepcpo
 unlet s:keepcpo

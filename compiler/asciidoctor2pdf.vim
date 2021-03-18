@@ -44,12 +44,14 @@ endif
 
 let s:asciidoctor_pdf_executable = get(g:, 'asciidoctor_pdf_executable', 'asciidoctor-pdf')
 
+let s:filename = shellescape(get(g:, 'asciidoctor_use_fullpath', v:true) ? expand("%:p") : expand("%:t"))
+
 let &l:makeprg = s:asciidoctor_pdf_executable . " " . s:extensions
             \. " -a docdate=" . strftime("%Y-%m-%d")
             \. " -a doctime=" . strftime("%H:%M:%S") . " "
             \. s:pdf_themes_path . " "
             \. s:pdf_fonts_path . " "
-            \. shellescape(expand("%:p"))
+            \. s:filename
 
 let &cpo = s:keepcpo
 unlet s:keepcpo
