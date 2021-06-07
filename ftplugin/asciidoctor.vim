@@ -20,8 +20,8 @@ endif
 " see https://github.com/asciidoctor/asciidoctor-pdf/issues/1273
 setlocal errorformat=asciidoctor:\ ERROR:\ %f:\ line\ %l:\ %m
 
-" gf to open include files
-setlocal includeexpr=substitute(v:fname,'include::\\(.\\{-}\\)\\[.*','\\1','g')
+" gf to open include::file.ext[] and link:file.ext[] files
+setlocal includeexpr=substitute(v:fname,'\\(link:\\\|include::\\)\\(.\\{-}\\)\\[.*','\\2','g')
 setlocal comments=
 setlocal commentstring=//\ %s
 " vim-commentary plugin setup
