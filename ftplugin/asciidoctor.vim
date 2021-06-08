@@ -63,10 +63,10 @@ exe 'command! -buffer Asciidoctor2PDF :compiler asciidoctor2pdf | '   . s:make
 exe 'command! -buffer Asciidoctor2HTML :compiler asciidoctor2html | ' . s:make
 exe 'command! -buffer Asciidoctor2DOCX :compiler asciidoctor2docx | ' . s:make
 
-command! -buffer AsciidoctorOpenRAW  call s:open_file(s:get_fname())
-command! -buffer AsciidoctorOpenPDF  call s:open_file(s:get_fname(".pdf"))
-command! -buffer AsciidoctorOpenHTML call s:open_file(s:get_fname(".html"))
-command! -buffer AsciidoctorOpenDOCX call s:open_file(s:get_fname(".docx"))
+command! -buffer AsciidoctorOpenRAW  call asciidoctor#open_file(s:get_fname())
+command! -buffer AsciidoctorOpenPDF  call asciidoctor#open_file(s:get_fname(".pdf"))
+command! -buffer AsciidoctorOpenHTML call asciidoctor#open_file(s:get_fname(".html"))
+command! -buffer AsciidoctorOpenDOCX call asciidoctor#open_file(s:get_fname(".docx"))
 
 command! -buffer AsciidoctorPasteImage :call asciidoctor#pasteImage()
 
@@ -92,7 +92,8 @@ onoremap <silent>al :<C-u>call asciidoctor#delimited_block_textobj(v:false)<CR>
 xnoremap <silent>il :<C-u>call asciidoctor#delimited_block_textobj(v:true)<CR>
 xnoremap <silent>al :<C-u>call asciidoctor#delimited_block_textobj(v:false)<CR>
 
-nnoremap <silent><buffer> gx :<c-u>call <sid>open_url()<CR>
+nnoremap <silent><buffer> gx :<c-u>call asciidoctor#open_url()<CR>
+nnoremap <silent><buffer> gf :<c-u>call asciidoctor#open_url("edit")<CR>
 
 
 
@@ -233,84 +234,6 @@ func! s:get_fname(...)
         return expand("%")
     else
         return expand("%:r").ext
-    endif
-endfunc
-
-
-"" Return Windows path from WSL
-func! s:wsl_to_windows_path(path) abort
-    if !exists("$WSLENV")
-        return a:path
-    endif
-
-    if !executable('wslpath')
-        return a:path
-    endif
-
-    let res = systemlist('wslpath -w ' . a:path)
-    if !empty(res)
-        return res[0]
-    else
-        return a:path
-    endif
-endfunc
-
-
-func! s:open_file(filename)
-    if filereadable(a:filename)
-        if exists("$WSLENV")
-            exe g:asciidoctor_opener . ' '
-                        \ . shellescape(s:wsl_to_windows_path(a:filename))
-        else
-            exe g:asciidoctor_opener . ' ' . shellescape(a:filename)
-        endif
-    else
-        echom a:filename . " doesn't exist!"
-    endif
-endfunc
-
-
-"" to open URLs with gx mapping
-func! s:open_url()
-    " by default check WORD under cursor
-    let word = expand("<cWORD>")
-
-    " But if cursor is surrounded by [   ], like for http://ya.ru[yandex search]
-    " take a cWORD from first char before [
-    let save_cursor = getcurpos()
-    let line = getline('.')
-    if searchpair('\[', '', '\]', 'b', '', line('.')) 
-        let word = expand("<cWORD>")
-    endif
-    call setpos('.', save_cursor)
-
-    " Check asciidoc URL http://bla-bla.com[desc
-    let aURL = matchstr(word, '\%(\%(http\|ftp\|irc\)s\?\|file\)://\S\+\ze\[')
-    if aURL != ""
-        exe g:asciidoctor_opener . ' ' . escape(aURL, '#%!')
-        return
-    endif
-
-    " Check asciidoc link link:file.txt[desc
-    let aLNK = matchstr(word, 'link:/*\zs\S\+\ze\[')
-    if aLNK != ""
-        execute "lcd ". expand("%:p:h")
-        exe g:asciidoctor_opener . ' ' . fnameescape(fnamemodify(aLNK, ":p"))
-        lcd -
-        return
-    endif
-
-    " Check asciidoc URL http://bla-bla.com
-    let URL = matchstr(word, '\%(\%(http\|ftp\|irc\)s\?\|file\)://\S\+')
-    if URL != ""
-        exe g:asciidoctor_opener . ' ' . escape(URL, '#%!')
-        return
-    endif
-
-    " probably path?
-    if word =~ '^[~.$].*'
-        exe g:asciidoctor_opener . ' ' . expand(word)
-        return
     endif
 endfunc
 

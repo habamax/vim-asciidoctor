@@ -241,3 +241,92 @@ func! asciidoctor#delimited_block_textobj(inner) abort
         endif
     endif
 endfunc
+
+
+
+"" Return Windows path from WSL
+func! s:wsl_to_windows_path(path) abort
+    if !exists("$WSLENV")
+        return a:path
+    endif
+
+    if !executable('wslpath')
+        return a:path
+    endif
+
+    let res = systemlist('wslpath -w ' . a:path)
+    if !empty(res)
+        return res[0]
+    else
+        return a:path
+    endif
+endfunc
+
+
+func! asciidoctor#open_file(filename)
+    if filereadable(a:filename)
+        if exists("$WSLENV")
+            exe g:asciidoctor_opener . ' '
+                        \ . shellescape(s:wsl_to_windows_path(a:filename))
+        else
+            exe g:asciidoctor_opener . ' ' . shellescape(a:filename)
+        endif
+    else
+        echom a:filename . " doesn't exist!"
+    endif
+endfunc
+
+
+"" to open URLs/files with gx/gf mappings
+func! asciidoctor#open_url(...) abort
+    let cmd = get(a:, 1, g:asciidoctor_opener)
+
+    " by default check WORD under cursor
+    let word = expand("<cWORD>")
+
+    " But if cursor is surrounded by [   ], like for http://ya.ru[yandex search]
+    " take a cWORD from first char before [
+    let save_cursor = getcurpos()
+    let line = getline('.')
+    if searchpair('\[', '', '\]', 'b', '', line('.')) 
+        let word = expand("<cWORD>")
+    endif
+    call setpos('.', save_cursor)
+
+    " Check asciidoc URL http://bla-bla.com[desc
+    let aURL = matchstr(word, '\%(\%(http\|ftp\|irc\)s\?\|file\)://\S\+\ze\[')
+    if aURL != ""
+        exe cmd . ' ' . escape(aURL, '#%!')
+        return
+    endif
+
+    " Check asciidoc link link:file.txt[desc
+    let aLNK = matchstr(word, 'link:/*\zs\S\+\ze\[')
+    if aLNK != ""
+        execute "lcd ". expand("%:p:h")
+        exe cmd . ' ' . fnameescape(fnamemodify(aLNK, ":p"))
+        lcd -
+        return
+    endif
+
+    " Check asciidoc URL http://bla-bla.com
+    let URL = matchstr(word, '\%(\%(http\|ftp\|irc\)s\?\|file\)://\S\+')
+    if URL != ""
+        exe cmd . ' ' . escape(URL, '#%!')
+        return
+    endif
+
+    " probably path?
+    if word =~ '^[~.$].*'
+        exe cmd . ' ' . expand(word)
+        return
+    endif
+
+    try
+        exe "normal! gf"
+    catch /E447/
+        echohl Error
+        echomsg matchstr(v:exception, 'Vim(normal):\zs.*$')
+        echohl None
+    endtry
+endfunc
