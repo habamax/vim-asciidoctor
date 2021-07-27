@@ -185,6 +185,32 @@ Would be folded to: >
  == Section 1 ------------------------------
 
 
+*g:asciidoctor_foldtitle_as_h1*       Fold title as level 1 sections.
+                                    Default: 1
+
+  Example: >
+
+  let g:asciidoctor_foldtitle_as_h1 = 0
+
+When on, following >
+
+ = Title
+ hello world
+ == Section 1
+ hello world
+ === Section 2
+ hello world
+
+would be folded to: >
+
+ = Title -----------------------------------
+ == Section 1 ------------------------------
+
+Otherwise to >
+
+ = Title -----------------------------------
+
+
 *g:asciidoctor_syntax_indented*       Enable highlight for indented blocks.
                                     Default: 1
   Example: >

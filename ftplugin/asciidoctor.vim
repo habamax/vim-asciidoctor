@@ -163,7 +163,8 @@ if has("folding") && get(g:, 'asciidoctor_folding', 0)
 
 
         if depth > 0
-            if depth > 1
+            " fold all sections under title
+            if depth > 1 && get(g:, "asciidoctor_foldtitle_as_h1", v:true)
                 let depth -= 1
             endif
             " check syntax, it should be asciidoctorTitle or asciidoctorH
