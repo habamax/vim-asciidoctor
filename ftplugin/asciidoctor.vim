@@ -161,7 +161,7 @@ if has("folding") && get(g:, 'asciidoctor_folding', 0)
             endif
             " check syntax, it should be asciidoctorTitle or asciidoctorH
             let syncode = synstack(v:lnum, 1)
-            if len(syncode) > 0 && synIDattr(syncode[0], 'name') =~ 'asciidoctor\%(H[1-6]\)\|Title'
+            if len(syncode) > 0 && synIDattr(syncode[0], 'name') =~ 'asciidoctor\%(H[1-6]\)\|Title\|SetextHeader'
                 return ">" . depth
             endif
         endif
