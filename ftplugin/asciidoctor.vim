@@ -125,8 +125,15 @@ if has("folding") && get(g:, 'asciidoctor_folding', 0)
            return ">1"
         endif
 
+        let nested = get(g:, "asciidoctor_foldnested", v:true)
+
         " Regular headers
         let depth = match(line, '\(^=\+\)\@<=\( .*$\)\@=')
+
+        " Do not fold nested regular headers
+        if depth > 1 && !nested
+            let depth = 1
+        endif
 
         " Setext style headings
         if depth < 0
@@ -134,23 +141,23 @@ if has("folding") && get(g:, 'asciidoctor_folding', 0)
             let nextline = getline(v:lnum + 1)
 
             if (line =~ '^.\+$') && (nextline =~ '^=\+$') && (prevline =~ '^\s*$')
-                let depth = 2
+                let depth = nested ? 2 : 1
             endif
 
             if (line =~ '^.\+$') && (nextline =~ '^-\+$') && (prevline =~ '^\s*$')
-                let depth = 3
+                let depth = nested ? 3 : 1
             endif
 
             if (line =~ '^.\+$') && (nextline =~ '^\~\+$') && (prevline =~ '^\s*$')
-                let depth = 4
+                let depth = nested ? 4 : 1
             endif
 
             if (line =~ '^.\+$') && (nextline =~ '^^\+$') && (prevline =~ '^\s*$')
-                let depth = 5
+                let depth = nested ? 5 : 1
             endif
 
             if (line =~ '^.\+$') && (nextline =~ '^+\+$') && (prevline =~ '^\s*$')
-                let depth = 5
+                let depth = nested ? 5 : 1
             endif
         endif
 
