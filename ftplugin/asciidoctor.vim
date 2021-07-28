@@ -81,16 +81,16 @@ xmap     <buffer><expr>   ]] "\<esc>".v:count1.']]m>gv'
 xmap     <buffer><expr>   [[ "\<esc>".v:count1.'[[m>gv'
 
 "" header textobject
-onoremap <silent>ih :<C-u>call asciidoctor#header_textobj(v:true)<CR>
-onoremap <silent>ah :<C-u>call asciidoctor#header_textobj(v:false)<CR>
-xnoremap <silent>ih :<C-u>call asciidoctor#header_textobj(v:true)<CR>
-xnoremap <silent>ah :<C-u>call asciidoctor#header_textobj(v:false)<CR>
+onoremap <silent><buffer>ih :<C-u>call asciidoctor#header_textobj(v:true)<CR>
+onoremap <silent><buffer>ah :<C-u>call asciidoctor#header_textobj(v:false)<CR>
+xnoremap <silent><buffer>ih :<C-u>call asciidoctor#header_textobj(v:true)<CR>
+xnoremap <silent><buffer>ah :<C-u>call asciidoctor#header_textobj(v:false)<CR>
 
 "" delimited bLock textobject
-onoremap <silent>il :<C-u>call asciidoctor#delimited_block_textobj(v:true)<CR>
-onoremap <silent>al :<C-u>call asciidoctor#delimited_block_textobj(v:false)<CR>
-xnoremap <silent>il :<C-u>call asciidoctor#delimited_block_textobj(v:true)<CR>
-xnoremap <silent>al :<C-u>call asciidoctor#delimited_block_textobj(v:false)<CR>
+onoremap <silent><buffer>il :<C-u>call asciidoctor#delimited_block_textobj(v:true)<CR>
+onoremap <silent><buffer>al :<C-u>call asciidoctor#delimited_block_textobj(v:false)<CR>
+xnoremap <silent><buffer>il :<C-u>call asciidoctor#delimited_block_textobj(v:true)<CR>
+xnoremap <silent><buffer>al :<C-u>call asciidoctor#delimited_block_textobj(v:false)<CR>
 
 nnoremap <silent><buffer> gx :<c-u>call asciidoctor#open_url()<CR>
 nnoremap <silent><buffer> gf :<c-u>call asciidoctor#open_url("edit")<CR>
