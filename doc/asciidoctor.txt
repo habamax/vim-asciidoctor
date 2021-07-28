@@ -377,6 +377,16 @@ These commands are local to the asciidoctor buffers.
 
 MAPPINGS                                                *asciidoctor-mappings*
 
+*<Plug>(AsciidoctorFold)*    Fold sections in a special way.
+
+If
+* no count is provided, toggle current fold;
+* count is 1, fold all;
+* count is n, open folds up to foldlevel n.
+
+
+DEFAULT MAPPINGS
+
 There are no default mappings. You can setup yours with: >
 
 
@@ -389,6 +399,7 @@ There are no default mappings. You can setup yours with: >
         nnoremap <buffer> <leader>ch :Asciidoctor2HTML<CR>
         nnoremap <buffer> <leader>cp :Asciidoctor2PDF<CR>
         nnoremap <buffer> <leader>cx :Asciidoctor2DOCX<CR>
+        nmap <buffer> <space><tab> <Plug>(AsciidoctorFold)
     endfun
 
     " Call AsciidoctorMappings for all `*.adoc` and `*.asciidoc` files

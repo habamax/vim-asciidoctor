@@ -95,6 +95,30 @@ xnoremap <silent><buffer>al :<C-u>call asciidoctor#delimited_block_textobj(v:fal
 nnoremap <silent><buffer> gx :<c-u>call asciidoctor#open_url()<CR>
 nnoremap <silent><buffer> gf :<c-u>call asciidoctor#open_url("edit")<CR>
 
+"" Useful with
+""  let g:asciidoctor_folding = 1
+""  let g:asciidoctor_foldnested = 0
+""  let g:asciidoctor_foldtitle_as_h1 = 1
+"" Fold up to count foldlevel in a special way:
+""     * no count is provided, toggle current fold;
+""     * count is 1, fold all;
+""     * count is n, open folds up to foldlevel n.
+func! s:asciidoctor_fold(count) abort
+    if !get(g:, 'asciidoctor_folding', 0)
+        return
+    endif
+    if a:count == 0
+        normal! za
+    elseif a:count == 1
+        %foldclose!
+    else
+        let &foldlevel = a:count - 1
+    endif
+endfunc
+
+"" fold up to v:count foldlevel in a special way
+nnoremap <silent><buffer> <Plug>(AsciidoctorFold) :<C-u>call <sid>asciidoctor_fold(v:count)<CR>
+
 
 
 """
