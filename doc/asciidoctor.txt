@@ -381,7 +381,6 @@ MAPPINGS                                                *asciidoctor-mappings*
 
 If
 * no count is provided, toggle current fold;
-* count is 1, fold all;
 * count is n, open folds up to foldlevel n.
 
 

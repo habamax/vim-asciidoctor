@@ -101,18 +101,15 @@ nnoremap <silent><buffer> gf :<c-u>call asciidoctor#open_url("edit")<CR>
 ""  let g:asciidoctor_foldtitle_as_h1 = 1
 "" Fold up to count foldlevel in a special way:
 ""     * no count is provided, toggle current fold;
-""     * count is 1, fold all;
-""     * count is n, open folds up to foldlevel n.
+""     * count is n, open folds of up to foldlevel n.
 func! s:asciidoctor_fold(count) abort
     if !get(g:, 'asciidoctor_folding', 0)
         return
     endif
     if a:count == 0
         normal! za
-    elseif a:count == 1
-        %foldclose!
     else
-        let &foldlevel = a:count - 1
+        let &foldlevel = a:count
     endif
 endfunc
 
