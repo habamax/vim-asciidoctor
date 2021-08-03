@@ -116,6 +116,10 @@ endfunc
 "" fold up to v:count foldlevel in a special way
 nnoremap <silent><buffer> <Plug>(AsciidoctorFold) :<C-u>call <sid>asciidoctor_fold(v:count)<CR>
 
+"" promote/demote sections
+nnoremap <silent><buffer> <Plug>(AsciidoctorSectionPromote) :<C-u>call asciidoctor#promote_section()<CR>
+nnoremap <silent><buffer> <Plug>(AsciidoctorSectionDemote) :<C-u>call asciidoctor#demote_section()<CR>
+
 
 
 """
@@ -268,8 +272,8 @@ endfunc
 
 
 "" Next/Previous section mappings
-fun! s:section(back, cnt)
+func! s:section(back, cnt)
   for n in range(a:cnt)
     call search('^=\+\s\+\S\+\|\_^\%(\n\|\%^\)\@<=\k.*\n\%(==\+\|\-\-\+\|\~\~\+\|\^\^\+\|++\+\)$', a:back ? 'bW' : 'W')
   endfor
-endfun
+endfunc

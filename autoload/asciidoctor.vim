@@ -330,3 +330,62 @@ func! asciidoctor#open_url(...) abort
         echohl None
     endtry
 endfunc
+
+
+"" Promote sections including subsections
+"" * Doesn't check for the real syntax sections (might fail with "pseudo" sections
+""   embedded into source blocks)
+"" * Doesn't work for underlined sections.
+func! asciidoctor#promote_section() abort
+    let save = winsaveview()
+    try
+        if search('^=\+\s\+\S', 'cbW')
+            let lvl = len(matchstr(getline('.'), '^=\+'))
+            if lvl > 5
+                return
+            endif
+            let next_lvl = lvl + 1
+            while lvl < next_lvl
+                call setline('.', '='..getline('.'))
+                if search('^=\{'..(lvl + 1)..',}\s\+\S', 'W')
+                    let next_lvl = len(matchstr(getline('.'), '^=\+'))
+                else
+                    break
+                endif
+            endwhile
+        endif
+    finally
+        call winrestview(save)
+    endtry
+endfunc
+
+
+"" Demote sections including subsections
+"" * Doesn't check for the real syntax sections (might fail with "pseudo" sections
+""   embedded into source blocks)
+"" * Doesn't work for underlined sections.
+func! asciidoctor#demote_section() abort
+    let save = winsaveview()
+    try
+        if search('^=\+\s\+\S', 'cbW')
+            let lvl = len(matchstr(getline('.'), '^=\+'))
+            let parent_section = search('^=\{1,'..max([(lvl - 1), 1])..'}\s\+\S', 'nbW')
+            let parent_lvl = len(matchstr(getline(parent_section), '^=\+'))
+            let next_lvl = lvl + 1
+            while lvl < next_lvl && (lvl > parent_lvl+1)
+                if lvl == 1
+                    break
+                else
+                    call setline('.', getline('.')[1:])
+                endif
+                if search('^=\{'..(lvl + 1)..',}\s\+\S', 'W')
+                    let next_lvl = len(matchstr(getline('.'), '^=\+'))
+                else
+                    break
+                endif
+            endwhile
+        endif
+    finally
+        call winrestview(save)
+    endtry
+endfunc

@@ -384,6 +384,44 @@ If
 * count is n, open folds up to foldlevel n.
 
 
+*<Plug>(AsciidoctorPromoteSection)*    Promote section including subsections.
+
+This >
+
+  = Title
+  [cursor]
+  == Section 1
+  === Section 2
+  == Section 3
+
+Would become >
+
+  == Title
+  [cursor]
+  === Section 1
+  ==== Section 2
+  === Section 3
+
+*<Plug>(AsciidoctorDemoteSection)*     Demote section including subsections.
+
+This >
+
+  == Title
+  [cursor]
+  === Section 1
+  ==== Section 2
+  === Section 3
+
+Would become >
+
+  = Title
+  [cursor]
+  == Section 1
+  === Section 2
+  == Section 3
+
+
+
 DEFAULT MAPPINGS
 
 There are no default mappings. You can setup yours with: >
