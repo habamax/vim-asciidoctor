@@ -9,11 +9,38 @@ if exists("b:did_ftplugin")
 endif
 let b:did_ftplugin = 1
 
+let undo_opts = "setl cms< com< fo< flp< inex< efm< cfu< fde< fdm<"
+let undo_cmds = "| delcommand Asciidoctor2PDF"
+            \.. "| delcommand Asciidoctor2HTML"
+            \.. "| delcommand Asciidoctor2DOCX"
+            \.. "| delcommand AsciidoctorOpenRAW"
+            \.. "| delcommand AsciidoctorOpenPDF"
+            \.. "| delcommand AsciidoctorOpenHTML"
+            \.. "| delcommand AsciidoctorOpenDOCX"
+            \.. "| delcommand AsciidoctorPasteImage"
+let undo_maps = "| execute 'nunmap <buffer> ]]'"
+            \.. "| execute 'nunmap <buffer> [['"
+            \.. "| execute 'xunmap <buffer> ]]'"
+            \.. "| execute 'xunmap <buffer> [['"
+            \.. "| execute 'ounmap <buffer> ih'"
+            \.. "| execute 'ounmap <buffer> ah'"
+            \.. "| execute 'xunmap <buffer> ih'"
+            \.. "| execute 'xunmap <buffer> ah'"
+            \.. "| execute 'ounmap <buffer> il'"
+            \.. "| execute 'ounmap <buffer> al'"
+            \.. "| execute 'xunmap <buffer> il'"
+            \.. "| execute 'xunmap <buffer> al'"
+            \.. "| execute 'nunmap <buffer> gx'"
+            \.. "| execute 'nunmap <buffer> gf'"
+            \.. "| execute 'nunmap <buffer> <Plug>(AsciidoctorFold)'"
+            \.. "| execute 'nunmap <buffer> <Plug>(AsciidoctorSectionPromote)'"
+            \.. "| execute 'nunmap <buffer> <Plug>(AsciidoctorSectionDemote)'"
+let undo_vars = "| unlet! b:commentary_startofline"
 
 if exists('b:undo_ftplugin')
-    let b:undo_ftplugin .= "|setl cms< com< fo< flp< inex< efm< cfu<"
+    let b:undo_ftplugin .= "|" .. undo_opts .. undo_cmds .. undo_maps .. undo_vars
 else
-    let b:undo_ftplugin = "setl cms< com< fo< flp< inex< efm< cfu<"
+    let b:undo_ftplugin = undo_opts .. undo_cmds .. undo_maps .. undo_vars
 endif
 
 
@@ -219,7 +246,6 @@ if has("folding") && get(g:, 'asciidoctor_folding', 0)
 
     setlocal foldexpr=AsciidoctorFold()
     setlocal foldmethod=expr
-    let b:undo_ftplugin .= " foldexpr< foldmethod<"
     let s:asciidoctor_fold_options = get(g:, 'asciidoctor_fold_options', 0)
 endif
 
