@@ -296,7 +296,7 @@ func! asciidoctor#open_url(...) abort
     " Check asciidoc URL http://bla-bla.com[desc
     let aURL = matchstr(word, '\%(\%(http\|ftp\|irc\)s\?\|file\)://\S\+\ze\[')
     if aURL != ""
-        exe cmd . ' ' . escape(aURL, '#%!')
+        exe cmd . ' "' . escape(aURL, '#%!')  . '"'
         return
     endif
 
@@ -312,7 +312,7 @@ func! asciidoctor#open_url(...) abort
     " Check asciidoc URL http://bla-bla.com
     let URL = matchstr(word, '\%(\%(http\|ftp\|irc\)s\?\|file\)://\S\+')
     if URL != ""
-        exe cmd . ' ' . escape(URL, '#%!')
+        exe cmd . ' "' . escape(URL, '#%!')  . '"'
         return
     endif
 
