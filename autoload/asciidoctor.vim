@@ -226,7 +226,7 @@ endfunc
 " * inner object is the text between delimiters
 " * an object is the text between between delimiters plus delimiters included.
 func! asciidoctor#delimited_block_textobj(inner) abort
-    let lnum_start = search('^\(-\+\)\|\(=\{4,}\)\|\(_\{4,}\)\|\(\*\{4,}\)\|\(\.\{4,}\)\s*$', "ncbW")
+    let lnum_start = search('^\(\(-\{2,}\)\|\(=\{4,}\)\|\(_\{4,}\)\|\(\*\{4,}\)\|\(\.\{4,}\)\)\s*$', "ncbW")
     if lnum_start
         let delim = getline(lnum_start)
         let lnum_end = search('^'..delim[0]..'\{'..len(delim)..'}\s*$', "nW")
