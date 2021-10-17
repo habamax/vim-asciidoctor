@@ -339,7 +339,7 @@ The name of the image is generated according to the pattern. By default it is
 
 == Bibliography completion
 
-There is initial support for bibliograpy completion. Works with `*.bib` files
+There is initial support for bibliography completion. Works with `*.bib` files
 placed to the same folder as file being edited.
 
 No setup is needed although additional setting for a base bibtex folder might
@@ -519,7 +519,7 @@ a| Asciidoctor cell
 
 === Setext-style headers highlighting
 
-Proper setext-style highlihgting should have equal numbers of underlined chars:
+Proper setext-style highlighting should have equal numbers of underlined chars:
 
 ----
 This Header level 1
