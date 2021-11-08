@@ -17,7 +17,10 @@ endif
 if !exists('g:asciidoctor_fenced_languages')
     let g:asciidoctor_fenced_languages = []
 endif
-for s:type in g:asciidoctor_fenced_languages
+for s:type in g:asciidoctor_fenced_languages + [get(b:, "asciidoctor_source_language", "NONE")]
+    if s:type ==# "NONE"
+        continue
+    endif
     exe 'syn include @asciidoctorSourceHighlight'.s:type.' syntax/'.s:type.'.vim'
     unlet! b:current_syntax
 endfor
@@ -61,7 +64,7 @@ syn sync match syncH4 grouphere NONE "^=====\s.*$"
 syn sync match syncH5 grouphere NONE "^======\s.*$"
 syn sync match syncH6 grouphere NONE "^=======\s.*$"
 
-syn match asciidoctorAttribute "{[[:alpha:]][[:alnum:]-_:]\{-}}" 
+syn match asciidoctorAttribute "{[[:alpha:]][[:alnum:]-_:]\{-}}"
 
 " a Macro is a generic pattern that has no default highlight, but it could contain a link/image/url/xref/mailto/etc, and naked URLs as well
 
@@ -172,33 +175,40 @@ syn region asciidoctorListingBlock matchgroup=asciidoctorBlock start="^----\+\s*
 " General [source] block
 syn region asciidoctorSourceBlock matchgroup=asciidoctorBlock start="^\[source\%(,.*\)*\]\s*$" end="^\s*$" keepend
 syn region asciidoctorSourceBlock matchgroup=asciidoctorBlock start="^\[source\%(,.*\)*\]\s*\n\z(--\+\)\s*$" end="^.*\n\zs\z1\s*$" keepend
+syn region asciidoctorSourceBlock matchgroup=asciidoctorBlock start="^```\%(\w\+\)\?\s*$" end="^.*\n\?\zs```\s*$" keepend
 
 " Source highlighting with programming languages
 if main_syntax ==# 'asciidoctor'
 
-    "" Default :source-language: is set up
+    "" if :source-language: is set up
     "" b:asciidoctor_source_language should be set up in ftplugin -- reading
     "" first 20(?) rows of a file
-    " :source-language: python
-    "[source]
-    " for i in ...
-    "
     if get(b:, "asciidoctor_source_language", "NONE") != "NONE"
+        " :source-language: python
+        "[source]
+        " for i in ...
+        "
         exe 'syn region asciidoctorSourceHighlightDefault'.b:asciidoctor_source_language.' matchgroup=asciidoctorBlock start="^\[source\]\s*$" end="^\s*$" keepend contains=asciidoctorCallout,@asciidoctorSourceHighlight'.b:asciidoctor_source_language
-    endif
 
-    " if :source-language: is set up
-    " :source-language: python
-    "[source]
-    "----
-    " for i in ...
-    "----
-    if get(b:, "asciidoctor_source_language", "NONE") != "NONE"
+        " :source-language: python
+        "[source]
+        "----
+        " for i in ...
+        "----
         exe 'syn region asciidoctorSourceHighlightDefault'.b:asciidoctor_source_language.' matchgroup=asciidoctorBlock start="^\[source\]\s*\n\z(--\+\)\s*$" end="^.*\n\zs\z1\s*$" keepend contains=asciidoctorCallout,@asciidoctorSourceHighlight'.b:asciidoctor_source_language
+
+        " :source-language: python
+        "```lang
+        "for i in ...
+        "```
+        exe 'syn region asciidoctorSourceHighlightDefault'.b:asciidoctor_source_language.' matchgroup=asciidoctorBlock start="^```\s*$" end="^.*\n\?\zs```\s*$" keepend contains=asciidoctorCallout,@asciidoctorSourceHighlight'.b:asciidoctor_source_language
     endif
 
     "" Other languages
-    for s:type in g:asciidoctor_fenced_languages
+    for s:type in g:asciidoctor_fenced_languages + [get(b:, "asciidoctor_source_language", "NONE")]
+        if s:type ==# "NONE"
+            continue
+        endif
         "[source,lang]
         " for i in ...
         "
@@ -209,6 +219,11 @@ if main_syntax ==# 'asciidoctor'
         "for i in ...
         "----
         exe 'syn region asciidoctorSourceHighlight'.s:type.' matchgroup=asciidoctorBlock start="^\[\%(source\)\?,\s*'.s:type.'\%(,.*\)*\]\s*\n\z(--\+\)\s*$" end="^.*\n\zs\z1\s*$" keepend contains=asciidoctorCallout,@asciidoctorSourceHighlight'.s:type
+
+        "```lang
+        "for i in ...
+        "```
+        exe 'syn region asciidoctorSourceHighlightDefault'.s:type.' matchgroup=asciidoctorBlock start="^```'.s:type.'\s*$" end="^.*\n\?\zs```\s*$" keepend contains=asciidoctorCallout,@asciidoctorSourceHighlight'.s:type
 
 
     endfor
