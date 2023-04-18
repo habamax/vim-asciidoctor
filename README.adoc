@@ -336,6 +336,27 @@ The name of the image is generated according to the pattern. By default it is
 
  img_ + document_base_name + next_image_number + .png
 
+== Images from URIs
+
+To include content by URI, including images, requires setting the `allow-uri-read` attribute.  It is not enabled by default for reasons noted in the Asciidoctor documentation at
+https://docs.asciidoctor.org/asciidoc/latest/directives/include-uri/[Include Content by URI].
+
+If you are sure the URIs in a file are &#x201c;safe&#x201d;, either enter
+the following on the command line or add it to your ~/.vimrc:
+
+[source,vim]
+--------
+let g:asciidoctor_allow_uri_read = " -a allow-uri-read"
+--------
+
+Now images from URIs will be processed, e.g., a block image like the following would be processed to the PDF output:
+
+[literal]
+.........
+
+image::https://www.debian.org/logos/openlogo-100.jpg[debian-openlogo-100]
+
+.........
 
 == Bibliography completion
 
