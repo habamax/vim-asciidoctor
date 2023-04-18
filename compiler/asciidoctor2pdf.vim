@@ -6,6 +6,10 @@
 if exists("current_compiler")
     finish
 endif
+" Use let g:asciidoctor_allow_uri_read = " -a allow-uri-read" in your .vimrc
+" to enable including images from URIs.  Use this with care!  Refer:
+" https://docs.asciidoctor.org/asciidoc/latest/directives/include-uri/
+let g:asciidoctor_allow_uri_read = exists("g:asciidoctor_allow_uri_read") ? g:asciidoctor_allow_uri_read : ""
 let current_compiler = "Asciidoctor2PDF"
 let s:keepcpo= &cpo
 set cpo&vim
@@ -47,6 +51,7 @@ let s:asciidoctor_pdf_executable = get(g:, 'asciidoctor_pdf_executable', 'asciid
 let s:filename = shellescape(get(g:, 'asciidoctor_use_fullpath', v:true) ? expand("%:p") : expand("%:t"))
 
 let &l:makeprg = s:asciidoctor_pdf_executable . " " . s:extensions
+            \. g:asciidoctor_allow_uri_read
             \. " -a docdate=" . strftime("%Y-%m-%d")
             \. " -a doctime=" . strftime("%H:%M:%S") . " "
             \. s:pdf_themes_path . " "
