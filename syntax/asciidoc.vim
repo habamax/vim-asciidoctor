@@ -1,5 +1,5 @@
 " Vim syntax file
-" Language:     asciidoctor
+" Language:     asciidoc
 " Maintainer:   Maxim Kim <habamax@gmail.com>
 " Filenames:    *.adoc
 " vim: et sw=4
@@ -11,7 +11,7 @@ endif
 syntax spell toplevel
 
 if !exists('main_syntax')
-    let main_syntax = 'asciidoctor'
+    let main_syntax = 'asciidoc'
 endif
 
 if !exists('g:asciidoctor_fenced_languages')
