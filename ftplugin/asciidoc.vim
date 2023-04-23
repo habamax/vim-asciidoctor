@@ -1,5 +1,5 @@
 " Vim filetype plugin
-" Language:   asciidoctor
+" Language:   asciidoc
 " Maintainer: Maxim Kim <habamax@gmail.com>
 " Filenames:  *.adoc
 " vim: et sw=4
