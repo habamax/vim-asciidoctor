@@ -304,9 +304,15 @@ hi def link asciidoctorInlineAnchor          PreProc
 hi def link asciidoctorMacro                 Macro
 hi def link asciidoctorIndexTerm             Macro
 
-hi def asciidoctorBold                       gui=bold cterm=bold
-hi def asciidoctorItalic                     gui=italic cterm=italic
-hi def asciidoctorBoldItalic                 gui=bold,italic cterm=bold,italic
+if has("patch-9.1.1568")
+    hi def link asciidoctorBold              Bold
+    hi def link asciidoctorItalic            Italic
+    hi def link asciidoctorBoldItalic        BoldItalic
+else
+    hi def asciidoctorBold                   gui=bold cterm=bold
+    hi def asciidoctorItalic                 gui=italic cterm=italic
+    hi def asciidoctorBoldItalic             gui=bold,italic cterm=bold,italic
+endif
 
 hi def link asciidoctorDefList               asciidoctorBold
 hi def link asciidoctorCaption               Statement
